@@ -1,0 +1,66 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: #d4d5d6;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: rgb(104, 102, 102);
+  cursor: pointer;
+}
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.topbar-logo {
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #4b0cdf;
+}
+
+.topbar-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.search-bar {
+  position: relative;
+  width: 350px;
+  height: 40px;
+  border-radius: 15px;
+}
+.search-bar-btn {
+  background: none;
+  width: 50px;
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+.topbar-buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.topbar-icon {
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.topbar-icon:hover {
+  color: #000;
+}

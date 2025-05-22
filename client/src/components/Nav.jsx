@@ -5,12 +5,8 @@ import TEST_ID from "./Nav.testid";
 const Nav = () => {
   return (
     <ul>
-      <Link to="/" data-testid={TEST_ID.linkToHome}>
-        <li>Home</li>
-      </Link>
-      <Link to="/user" data-testid={TEST_ID.linkToUsers}>
-        <li>Users</li>
-      </Link>
+      <Link to="/" data-testid={TEST_ID.linkToHome}></Link>
+      <Link to="/user" data-testid={TEST_ID.linkToUsers}></Link>
     </ul>
   );
 };

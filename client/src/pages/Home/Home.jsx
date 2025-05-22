@@ -1,19 +1,38 @@
-import TEST_ID from "./Home.testid";
-import hyfLogo from "../../assets/hyf-logo.png";
+import Sidebar from "../../components/Sidebar";
+import Topbar from "../../components/Topbar";
+import Footer from "../../components/Footer";
+import ItemSlider from "../../components/ItemSlider";
+import homeImage from "../../assets/homeImage.jpg";
+import { useState } from "react";
 
-const Home = () => {
-  const headerStyle = {
-    background: "navy",
-    color: "snow",
-    padding: "1rem",
-  };
+function Home() {
+  const [showSidebar, setShowSidebar] = useState(false);
+  const toggleSidebar = () => setShowSidebar(!showSidebar);
+  const closeSidebar = () => setShowSidebar(false);
   return (
-    <div data-testid={TEST_ID.container}>
-      <h1 style={headerStyle}>This is the homepage</h1>
-      <p>Good luck with the project!</p>
-      <img src={hyfLogo} alt="HackYourFuture Logo" style={{ width: "200px" }} />
+    <div
+      className="home-container"
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
+      <Topbar toggleSidebar={toggleSidebar} />
+      <div style={{ display: "flex", flex: 1 }}>
+        {showSidebar && (
+          <Sidebar showSidebar={showSidebar} onClose={closeSidebar} />
+        )}
+        <main style={{ flex: 1, padding: "1rem" }}>
+          <img
+            src={homeImage}
+            alt="Share With Us"
+            style={{ width: "100%", borderRadius: "10px" }}
+          />
+          <h2>Items you may like</h2>
+          <ItemSlider />
+        </main>
+      </div>
+
+      <Footer />
     </div>
   );
-};
+}
 
 export default Home;
