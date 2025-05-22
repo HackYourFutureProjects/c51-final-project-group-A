@@ -12,7 +12,6 @@ const SearchBar = ({ searchItem, setSearchItem }) => {
   );
 };
 
-
 SearchBar.propTypes = {
   searchItem: PropTypes.string.isRequired,
   setSearchItem: PropTypes.func.isRequired,

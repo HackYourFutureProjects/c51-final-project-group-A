@@ -11,7 +11,7 @@ const Home = () => {
     color: "snow",
     padding: "1rem",
   };
-// Temporary mock data for testing UI before backend is ready.
+  // Temporary mock data for testing UI before backend is ready.
   const items = [
     { id: 1, name: "item1", description: "item1" },
     { id: 2, name: "item2", description: "item2" },
