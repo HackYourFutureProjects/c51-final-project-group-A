@@ -1,11 +1,13 @@
 import TEST_ID from "./Home.testid";
 import hyfLogo from "../../assets/hyf-logo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchBar from "../../components/SearchBar";
-import ItemCard from "../../components/ItemCard";
+import ResultPage from "../components/ResultPage";
 
 const Home = () => {
   const [searchItem, setSearchItem] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
   const headerStyle = {
     background: "navy",
     color: "snow",
@@ -24,22 +26,36 @@ const Home = () => {
     { id: 9, name: "item9", description: "item9" },
     { id: 10, name: "item10", description: "item10" },
   ];
+
+  // Filter items based on search input
   const filteredItems = items.filter((item) =>
     item.name.toLowerCase().includes(searchItem.toLowerCase()),
   );
+
+  // Reset to page 1 when search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchItem]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+  const pages = [...Array(totalPages).keys()].map((num) => num + 1);
   return (
     <div data-testid={TEST_ID.container}>
       <h1 style={headerStyle}>This is the homepage</h1>
       <p>Good luck with the project!</p>
       <img src={hyfLogo} alt="HackYourFuture Logo" style={{ width: "200px" }} />
       <SearchBar searchItem={searchItem} setSearchItem={setSearchItem} />
-      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-        {filteredItems.length > 0 ? (
-          filteredItems.map((item) => <ItemCard key={item.id} item={item} />)
-        ) : (
-          <p>No items found</p>
-        )}
-      </div>
+      <ResultPage
+        currentItems={currentItems}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        setCurrentPage={setCurrentPage}
+        pages={pages}
+      />
     </div>
   );
 };
