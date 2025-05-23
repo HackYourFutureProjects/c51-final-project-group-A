@@ -56,4 +56,3 @@ ResultPage.propTypes = {
 };
 
 export default ResultPage;
-
