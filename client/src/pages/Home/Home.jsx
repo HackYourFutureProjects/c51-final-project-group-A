@@ -1,18 +1,13 @@
 import TEST_ID from "./Home.testid";
-import hyfLogo from "../../assets/hyf-logo.png";
 import { useState, useEffect } from "react";
-import SearchBar from "../../components/SearchBar";
 import ResultPage from "../components/ResultPage";
+import Header from "../../components/Header";
 
 const Home = () => {
   const [searchItem, setSearchItem] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-  const headerStyle = {
-    background: "navy",
-    color: "snow",
-    padding: "1rem",
-  };
+
   // Temporary mock data for testing UI before backend is ready.
   const items = [
     { id: 1, name: "item1", description: "item1" },
@@ -43,12 +38,10 @@ const Home = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
   const pages = [...Array(totalPages).keys()].map((num) => num + 1);
+
   return (
     <div data-testid={TEST_ID.container}>
-      <h1 style={headerStyle}>This is the homepage</h1>
-      <p>Good luck with the project!</p>
-      <img src={hyfLogo} alt="HackYourFuture Logo" style={{ width: "200px" }} />
-      <SearchBar searchItem={searchItem} setSearchItem={setSearchItem} />
+      <Header searchItem={searchItem} setSearchItem={setSearchItem} />
       <ResultPage
         currentItems={currentItems}
         currentPage={currentPage}

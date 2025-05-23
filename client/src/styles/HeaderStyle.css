@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: #d4d5d6;
+  color: rgb(104, 102, 102);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.menu-icon {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: rgb(104, 102, 102);
+  cursor: pointer;
+}
+
+.logo {
+  padding: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #4b0cdf;
+  margin-left: 4rem;
+}
+
+.header-right .header-icon {
+  margin-left: 1rem;
+  cursor: pointer;
+}
