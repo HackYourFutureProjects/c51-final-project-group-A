@@ -6,7 +6,7 @@ import Header from "../../components/Header";
 
 const Home = () => {
   const [searchItem, setSearchItem] = useState("");
-  
+
   // Temporary mock data for testing UI before backend is ready.
   const items = [
     { id: 1, name: "item1", description: "item1" },
