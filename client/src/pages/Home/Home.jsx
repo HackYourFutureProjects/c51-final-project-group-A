@@ -1,16 +1,12 @@
 import TEST_ID from "./Home.testid";
-import hyfLogo from "../../assets/hyf-logo.png";
 import { useState } from "react";
-import SearchBar from "../../components/SearchBar";
+// import SearchBar from "../../components/SearchBar";
 import ItemCard from "../../components/ItemCard";
+import Header from "../../components/Header";
 
 const Home = () => {
   const [searchItem, setSearchItem] = useState("");
-  const headerStyle = {
-    background: "navy",
-    color: "snow",
-    padding: "1rem",
-  };
+
   // Temporary mock data for testing UI before backend is ready.
   const items = [
     { id: 1, name: "item1", description: "item1" },
@@ -29,10 +25,7 @@ const Home = () => {
   );
   return (
     <div data-testid={TEST_ID.container}>
-      <h1 style={headerStyle}>This is the homepage</h1>
-      <p>Good luck with the project!</p>
-      <img src={hyfLogo} alt="HackYourFuture Logo" style={{ width: "200px" }} />
-      <SearchBar searchItem={searchItem} setSearchItem={setSearchItem} />
+      <Header searchItem={searchItem} setSearchItem={setSearchItem} />
       <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
         {filteredItems.length > 0 ? (
           filteredItems.map((item) => <ItemCard key={item.id} item={item} />)
