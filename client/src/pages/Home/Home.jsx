@@ -2,6 +2,7 @@ import TEST_ID from "./Home.testid";
 import { useState, useEffect } from "react";
 import ResultPage from "../components/ResultPage";
 import Header from "../../components/Header";
+import wallpaper from "../../assets/wallpaper.jpg";
 
 const Home = () => {
   const [searchItem, setSearchItem] = useState("");
@@ -42,6 +43,15 @@ const Home = () => {
   return (
     <div data-testid={TEST_ID.container}>
       <Header searchItem={searchItem} setSearchItem={setSearchItem} />
+      {!searchItem && (
+        <div style={{ textAlign: "center", margin: "5px 0" }}>
+          <img
+            src={wallpaper}
+            alt="Banner"
+            style={{ maxWidth: "100%", height: "auto", borderRadius: "8px" }}
+          />
+        </div>
+      )}
       <ResultPage
         currentItems={currentItems}
         currentPage={currentPage}
