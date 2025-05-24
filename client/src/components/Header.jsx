@@ -2,6 +2,7 @@
 import { FaBars, FaBell, FaHeart, FaUserCircle } from "react-icons/fa";
 import "../styles/HeaderStyle.css";
 import SearchBar from "./SearchBar";
+import PropTypes from "prop-types";
 
 // This component represents the header section of the application
 const Header = ({ searchItem, setSearchItem }) => {
@@ -23,7 +24,6 @@ const Header = ({ searchItem, setSearchItem }) => {
   );
 };
 
-import PropTypes from "prop-types";
 Header.propTypes = {
   searchItem: PropTypes.string.isRequired,
   setSearchItem: PropTypes.func.isRequired,
