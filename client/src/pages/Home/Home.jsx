@@ -2,6 +2,7 @@ import TEST_ID from "./Home.testid";
 import { useState, useEffect } from "react";
 import ResultPage from "../components/ResultPage";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   const [searchItem, setSearchItem] = useState("");
@@ -49,6 +50,7 @@ const Home = () => {
         setCurrentPage={setCurrentPage}
         pages={pages}
       />
+      <Footer />
     </div>
   );
 };
