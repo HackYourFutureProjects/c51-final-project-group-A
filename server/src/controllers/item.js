@@ -15,37 +15,60 @@ export const getItems = async (req, res) => {
   }
 };
 
+// Function that returns an aggregation pipeline based on the request queries
 const filterSearch = (queries) => {
-  const { category, condition, maxDuration, minDuration, availability, minPrice, maxPrice, sortBy, sortOrder, limit, page } = queries;
+  const {
+    category,
+    condition,
+    maxDuration,
+    minDuration,
+    availability,
+    minPrice,
+    maxPrice,
+    sortBy,
+    sortOrder,
+    limit,
+    page,
+  } = queries;
 
+  // Populate match stage with given/default values for filtering
   const matchStage = {};
   category && (matchStage.category = category);
   condition && (matchStage.condition = condition);
   availability && (matchStage.availability = availability);
   matchStage.borrowDuration = {
-    $gte: minDuration ? parseFloat(minDuration) : 0,
-    $lte: maxDuration ? parseFloat(maxDuration) : Infinity
+    $gte: minDuration ? parseInt(minDuration) : 0,
+    $lte: maxDuration ? parseInt(maxDuration) : Infinity,
   };
   matchStage.price = {
     $gte: minPrice ? parseFloat(minPrice) : 0,
-    $lte: maxPrice ? parseFloat(maxPrice) : Infinity
+    $lte: maxPrice ? parseFloat(maxPrice) : Infinity,
   };
-  logInfo(matchStage, "matchStage")
 
-  const sortStage = (sortBy && sortOrder) ? {
-    [sortBy]: (sortOrder === "desc") ? -1 : 1
-  } : {
-    createdAt: -1
+  // Sort results by the given query strings
+  // On default sorts by creation time
+  const sortStage =
+    sortBy && sortOrder
+      ? {
+          [sortBy]: sortOrder === "desc" ? -1 : 1,
+        }
+      : {
+          createdAt: -1,
   };
-  logInfo(sortStage, "sortStage")
+
+  // Provide pagination with limit and skip
   const limitStage = parseInt(limit);
-  logInfo(limitStage, "limitStage")
   const skipStage = (parseInt(page) - 1) * limitStage;
-  logInfo(skipStage, "skipStage")
+
+  // Returns a total count of items for th
   return [
     { $match: matchStage },
     { $sort: sortStage },
-    { $skip: skipStage },
-    { $limit: limitStage }
+    {
+      $facet: {
+        totalItems: [{ $count: "count" }],
+        data: [{ $skip: skipStage }, { $limit: limitStage }],    
+      },
+    },
   ];
-}
+};
