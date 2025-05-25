@@ -4,7 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/SearchBarStyle.css";
 
-export default function SearchBar() {
+export default function SearchBar({ searchItem, setSearchItem }) {
   // Local state to store the search query
   const [query, setQuery] = useState("");
 
@@ -25,8 +25,10 @@ export default function SearchBar() {
         type="text"
         className="search-input"
         placeholder="Search your item..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        value={searchItem || query}
+        onChange={(e) =>
+          setQuery(e.target.value) || setSearchItem(e.target.value)
+        }
         onKeyDown={handleKeyDown}
       />
 

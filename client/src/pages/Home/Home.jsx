@@ -1,5 +1,6 @@
 import TEST_ID from "./Home.testid";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ResultPage from "../components/ResultPage";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -7,9 +8,17 @@ import ItemSlider from "../../components/ItemSlider";
 import wallpaper from "../../assets/wallpaper.jpg";
 
 const Home = () => {
-  const [searchItem, setSearchItem] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+
+  // Get the current URL location
+  // Create a URLSearchParams instance to read query parameters
+  //Get the "search" parameter from the URL or default to an empty string
+  // Initialize local state for search input
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get("search") || "";
+  const [searchItem, setSearchItem] = useState(searchQuery);
 
   // Temporary mock data for testing UI before backend is ready.
   const items = [
@@ -45,7 +54,7 @@ const Home = () => {
   return (
     <div data-testid={TEST_ID.container}>
       <Header searchItem={searchItem} setSearchItem={setSearchItem} />
-      {!searchItem && (
+      {searchItem === "" && (
         <div style={{ textAlign: "center", margin: "5px 0" }}>
           <img
             src={wallpaper}
@@ -54,7 +63,7 @@ const Home = () => {
           />
         </div>
       )}
-      <ItemSlider />
+      {searchItem === "" && <ItemSlider />}
       <ResultPage
         currentItems={currentItems}
         currentPage={currentPage}
