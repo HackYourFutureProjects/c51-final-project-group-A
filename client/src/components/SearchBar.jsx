@@ -1,20 +1,47 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { FiSearch } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/SearchBarStyle.css";
 
-const SearchBar = ({ searchItem, setSearchItem }) => {
+export default function SearchBar() {
+  // Local state to store the search query
+  const [query, setQuery] = useState("");
+
+  // Hook to programmatically navigate to another page
+  const navigate = useNavigate();
+
+  // Handles "Enter" key press to trigger navigation to catalogue page with search query
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && query.trim()) {
+      e.preventDefault();
+      navigate(`/result?search=${encodeURIComponent(query)}`);
+    }
+  };
+
   return (
-    <input
-      type="text"
-      placeholder="Search"
-      value={searchItem}
-      onChange={(e) => setSearchItem(e.target.value)}
-      style={{ margin: "1rem 0", padding: "0.5rem" }}
-    />
+    <div className="search-form">
+      <input
+        type="text"
+        className="search-input"
+        placeholder="Search your item..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+
+      <Link
+        to={`/result?search=${encodeURIComponent(query)}`}
+        className="search-button"
+        aria-label="Search"
+      >
+        <FiSearch className="search-icon" />
+      </Link>
+    </div>
   );
-};
+}
 
 SearchBar.propTypes = {
   searchItem: PropTypes.string.isRequired,
   setSearchItem: PropTypes.func.isRequired,
 };
-
-export default SearchBar;
