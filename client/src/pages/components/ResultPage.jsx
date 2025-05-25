@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import ItemCard from "../../components/ItemCard";
+import "../../styles/ResultPageStyle.css";
 
 const ResultPage = ({
   currentItems,
@@ -14,17 +15,21 @@ const ResultPage = ({
   const searchQuery = searchParams.get("search") || "";
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <div className="result-container">
       {Array.isArray(currentItems) && currentItems.length > 0 ? (
-        currentItems.map((item) => <ItemCard key={item.id} item={item} />)
+        <div className="items-grid">
+          {currentItems.map((item) => (
+            <ItemCard key={item.id} item={item} />
+          ))}
+        </div>
       ) : (
-        <p>
+        <p style={{ textAlign: "center" }}>
           No items found for <strong>{searchQuery}</strong>
         </p>
       )}
 
       {Array.isArray(currentItems) && currentItems.length > 0 && (
-        <div>
+        <div className="pagination">
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(currentPage - 1)}

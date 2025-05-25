@@ -64,13 +64,15 @@ const Home = () => {
         </div>
       )}
       {searchItem === "" && <ItemSlider />}
-      <ResultPage
-        currentItems={currentItems}
-        currentPage={currentPage}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-        pages={pages}
-      />
+      {searchItem !== "" && (
+        <ResultPage
+          currentItems={currentItems}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+          pages={pages}
+        />
+      )}
       <Footer />
     </div>
   );
