@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import ItemCard from "../../components/ItemCard";
 
@@ -8,15 +9,21 @@ const ResultPage = ({
   setCurrentPage,
   pages,
 }) => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get("search") || "";
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      {currentItems.length > 0 ? (
+      {Array.isArray(currentItems) && currentItems.length > 0 ? (
         currentItems.map((item) => <ItemCard key={item.id} item={item} />)
       ) : (
-        <p>No items found</p>
+        <p>
+          No items found for <strong>{searchQuery}</strong>
+        </p>
       )}
 
-      {currentItems.length > 0 && (
+      {Array.isArray(currentItems) && currentItems.length > 0 && (
         <div>
           <button
             disabled={currentPage === 1}

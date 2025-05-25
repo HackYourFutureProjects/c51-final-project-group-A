@@ -2,6 +2,8 @@ import TEST_ID from "./Home.testid";
 import { useState, useEffect } from "react";
 import ResultPage from "../components/ResultPage";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import ItemSlider from "../../components/ItemSlider";
 import wallpaper from "../../assets/wallpaper.jpg";
 
 const Home = () => {
@@ -52,6 +54,7 @@ const Home = () => {
           />
         </div>
       )}
+      <ItemSlider />
       <ResultPage
         currentItems={currentItems}
         currentPage={currentPage}
@@ -59,6 +62,7 @@ const Home = () => {
         setCurrentPage={setCurrentPage}
         pages={pages}
       />
+      <Footer />
     </div>
   );
 };
