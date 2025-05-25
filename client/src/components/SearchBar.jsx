@@ -26,7 +26,9 @@ export default function SearchBar({ searchItem, setSearchItem }) {
         className="search-input"
         placeholder="Search your item..."
         value={searchItem || query}
-        onChange={(e) => setQuery(e.target.value) || setSearchItem(e.target.value)}
+        onChange={(e) =>
+          setQuery(e.target.value) || setSearchItem(e.target.value)
+        }
         onKeyDown={handleKeyDown}
       />
 

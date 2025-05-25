@@ -1,6 +1,6 @@
 // Importing icons from Font Awesome library
 import { FaBars, FaBell, FaHeart, FaUserCircle } from "react-icons/fa";
-import  { useState } from "react";
+import { useState } from "react";
 import "../styles/HeaderStyle.css";
 import SearchBar from "./SearchBar";
 import PropTypes from "prop-types";
@@ -14,7 +14,10 @@ const Header = ({ searchItem, setSearchItem }) => {
     <div className="header">
       <div className="left-section">
         <FaBars className="menu-icon" onClick={() => setIsSidebarOpen(true)} />
-        <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        <Sidebar
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+        />
         <span className="logo">Share with us</span>
       </div>
       <div className="search-bar">
@@ -24,7 +27,7 @@ const Header = ({ searchItem, setSearchItem }) => {
         <FaBell className="header-icon" />
         <FaHeart className="header-icon" />
         <FaUserCircle className="header-icon" />
-      </div> 
+      </div>
     </div>
   );
 };

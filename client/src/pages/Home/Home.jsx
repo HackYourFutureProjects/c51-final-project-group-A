@@ -11,7 +11,7 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-  // Get the current URL location 
+  // Get the current URL location
   // Create a URLSearchParams instance to read query parameters
   //Get the "search" parameter from the URL or default to an empty string
   // Initialize local state for search input
@@ -63,9 +63,7 @@ const Home = () => {
           />
         </div>
       )}
-      {searchItem === "" && (
-        <ItemSlider />
-      )}
+      {searchItem === "" && <ItemSlider />}
       <ResultPage
         currentItems={currentItems}
         currentPage={currentPage}
