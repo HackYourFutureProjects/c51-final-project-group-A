@@ -54,7 +54,7 @@ const filterSearch = (queries) => {
   const matchStage = {};
   category && (matchStage.category = category);
   condition && (matchStage.condition = condition);
-  (availability === "true") && (matchStage.availability = true); 
+  availability === "true" && (matchStage.availability = true);
   matchStage.borrowDuration = {
     $gte: minDuration ? parseInt(minDuration) : 0,
     $lte: maxDuration ? parseInt(maxDuration) : Infinity,
