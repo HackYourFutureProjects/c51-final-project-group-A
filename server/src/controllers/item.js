@@ -1,5 +1,5 @@
 import Item from "../models/Item.js";
-import { logError, logInfo } from "../util/logging.js";
+import { logError } from "../util/logging.js";
 
 export const getItems = async (req, res) => {
   const filters = filterSearch(req.query);
@@ -54,7 +54,7 @@ const filterSearch = (queries) => {
         }
       : {
           createdAt: -1,
-  };
+        };
 
   // Provide pagination with limit and skip
   const limitStage = parseInt(limit);
@@ -67,7 +67,7 @@ const filterSearch = (queries) => {
     {
       $facet: {
         totalItems: [{ $count: "count" }],
-        data: [{ $skip: skipStage }, { $limit: limitStage }],    
+        data: [{ $skip: skipStage }, { $limit: limitStage }],
       },
     },
   ];
