@@ -5,8 +5,12 @@ export const getItems = async (req, res) => {
   const filters = filterSearch(req.query);
 
   try {
-    const items = await Item.aggregate(filters);
-    res.status(200).json({ success: true, result: items });
+    const response = await Item.aggregate(filters);
+    res.status(200).json({
+      success: true,
+      pagination: response[0].pagination,
+      result: response[0].data,
+    });
   } catch (error) {
     logError(error);
     res
@@ -58,15 +62,24 @@ const filterSearch = (queries) => {
 
   // Provide pagination with limit and skip
   const limitStage = parseInt(limit);
-  const skipStage = (parseInt(page) - 1) * limitStage;
+  const currentPage = parseInt(page);
+  const skipStage = (currentPage - 1) * limitStage;
 
-  // Returns a total count of items for th
+  // Returns aggregation pipeline with pagination
   return [
     { $match: matchStage },
     { $sort: sortStage },
     {
       $facet: {
-        totalItems: [{ $count: "count" }],
+        pagination: [
+          { $count: "totalItems" },
+          {
+            $addFields: {
+              currentPage,
+              totalPages: { $ceil: { $divide: ["$totalItems", limitStage] } },
+            },
+          },
+        ],
         data: [{ $skip: skipStage }, { $limit: limitStage }],
       },
     },
