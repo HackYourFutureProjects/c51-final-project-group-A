@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import "../../styles/ItemSliderStyle.css";
+import "../styles/ItemSliderStyle.css";
 
 export default function ItemSlider() {
   const sliderRef = useRef(null);

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import ResultPage from "../components/ResultPage";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ItemSlider from "../components/ItemSlider";
+import ItemSlider from "../../components/ItemSlider";
 
 const Home = () => {
   const [searchItem, setSearchItem] = useState("");
