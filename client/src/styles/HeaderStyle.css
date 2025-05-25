@@ -2,32 +2,44 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
+  height: 60px;
   background-color: #d4d5d6;
-  color: rgb(104, 102, 102);
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #686666;
+  padding: 0 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
   position: relative;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .menu-icon {
   background: none;
   border: none;
-  font-size: 24px;
-  color: rgb(104, 102, 102);
+  font-size: 26px;
+  color: #686666;
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.menu-icon:hover {
+  color: #0798e6;
 }
 
 .logo {
-  padding: 4px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #4b0cdf;
-  margin-left: 4rem;
+  padding: 6px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0798e6;
+  margin-left: 3rem;
+  user-select: none;
 }
 
 .header-right .header-icon {
   margin-left: 1rem;
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.header-right .header-icon:hover {
+  color: #0798e6;
 }
