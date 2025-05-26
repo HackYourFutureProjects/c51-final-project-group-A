@@ -1,25 +1,24 @@
-import { useLocation } from "react-router-dom";
-import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ItemCard from "../../components/ItemCard";
 import Pagination from "../../components/Pagination";
 import ViewToggle from "../../components/ViewToggle";
 import "../../styles/ResultPageStyle.css";
+import useFetch from "../../hooks/useFetch";
 
 const VIEW_MODES = { GRID: "grid", LINE: "line" };
 
-const ResultPage = ({
-  currentItems,
-  currentPage,
-  totalPages,
-  setCurrentPage,
-  pages,
-}) => {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const searchQuery = searchParams.get("search") || "";
+const ResultPage = () => {
+  const [url, setUrl] = useState("");
+  const [items, setItems] = useState(null);
+  const [pagination, setPagination] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const [viewMode, setViewMode] = useState(VIEW_MODES.LINE);
+  const { performFetch, cancelFetch } = useFetch(url, (response) => {
+    setPagination(response.pagination);
+    setItems(response.result);
+  });
+
+  const [viewMode, setViewMode] = useState(VIEW_MODES.GRID);
 
   const toggleViewMode = () => {
     setViewMode((prev) =>
@@ -27,42 +26,48 @@ const ResultPage = ({
     );
   };
 
+  useEffect(() => {
+    const params = new URLSearchParams();
+    params.set("page", currentPage);
+    params.set("limit", 5);
+    params.set("sortBy", "createdAt");
+    params.set("sortOrder", "desc");
+
+    setUrl(`/items?${params.toString()}`);
+  }, [currentPage]);
+
+  useEffect(() => {
+    performFetch();
+    return cancelFetch;
+  }, [url]);
+
   return (
     <div className="result-container">
       <ViewToggle viewMode={viewMode} toggleViewMode={toggleViewMode} />
-
-      {Array.isArray(currentItems) && currentItems.length > 0 ? (
+      {Array.isArray(items) && items.length > 0 ? (
         <div
           className={viewMode === VIEW_MODES.GRID ? "items-grid" : "items-list"}
         >
-          {currentItems.map((item) => (
-            <ItemCard key={item.id} item={item} />
+          {items.map((item) => (
+            <ItemCard key={item._id} item={item} />
           ))}
         </div>
       ) : (
-        <p style={{ textAlign: "center" }}>
-          No items found for <strong>{searchQuery}</strong>
-        </p>
+        <p style={{ textAlign: "center" }}>No items found...</p>
       )}
-
-      {Array.isArray(currentItems) && currentItems.length > 0 && (
+      {pagination && (
         <Pagination
           currentPage={currentPage}
-          totalPages={totalPages}
+          totalPages={pagination[0].totalPages}
           setCurrentPage={setCurrentPage}
-          pages={pages}
+          pages={Array.from(
+            { length: pagination[0].totalPages },
+            (_, i) => i + 1,
+          )}
         />
       )}
     </div>
   );
-};
-
-ResultPage.propTypes = {
-  currentItems: PropTypes.array.isRequired,
-  currentPage: PropTypes.number.isRequired,
-  totalPages: PropTypes.number.isRequired,
-  setCurrentPage: PropTypes.func.isRequired,
-  pages: PropTypes.array.isRequired,
 };
 
 export default ResultPage;

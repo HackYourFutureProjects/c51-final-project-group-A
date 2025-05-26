@@ -4,17 +4,20 @@ import "../styles/ItemCardStyle.css";
 const ItemCard = ({ item }) => {
   return (
     <div className="item-card">
-      <h2>{item.name}</h2>
-      <p>Description: {item.description}</p>
+      <h3>{item.title}</h3>
+      <p>Model: {item.model}</p>
+      <p>Condition: {item.condition}</p>
+      <p>Price: {item.price}</p>
     </div>
   );
 };
 
 ItemCard.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
+    condition: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
   }).isRequired,
 };
 

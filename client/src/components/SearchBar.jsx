@@ -15,7 +15,7 @@ export default function SearchBar({ searchItem, setSearchItem }) {
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && query.trim()) {
       e.preventDefault();
-      navigate(`/result?search=${encodeURIComponent(query)}`);
+      navigate(`/result`);
     }
   };
 
@@ -32,11 +32,7 @@ export default function SearchBar({ searchItem, setSearchItem }) {
         onKeyDown={handleKeyDown}
       />
 
-      <Link
-        to={`/result?search=${encodeURIComponent(query)}`}
-        className="search-button"
-        aria-label="Search"
-      >
+      <Link to={`/result`} className="search-button" aria-label="Search">
         <FiSearch className="search-icon" />
       </Link>
     </div>
