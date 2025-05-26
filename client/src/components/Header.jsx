@@ -14,10 +14,7 @@ const Header = ({ searchItem, setSearchItem }) => {
     <div className="header">
       <div className="left-section">
         <FaBars className="menu-icon" onClick={() => setSidebarOpen(true)} />
-        <Sidebar
-          isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-        />
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         <span className="logo">Share with us</span>
       </div>
       <div className="search-bar">

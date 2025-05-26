@@ -1,4 +1,4 @@
-import PropTypes  from "prop-types";
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/SidebarStyle.css";
@@ -15,8 +15,8 @@ export default function Sidebar({ isOpen, onClose }) {
   const handleSubcategoryClick = (subcategory) => {
     // Navigate to the result page with the selected subcategory
     navigate(`/result?search=${encodeURIComponent(subcategory)}`);
-    onClose();  // Close the sidebar after selection
-  }
+    onClose(); // Close the sidebar after selection
+  };
 
   // Fetch categories and subcategories from the API when the component mounts
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function Sidebar({ isOpen, onClose }) {
             ([name, subSet]) => ({
               name,
               subcategories: Array.from(subSet),
-            })
+            }),
           );
 
           setCategories(finalCategories);
