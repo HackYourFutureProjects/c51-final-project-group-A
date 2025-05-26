@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ItemSlider from "../../components/ItemSlider";
 import wallpaper from "../../assets/wallpaper.jpg";
+import "../../styles/HomeStyle.css";
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -55,22 +56,20 @@ const Home = () => {
     <div data-testid={TEST_ID.container}>
       <Header searchItem={searchItem} setSearchItem={setSearchItem} />
       {searchItem === "" && (
-        <div style={{ textAlign: "center", margin: "5px 0" }}>
-          <img
-            src={wallpaper}
-            alt="Banner"
-            style={{ maxWidth: "100%", height: "auto", borderRadius: "8px" }}
-          />
+        <div className="wallpaper-container">
+          <img src={wallpaper} alt="Banner" className="wallpaper-image" />
         </div>
       )}
       {searchItem === "" && <ItemSlider />}
-      <ResultPage
-        currentItems={currentItems}
-        currentPage={currentPage}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-        pages={pages}
-      />
+      {searchItem !== "" && (
+        <ResultPage
+          currentItems={currentItems}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+          pages={pages}
+        />
+      )}
       <Footer />
     </div>
   );

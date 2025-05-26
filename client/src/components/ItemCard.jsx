@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
+import "../styles/ItemCardStyle.css";
 
 const ItemCard = ({ item }) => {
   return (
-    <div style={{ border: "1px solid black", padding: "1rem" }}>
+    <div className="item-card">
       <h2>{item.name}</h2>
       <p>Description: {item.description}</p>
     </div>
