@@ -9,14 +9,14 @@ import Sidebar from "./Sidebar";
 // This component represents the header section of the application
 const Header = ({ searchItem, setSearchItem }) => {
   // State to manage the sidebar visibility
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className="header">
       <div className="left-section">
-        <FaBars className="menu-icon" onClick={() => setIsSidebarOpen(true)} />
+        <FaBars className="menu-icon" onClick={() => setSidebarOpen(true)} />
         <Sidebar
-          isOpen={isSidebarOpen}
-          onClose={() => setIsSidebarOpen(false)}
+          isOpen={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
         />
         <span className="logo">Share with us</span>
       </div>
