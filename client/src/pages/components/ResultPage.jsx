@@ -8,7 +8,7 @@ import useFetch from "../../hooks/useFetch";
 const VIEW_MODES = { GRID: "grid", LINE: "line" };
 
 const ResultPage = () => {
-  const [url, setUrl] = useState("/items");
+  const [url, setUrl] = useState("");
   const [items, setItems] = useState(null);
   const [pagination, setPagination] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,9 +29,10 @@ const ResultPage = () => {
   useEffect(() => {
     const params = new URLSearchParams();
     params.set("page", currentPage);
-    params.set("limit", 10);
+    params.set("limit", 5);
     params.set("sortBy", "createdAt");
     params.set("sortOrder", "desc");
+
     setUrl(`/items?${params.toString()}`);
   }, [currentPage]);
 
