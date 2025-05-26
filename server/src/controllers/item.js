@@ -19,7 +19,22 @@ export const getItems = async (req, res) => {
   }
 };
 
-// Function that returns an aggregation pipeline based on the request queries
+/*
+  Returns an aggregation pipeline based on the request queries
+  Queries that have fallback default values [
+    limit=10, 
+    page=1, 
+    minDuration=0, 
+    maxDuration=Infinite, 
+    minPrice=0, 
+    maxPrice=Infinite
+  ]
+  Optional queries [
+    category=["Electronics", "Home Appliances", "Vehicles"],
+    condition=["Excellent", "Good", "Fair"],
+    availability=[true, false]
+  ]
+*/
 const filterSearch = (queries) => {
   const {
     category,
@@ -39,7 +54,7 @@ const filterSearch = (queries) => {
   const matchStage = {};
   category && (matchStage.category = category);
   condition && (matchStage.condition = condition);
-  availability && (matchStage.availability = availability);
+  availability === "true" && (matchStage.availability = true);
   matchStage.borrowDuration = {
     $gte: minDuration ? parseInt(minDuration) : 0,
     $lte: maxDuration ? parseInt(maxDuration) : Infinity,
@@ -61,8 +76,8 @@ const filterSearch = (queries) => {
         };
 
   // Provide pagination with limit and skip
-  const limitStage = parseInt(limit);
-  const currentPage = parseInt(page);
+  const limitStage = parseInt(limit) || 10;
+  const currentPage = parseInt(page) || 1;
   const skipStage = (currentPage - 1) * limitStage;
 
   // Returns aggregation pipeline with pagination
