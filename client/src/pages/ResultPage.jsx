@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
-import ItemCard from "../../components/ItemCard";
-import Pagination from "../../components/Pagination";
-import ViewToggle from "../../components/ViewToggle";
-import "../../styles/ResultPageStyle.css";
-import useFetch from "../../hooks/useFetch";
+import ItemCard from "../components/ItemCard";
+import Pagination from "../components/Pagination";
+import ViewToggle from "../components/ViewToggle";
+import "../styles/ResultPageStyle.css";
+import useFetch from "../hooks/useFetch";
+import Header from "../components/Header";
 
 const VIEW_MODES = { GRID: "grid", LINE: "line" };
 
 const ResultPage = () => {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("/items");
   const [items, setItems] = useState(null);
   const [pagination, setPagination] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchItem, setSearchItem] = useState("");
 
   const { performFetch, cancelFetch } = useFetch(url, (response) => {
     setPagination(response.pagination);
@@ -43,6 +45,7 @@ const ResultPage = () => {
 
   return (
     <div className="result-container">
+      <Header searchItem={searchItem} setSearchItem={setSearchItem} />
       <ViewToggle viewMode={viewMode} toggleViewMode={toggleViewMode} />
       {Array.isArray(items) && items.length > 0 ? (
         <div

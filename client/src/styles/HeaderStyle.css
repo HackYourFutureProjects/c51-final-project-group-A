@@ -34,6 +34,10 @@
   user-select: none;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
 .header-right .header-icon {
   margin-left: 1rem;
   cursor: pointer;

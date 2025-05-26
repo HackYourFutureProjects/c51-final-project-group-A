@@ -5,11 +5,13 @@ import "../styles/HeaderStyle.css";
 import SearchBar from "./SearchBar";
 import PropTypes from "prop-types";
 import Sidebar from "./Sidebar";
+import { useNavigate } from "react-router-dom";
 
 // This component represents the header section of the application
 const Header = ({ searchItem, setSearchItem }) => {
   // State to manage the sidebar visibility
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate();
   return (
     <div className="header">
       <div className="left-section">
@@ -18,7 +20,10 @@ const Header = ({ searchItem, setSearchItem }) => {
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
         />
-        <span className="logo">Share with us</span>
+        <span onClick={() => navigate("/")} className="logo">
+          Share with us
+        </span>
+        {/* <img src={logo} alt="logo" className="logo"/> */}
       </div>
       <div className="search-bar">
         <SearchBar searchItem={searchItem} setSearchItem={setSearchItem} />
