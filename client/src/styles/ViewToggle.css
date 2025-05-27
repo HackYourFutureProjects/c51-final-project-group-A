@@ -1,0 +1,33 @@
+.view-toggle-container {
+  margin-bottom: 1rem;
+  text-align: right;
+  padding: 0 1rem;
+}
+
+@media (max-width: 600px) {
+  .view-toggle-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.view-toggle-btn {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #0798e6, #007acc);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.view-toggle-btn:hover {
+  background: linear-gradient(135deg, #007acc, #0569a6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
