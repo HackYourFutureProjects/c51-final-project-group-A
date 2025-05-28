@@ -29,6 +29,15 @@
 }
 .header-right {
   gap: 1rem;
+  font-size: 24px;
+}
+.menu-icon {
+  font-size: 30px;
+  color: #686666;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .logo {
@@ -45,6 +54,22 @@
   border: none;
   cursor: pointer;
   background-color: #e6e6e7;
+}
+.header-right .header-icon:hover {
+  color: #0798e6;
+  transform: scale(1.1);
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+  cursor: pointer;
+}
+.menu-icon:hover {
+  color: #0798e6;
+  transform: scale(1.1);
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {
