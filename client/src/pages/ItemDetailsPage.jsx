@@ -83,8 +83,8 @@ const ItemDetailsPage = () => {
         <div className="latest-reviews-section">
           <h2>Latest reviews</h2>
           <div className="reviews-list">
-            {item.reviews.map((review, index) => (
-              <div className="review-card" key={index}>
+            {item.reviews.map((review) => (
+              <div className="review-card" key={review.date}>
                 <p className="stars">{renderStars(review.rating)}</p>
                 <h4>{review.title}</h4>
                 <p>{review.body}</p>
