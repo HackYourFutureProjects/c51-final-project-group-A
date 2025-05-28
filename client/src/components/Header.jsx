@@ -24,12 +24,9 @@ const Header = ({ searchItem, setSearchItem }) => {
           />
         </div>
         <div className="center-section">
-          <img
-            src={logo}
-            alt="logo"
-            className="logo"
-            onClick={() => navigate("/")}
-          />
+          <button className="logo-button" onClick={() => navigate("/")}>
+            <img src={logo} alt="Company Logo" className="logo" />
+          </button>
           <div className="search-bar-inline">
             <SearchBar searchItem={searchItem} setSearchItem={setSearchItem} />
           </div>

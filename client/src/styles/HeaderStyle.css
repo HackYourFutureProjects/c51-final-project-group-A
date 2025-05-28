@@ -41,6 +41,11 @@
 .logo:hover {
   transform: scale(1.2);
 }
+.logo-button {
+  border: none;
+  cursor: pointer;
+  background-color: #e6e6e7;
+}
 
 @media (max-width: 600px) {
   .header {
