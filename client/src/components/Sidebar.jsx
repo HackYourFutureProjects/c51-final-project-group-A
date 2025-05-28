@@ -22,13 +22,18 @@ export default function Sidebar({ isOpen, onClose }) {
         {loading ? (
           <li>Loading...</li>
         ) : error ? (
-          <li style={{ color: "red" }}>{error}</li>
+          <li>{error}</li>
         ) : categories.length === 0 ? (
           <li>No categories found</li>
         ) : (
           categories.map((cat) => (
             <li key={cat}>
-              <div onClick={() => handleCategoryClick(cat)}>{cat}</div>
+              <button
+                className="category-btn"
+                onClick={() => handleCategoryClick(cat)}
+              >
+                {cat}
+              </button>
             </li>
           ))
         )}
