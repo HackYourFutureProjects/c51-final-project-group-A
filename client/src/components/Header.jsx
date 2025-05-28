@@ -20,10 +20,12 @@ const Header = ({ searchItem, setSearchItem }) => {
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
         />
+
         <span onClick={() => navigate("/")} className="logo">
           Share with us
         </span>
         {/* <img src={logo} alt="logo" className="logo"/> */}
+        <span className="logo">Share with us</span>
       </div>
       <div className="search-bar">
         <SearchBar searchItem={searchItem} setSearchItem={setSearchItem} />

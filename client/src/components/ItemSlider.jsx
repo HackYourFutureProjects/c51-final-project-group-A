@@ -1,8 +1,12 @@
 import { useRef } from "react";
 import "../styles/ItemSliderStyle.css";
 
+// this component represents a horizontal slider for displaying items
 export default function ItemSlider() {
+  // Uses useRef to get direct access to the slider container DOM element
   const sliderRef = useRef(null);
+
+  // The scroll function moves the container left or right by 300 pixels using the scrollLeft property
   const scroll = (direction) => {
     const container = sliderRef.current;
     const scrollAmount = 300;
@@ -18,6 +22,7 @@ export default function ItemSlider() {
       </button>
 
       <div className="slider-container" ref={sliderRef}>
+        {/* This maps over an array of 10 items to create a list of item cards */}
         {Array.from({ length: 10 }).map((_, i) => (
           <div key={i} className="item-card">
             <div className="item-image">Image</div>
