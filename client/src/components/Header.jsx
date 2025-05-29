@@ -34,19 +34,14 @@ const Header = ({ searchItem, setSearchItem }) => {
         <div className="header-right">
           <FaBell className="header-icon" />
           <FaHeart className="header-icon" />
-          <FaUserCircle className="header-icon" />
+          <FaUserCircle
+            className="header-icon"
+            onClick={() => navigate("/auth")}
+          />
         </div>
       </div>
       <div className="search-bar-wrapper">
         <SearchBar searchItem={searchItem} setSearchItem={setSearchItem} />
-      </div>
-      <div className="header-right">
-        <FaBell className="header-icon" />
-        <FaHeart className="header-icon" />
-        <FaUserCircle
-          className="header-icon"
-          onClick={() => navigate("/auth")}
-        />
       </div>
     </>
   );
