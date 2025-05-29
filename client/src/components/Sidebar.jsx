@@ -13,7 +13,7 @@ export default function Sidebar({ isOpen, onClose }) {
   const sidebarRef = useRef(null);
 
   const handleCategoryClick = (category) => {
-    navigate(`/result?search=${encodeURIComponent(category)}`);
+    navigate(`/result?category=${encodeURIComponent(category)}`);
     onClose();
   };
   useEffect(() => {
