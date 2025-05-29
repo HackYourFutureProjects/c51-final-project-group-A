@@ -1,42 +1,54 @@
 import "../styles/SidebarStyle.css";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import useCategories from "../hooks/useCategory";
+import { useEffect, useRef } from "react";
 
 export default function Sidebar({ isOpen, onClose }) {
+  const staticCategories = [
+    "Electronics",
+    "Home appliances",
+    "Vehicles",
+  ].sort();
   const navigate = useNavigate();
-  const { categories, loading, error } = useCategories(isOpen);
+  const sidebarRef = useRef(null);
 
   const handleCategoryClick = (category) => {
     navigate(`/result?search=${encodeURIComponent(category)}`);
     onClose();
   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isOpen &&
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target)
+      ) {
+        onClose();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, onClose]);
 
   return (
-    <div className={`sidebar ${isOpen ? "open" : ""}`}>
+    <div ref={sidebarRef} className={`sidebar ${isOpen ? "open" : ""}`}>
       <button className="close-btn" onClick={onClose}>
         &times;
       </button>
-      <h4>Categories</h4>
-      <ul>
-        {loading ? (
-          <li>Loading...</li>
-        ) : error ? (
-          <li>{error}</li>
-        ) : categories.length === 0 ? (
-          <li>No categories found</li>
-        ) : (
-          categories.map((cat) => (
-            <li key={cat}>
-              <button
-                className="category-btn"
-                onClick={() => handleCategoryClick(cat)}
-              >
-                {cat}
-              </button>
-            </li>
-          ))
-        )}
+      <h4 className="sidebar-title">Categories</h4>
+      <ul className="category-list">
+        {staticCategories.map((cat) => (
+          <li key={cat}>
+            <button
+              className="category-btn"
+              onClick={() => handleCategoryClick(cat)}
+            >
+              {cat}
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );
