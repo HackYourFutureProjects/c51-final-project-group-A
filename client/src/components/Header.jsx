@@ -31,7 +31,10 @@ const Header = ({ searchItem, setSearchItem }) => {
       <div className="header-right">
         <FaBell className="header-icon" />
         <FaHeart className="header-icon" />
-        <FaUserCircle className="header-icon" />
+        <FaUserCircle
+          className="header-icon"
+          onClick={() => navigate("/auth")}
+        />
       </div>
     </div>
   );
