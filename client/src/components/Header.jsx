@@ -48,7 +48,6 @@ const Header = ({ searchItem, setSearchItem }) => {
           onClick={() => navigate("/auth")}
         />
       </div>
-    </div>
     </>
   );
 };
