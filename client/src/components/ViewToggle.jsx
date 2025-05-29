@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
+import "../styles/ViewToggle.css";
 
 const ViewToggle = ({ viewMode, toggleViewMode }) => {
   return (
-    <div style={{ marginBottom: "1rem", textAlign: "right" }}>
+    <div className="view-toggle-container">
       <button onClick={toggleViewMode} className="view-toggle-btn">
-        Switch to {viewMode === "grid" ? "Line" : "Grid"} View
+        View as {viewMode === "grid" ? "Line" : "Grid"}
       </button>
     </div>
   );
