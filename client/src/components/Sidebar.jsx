@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 export default function Sidebar({ isOpen, onClose }) {
   const staticCategories = [
     "Electronics",
-    "Home appliances",
+    "Home Appliances",
     "Vehicles",
   ].sort();
   const navigate = useNavigate();

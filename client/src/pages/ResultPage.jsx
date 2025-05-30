@@ -13,15 +13,15 @@ const VIEW_MODES = { GRID: "grid", LINE: "line" };
 const ResultPage = () => {
   const [url, setUrl] = useState("/items");
   const [items, setItems] = useState(null);
+  const [pagination, setPagination] = useState(null);
+  const [searchItem, setSearchItem] = useState("");
+  const [viewMode, setViewMode] = useState(VIEW_MODES.GRID);
   const [filters, setFilters] = useState({
     page: 1,
     limit: 5,
     sortBy: "createdAt",
     sortOrder: "desc",
   });
-  const [pagination, setPagination] = useState(null);
-  const [searchItem, setSearchItem] = useState("");
-  const [viewMode, setViewMode] = useState(VIEW_MODES.GRID);
 
   const location = useLocation();
 
@@ -37,21 +37,22 @@ const ResultPage = () => {
     );
   };
 
-  // Handles state changes for current page
-  const handlePageChange = (newPage) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      page: newPage,
-    }));
-  };
+  // Set category if user navigated to the result page using the sidebar
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const categoryFromUrl = searchParams.get("category");
 
+    if (categoryFromUrl) {
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        category: categoryFromUrl,
+      }));
+    }
+  }, [location.search]);
+
+  // Construct fetch url from the filters
   useEffect(() => {
     const params = new URLSearchParams();
-
-    // Check if user navigated to the result page using the sidebar
-    const category = new URLSearchParams(location);
-    category.has("category") &&
-      params.set("category", category.get("category"));
 
     // Set required string queries for use with useFetch
     params.set("page", filters.page);
@@ -69,8 +70,9 @@ const ResultPage = () => {
     filters.maxDuration && params.set("maxDuration", filters.maxDuration);
 
     setUrl(`/items?${params.toString()}`);
-  }, [filters, location]);
+  }, [filters]);
 
+  // Fetch items when url changes
   useEffect(() => {
     performFetch();
     return cancelFetch;
@@ -96,7 +98,7 @@ const ResultPage = () => {
         <Pagination
           currentPage={filters.page}
           totalPages={pagination[0].totalPages}
-          setCurrentPage={handlePageChange}
+          setCurrentPage={setFilters}
           pages={Array.from(
             { length: pagination[0].totalPages },
             (_, i) => i + 1,
