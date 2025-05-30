@@ -1,12 +1,20 @@
 import PropTypes from "prop-types";
 
 const Pagination = ({ currentPage, totalPages, setCurrentPage, pages }) => {
+  // Handles state changes for current page
+  const handlePageChange = (newPage) => {
+    setCurrentPage((prevFilters) => ({
+      ...prevFilters,
+      page: newPage,
+    }));
+  };
+
   return (
     <div className="pagination">
       <button
         className="pagination-btn"
         disabled={currentPage === 1}
-        onClick={() => setCurrentPage(currentPage - 1)}
+        onClick={() => handlePageChange(currentPage - 1)}
       >
         Prev
       </button>
@@ -15,7 +23,7 @@ const Pagination = ({ currentPage, totalPages, setCurrentPage, pages }) => {
         <button
           key={page}
           className={`pagination-btn ${currentPage === page ? "active" : ""}`}
-          onClick={() => setCurrentPage(page)}
+          onClick={() => handlePageChange(page)}
         >
           {page}
         </button>
@@ -24,7 +32,7 @@ const Pagination = ({ currentPage, totalPages, setCurrentPage, pages }) => {
       <button
         className="pagination-btn"
         disabled={currentPage === totalPages}
-        onClick={() => setCurrentPage(currentPage + 1)}
+        onClick={() => handlePageChange(currentPage + 1)}
       >
         Next
       </button>
