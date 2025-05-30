@@ -6,6 +6,7 @@ import "../styles/ResultPageStyle.css";
 import useFetch from "../hooks/useFetch";
 import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
+import FilterSidebar from "../components/FilterSidebar";
 
 const VIEW_MODES = { GRID: "grid", LINE: "line" };
 
@@ -49,7 +50,8 @@ const ResultPage = () => {
 
     // Check if user navigated to the result page using the sidebar
     const category = new URLSearchParams(location);
-    category.has("search") && params.set("category", category.get("category"));
+    category.has("category") &&
+      params.set("category", category.get("category"));
 
     // Set required string queries for use with useFetch
     params.set("page", filters.page);
@@ -67,7 +69,7 @@ const ResultPage = () => {
     filters.maxDuration && params.set("maxDuration", filters.maxDuration);
 
     setUrl(`/items?${params.toString()}`);
-  }, [filters]);
+  }, [filters, location]);
 
   useEffect(() => {
     performFetch();
@@ -77,6 +79,7 @@ const ResultPage = () => {
   return (
     <div className="result-container">
       <Header searchItem={searchItem} setSearchItem={setSearchItem} />
+      <FilterSidebar filters={filters} setFilters={setFilters} />
       <ViewToggle viewMode={viewMode} toggleViewMode={toggleViewMode} />
       {Array.isArray(items) && items.length > 0 ? (
         <div
