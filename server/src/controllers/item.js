@@ -46,7 +46,7 @@ export const getItemImages = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res
       .status(400)
-      .json({ success: false, msg: "Invalid item ID Format" });
+      .json({ success: false, msg: "Invalid item ID format" });
   }
 
   try {
