@@ -43,7 +43,7 @@ const FilterSidebar = ({ filters, setFilters }) => {
     const minValue = parseFloat(state.min);
     const maxValue = parseFloat(state.max);
 
-    if (minValue && maxValue && minValue > maxValue) {
+    if (!isNaN(minValue) && !isNaN(maxValue) && minValue > maxValue) {
       alert("Minimum price must be less than or equal to maximum price.");
       return;
     }

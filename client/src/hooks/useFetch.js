@@ -18,6 +18,11 @@ const useFetch = (route, onReceived) => {
    * We use the AbortController which is supported by all modern browsers to handle cancellations
    * For more info: https://developer.mozilla.org/en-US/docs/Web/API/AbortController
    */
+
+  // Error and loading states
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const controller = new AbortController();
   const signal = controller.signal;
   const cancelFetch = () => {
@@ -34,9 +39,6 @@ const useFetch = (route, onReceived) => {
       "when using the useFetch hook, the route should not include the /api/ part",
     );
   }
-
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   // Add any args given to the function to the fetch function
   const performFetch = (options) => {
