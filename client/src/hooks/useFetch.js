@@ -22,6 +22,7 @@ const useFetch = (route, onReceived) => {
   const signal = controller.signal;
   const cancelFetch = () => {
     controller.abort();
+    setError(null);
   };
 
   if (route.includes("api/")) {
@@ -79,8 +80,13 @@ const useFetch = (route, onReceived) => {
     };
 
     fetchData().catch((error) => {
-      setError(error);
       setIsLoading(false);
+
+      if (error.name === "AbortError") {
+        return;
+      }
+
+      setError(error);
     });
   };
 

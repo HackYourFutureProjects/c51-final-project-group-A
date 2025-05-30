@@ -11,24 +11,25 @@ import FilterSidebar from "../components/FilterSidebar";
 const VIEW_MODES = { GRID: "grid", LINE: "line" };
 
 const ResultPage = () => {
-  const [url, setUrl] = useState("/items");
-  const [items, setItems] = useState(null);
-  const [pagination, setPagination] = useState(null);
+  const [response, setResponse] = useState({ success: false });
   const [searchItem, setSearchItem] = useState("");
   const [viewMode, setViewMode] = useState(VIEW_MODES.GRID);
+  const [url, setUrl] = useState("/items");
   const [filters, setFilters] = useState({
     page: 1,
-    limit: 5,
+    limit: 10,
     sortBy: "createdAt",
     sortOrder: "desc",
   });
 
   const location = useLocation();
 
-  const { performFetch, cancelFetch } = useFetch(url, (response) => {
-    setPagination(response.pagination);
-    setItems(response.result);
-  });
+  const { error, isLoading, performFetch, cancelFetch } = useFetch(
+    url,
+    (response) => {
+      setResponse(response);
+    },
+  );
 
   // Toggles between grid and line layout for items
   const toggleViewMode = () => {
@@ -82,28 +83,35 @@ const ResultPage = () => {
     <div className="result-container">
       <Header searchItem={searchItem} setSearchItem={setSearchItem} />
       <FilterSidebar filters={filters} setFilters={setFilters} />
-      <ViewToggle viewMode={viewMode} toggleViewMode={toggleViewMode} />
-      {Array.isArray(items) && items.length > 0 ? (
-        <div
-          className={viewMode === VIEW_MODES.GRID ? "items-grid" : "items-list"}
-        >
-          {items.map((item) => (
-            <ItemCard key={item._id} item={item} />
-          ))}
-        </div>
-      ) : (
-        <p style={{ textAlign: "center" }}>No items found...</p>
-      )}
-      {pagination && (
-        <Pagination
-          currentPage={filters.page}
-          totalPages={pagination[0].totalPages}
-          setCurrentPage={setFilters}
-          pages={Array.from(
-            { length: pagination[0].totalPages },
-            (_, i) => i + 1,
-          )}
-        />
+      <ViewToggle
+        viewMode={viewMode}
+        toggleViewMode={toggleViewMode}
+        setFilters={setFilters}
+      />
+
+      {isLoading && <div>Loading...</div>}
+      {error && <div>{error.toString()}</div>}
+      {!isLoading && !error && response.success && (
+        <>
+          <div
+            className={
+              viewMode === VIEW_MODES.GRID ? "items-grid" : "items-list"
+            }
+          >
+            {response.result.map((item) => (
+              <ItemCard key={item._id} item={item} />
+            ))}
+          </div>
+          <Pagination
+            currentPage={filters.page}
+            totalPages={response.pagination[0].totalPages}
+            setCurrentPage={setFilters}
+            pages={Array.from(
+              { length: response.pagination[0].totalPages },
+              (_, i) => i + 1,
+            )}
+          />
+        </>
       )}
     </div>
   );
