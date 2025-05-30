@@ -37,7 +37,7 @@ export const getItemById = async (req, res) => {
     return res.status(200).json({ success: true, result: item });
   } catch (error) {
     logError(error);
-    return res.status(500).json({ success: false, msg: "Server error", error });
+    return res.status(500).json({ success: false, msg: "Server error" }); // only shows generic message to user
   }
 };
 /*
