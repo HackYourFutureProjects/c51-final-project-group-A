@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Filter = ({ title, isOpen, toggle, children }) => (
   <div className="filter">
     <div className="filter-header" onClick={toggle}>
