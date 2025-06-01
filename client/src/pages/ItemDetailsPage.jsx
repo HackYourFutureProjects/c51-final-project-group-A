@@ -1,102 +1,110 @@
-import "../styles/ItemDetailsStyle.css";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import "../styles/ItemDetailsStyle.css";
 
 const ItemDetailsPage = () => {
-  const item = {
-    image: "https://picsum.photos/300/300",
-    title: "Mountain Bike",
-    subtitle: "Great for exploring trails",
-    description:
-      "A durable mountain bike with full suspension, perfect for rough terrain or city rides.",
-    address: "Amsterdam, Netherlands",
-    availableUntil: "June 30, 2025",
-    owner: {
-      name: "Reviewer name",
-      date: "2025-05-27",
-      title: "Review title",
-      body: "Review body Review body Review body",
-      rating: 4,
+  // Get the item ID from the URL
+  const { id } = useParams();
+
+  // Store the item data in state
+  const [item, setItem] = useState(null);
+
+  // Custom fetch hook to get the item by ID
+  const { error, isLoading, performFetch, cancelFetch } = useFetch(
+    `/items/${id}`,
+    (data) => {
+      if (data?.success) {
+        setItem(data.result);
+      }
     },
-    reviews: [
-      {
-        name: "Reviewer name",
-        date: "2025-05-26",
-        title: "Review title",
-        body: "Review body",
-        rating: 3,
-      },
-      {
-        name: "Reviewer name",
-        date: "2025-05-25",
-        title: "Review title",
-        body: "Review body",
-        rating: 5,
-      },
-      {
-        name: "Reviewer name",
-        date: "2025-05-24",
-        title: "Review title",
-        body: "Review body",
-        rating: 2,
-      },
-    ],
-  };
-  const renderStars = (rating) => "★".repeat(rating) + "☆".repeat(5 - rating);
+  );
+
+  // Run fetch on component mount or when `id` changes
+  useEffect(() => {
+    performFetch();
+    return cancelFetch;
+  }, [id]);
+
+  // Loading and error handling
+  if (isLoading) return <div className="loader">Loading...</div>;
+  if (error) return <div className="error">{error.toString()}</div>;
+  if (!item) return null;
 
   return (
     <>
       <Header />
-      {/* Left: Item details */}
+
       <div className="details-page-wrapper">
         <div className="details-content-container">
+          {/* Left section: image + item details */}
           <div className="item-info-box">
             <div className="item-image-box">
-              <img src={item.image} alt={item.title} />
+              <img src={item.images?.[0]} alt={item.title} />
             </div>
 
             <div className="item-text-box">
               <h1>{item.title}</h1>
-              <h3>{item.subtitle}</h3>
-              <p>{item.description}</p>
+              <h3>{item.model}</h3>
+
               <p>
-                <strong>Address:</strong> {item.address}
+                <strong>Category:</strong> {item.category}
               </p>
               <p>
-                <strong>Available until:</strong> {item.availableUntil}
+                <strong>Condition:</strong> {item.condition}
+              </p>
+              <p>
+                <strong>Price:</strong> €{item.price}
+              </p>
+              <p>
+                <strong>Value:</strong> €{item.value}
+              </p>
+              <p>
+                <strong>Availability:</strong>{" "}
+                {item.availability ? "Yes" : "No"}
+              </p>
+              <p>
+                <strong>Borrow Duration:</strong> {item.borrowDuration} days
+              </p>
+              <p>
+                <strong>Description:</strong>{" "}
+                {typeof item.description === "string" && item.description.trim()
+                  ? item.description
+                  : "No description available."}
               </p>
             </div>
           </div>
 
-          {/* Right: Owner review / highlighted box */}
+          {/* Right section: Owner info placeholder */}
           <div className="owner-box">
-            <p className="owner-name">{item.owner.name}</p>
-            <p className="owner-date">{item.owner.date}</p>
-            <p className="stars">{renderStars(item.owner.rating)}</p>
-            <h4>{item.owner.title}</h4>
-            <p>{item.owner.body}</p>
-            <button className="info-button">information</button>
+            <h4>Owner Info</h4>
+            <p>Loading owner info...</p>
           </div>
         </div>
 
-        {/* Bottom: Reviews */}
+        {/* Bottom section: Reviews */}
         <div className="latest-reviews-section">
-          <h2>Latest reviews</h2>
-          <div className="reviews-list">
-            {item.reviews.map((review) => (
-              <div className="review-card" key={review.date}>
-                <p className="stars">{renderStars(review.rating)}</p>
-                <h4>{review.title}</h4>
-                <p>{review.body}</p>
-                <p className="review-meta">
-                  <strong>{review.name}</strong> <br />
-                  <span>{review.date}</span>
-                </p>
-              </div>
-            ))}
-          </div>
+          <h2>Latest Reviews</h2>
+          {Array.isArray(item.reviews) && item.reviews.length > 0 ? (
+            <div className="reviews-list">
+              {item.reviews.map((review, index) => (
+                <div key={index} className="review-card">
+                  <div className="stars">★★★★★</div>
+                  <p>
+                    <strong>Review #{index + 1}</strong>
+                  </p>
+                  <p>{review}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No reviews yet.</p>
+          )}
         </div>
       </div>
+
       <Footer />
     </>
   );
