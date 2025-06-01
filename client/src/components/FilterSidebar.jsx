@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Filter from "./Filter";
 import PropTypes from "prop-types";
+import "../styles/FilterSidebar.css";
 
 const CATEGORIES = ["Electronics", "Vehicles", "Home Appliances"];
 const CONDITIONS = ["Excellent", "Good", "Fair"];
@@ -63,25 +64,31 @@ const FilterSidebar = ({ filters, setFilters }) => {
         isOpen={open.category}
         toggle={() => toggleFilter("category")}
       >
-        <div>
+        <div className="filter-option">
           <input
             type="radio"
+            id="category-all"
             name="category"
             checked={!filters.category}
             onChange={() => updateFilter("category", "")}
           />
-          <label>All Categories</label>
+          <label htmlFor="category-all" className="filter-label">
+            All Categories
+          </label>
         </div>
         {CATEGORIES.map((cat) => (
-          <div key={cat}>
+          <div key={cat} className="filter-option">
             <input
               type="radio"
+              id={`category-${cat}`}
               name="category"
               value={cat}
               checked={filters.category === cat}
               onChange={(e) => updateFilter("category", e.target.value)}
             />
-            <label>{cat}</label>
+            <label htmlFor={`category-${cat}`} className="filter-label">
+              {cat}
+            </label>
           </div>
         ))}
       </Filter>
@@ -92,23 +99,29 @@ const FilterSidebar = ({ filters, setFilters }) => {
         isOpen={open.availability}
         toggle={() => toggleFilter("availability")}
       >
-        <div>
+        <div className="filter-option">
           <input
             type="radio"
+            id="availability-all"
             name="availability"
             checked={!filters.availability}
             onChange={() => updateFilter("availability", "")}
           />
-          <label>{"All Items"}</label>
+          <label htmlFor="availability-all" className="filter-label">
+            All Items
+          </label>
         </div>
-        <div>
+        <div className="filter-option">
           <input
             type="radio"
+            id="availability-true"
             name="availability"
             checked={filters.availability === "true"}
             onChange={() => updateFilter("availability", "true")}
           />
-          <label>{"Available Items"}</label>
+          <label htmlFor="availability-true" className="filter-label">
+            Available Items
+          </label>
         </div>
       </Filter>
 
@@ -118,25 +131,31 @@ const FilterSidebar = ({ filters, setFilters }) => {
         isOpen={open.condition}
         toggle={() => toggleFilter("condition")}
       >
-        <div>
+        <div className="filter-option">
           <input
             type="radio"
+            id="condition-all"
             name="condition"
             checked={!filters.condition}
             onChange={() => updateFilter("condition", "")}
           />
-          <label>All</label>
+          <label htmlFor="condition-all" className="filter-label">
+            All
+          </label>
         </div>
         {CONDITIONS.map((cond) => (
-          <div key={cond}>
+          <div key={cond} className="filter-option">
             <input
               type="radio"
+              id={`condition-${cond}`}
               name="condition"
               value={cond}
               checked={filters.condition === cond}
               onChange={(e) => updateFilter("condition", e.target.value)}
             />
-            <label>{cond}</label>
+            <label htmlFor={`condition-${cond}`} className="filter-label">
+              {cond}
+            </label>
           </div>
         ))}
       </Filter>
@@ -148,6 +167,7 @@ const FilterSidebar = ({ filters, setFilters }) => {
         toggle={() => toggleFilter("price")}
       >
         <input
+          className="filter-input"
           type="number"
           placeholder="Min"
           value={priceInput.min}
@@ -159,6 +179,7 @@ const FilterSidebar = ({ filters, setFilters }) => {
           }
         />
         <input
+          className="filter-input"
           type="number"
           placeholder="Max"
           value={priceInput.max}
@@ -170,6 +191,7 @@ const FilterSidebar = ({ filters, setFilters }) => {
           }
         />
         <button
+          className="filter-apply-btn"
           onClick={() => updateMinMax("minPrice", "maxPrice", priceInput)}
         >
           Apply
@@ -183,6 +205,7 @@ const FilterSidebar = ({ filters, setFilters }) => {
         toggle={() => toggleFilter("duration")}
       >
         <input
+          className="filter-input"
           type="number"
           placeholder="Min (days)"
           value={durationInput.min}
@@ -194,6 +217,7 @@ const FilterSidebar = ({ filters, setFilters }) => {
           }
         />
         <input
+          className="filter-input"
           type="number"
           placeholder="Max (days)"
           value={durationInput.max}
@@ -205,6 +229,7 @@ const FilterSidebar = ({ filters, setFilters }) => {
           }
         />
         <button
+          className="filter-apply-btn"
           onClick={() =>
             updateMinMax("minDuration", "maxDuration", durationInput)
           }
