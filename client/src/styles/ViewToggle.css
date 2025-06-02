@@ -1,6 +1,11 @@
 .view-toggle-container {
   text-align: right;
   padding: 1rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .view-toggle-btn {
@@ -25,12 +30,48 @@
 .view-toggle-btn:focus {
   outline: 2px solid #86ccfb;
 }
+.view-toggle-container label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.view-toggle-container select {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: white;
+  margin-right: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.view-toggle-container select:focus {
+  border-color: #0798e6;
+  outline: none;
+}
+
+.view-toggle-container > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 @media (max-width: 600px) {
-  .view-toggle-btn {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
+  .view-toggle-container {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .view-toggle-container > div {
     width: 100%;
-    box-sizing: border-box;
+    justify-content: space-between;
+  }
+
+  .view-toggle-btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
   }
 }
