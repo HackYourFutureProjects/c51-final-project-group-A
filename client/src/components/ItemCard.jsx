@@ -11,8 +11,32 @@ const ItemCard = ({ item }) => {
       <h3>{item.title}</h3>
       <img src={item.images[0]} alt={item.title} />
       <p>Model: {item.model}</p>
-      <p>Condition: {item.condition}</p>
-      <p>Price: {item.price}</p>
+      <p>
+        Condition:{" "}
+        {
+          <span
+            className={
+              item.condition === "Excellent"
+                ? "item-condition-excellent"
+                : item.condition === "Good"
+                  ? "item-condition-good"
+                  : "item-condition-fair"
+            }
+          >
+            {item.condition}
+          </span>
+        }
+      </p>
+      <p>
+        Rental Period: {item.borrowDuration}{" "}
+        {item.borrowDuration === 1 ? "day" : "days"}
+      </p>
+      <p>Rental Price: {item.price}€</p>
+      {item.availability ? (
+        <p style={{ color: "green", fontWeight: "bold" }}>✅Available</p>
+      ) : (
+        <p style={{ fontWeight: "bold" }}>Unavailable</p>
+      )}
     </div>
   );
 };
@@ -22,6 +46,8 @@ ItemCard.propTypes = {
   item: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     images: PropTypes.array.isRequired,
+    borrowDuration: PropTypes.number.isRequired,
+    availability: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     model: PropTypes.string.isRequired,
     condition: PropTypes.string.isRequired,
