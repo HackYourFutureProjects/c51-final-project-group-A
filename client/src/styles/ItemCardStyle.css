@@ -63,9 +63,18 @@
   border-color: #aaa;
   border-radius: 8px;
   background-color: #fafafa;
+  justify-content: space-between;
 }
 
-.items-list .item-card:hover {
+.items-list .item-card img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* .items-list .item-card:hover {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   transform: none;
 }
@@ -94,7 +103,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 40%;
-}
+} */
 
 .item-condition-excellent {
   background-color: #d4edda;

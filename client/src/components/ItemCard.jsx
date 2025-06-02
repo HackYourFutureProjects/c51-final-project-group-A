@@ -8,8 +8,8 @@ const ItemCard = ({ item }) => {
 
   return (
     <div className="item-card" onClick={() => navigate(`/items/${item._id}`)}>
-      <h3>{item.title}</h3>
       <img src={item.images[0]} alt={item.title} />
+      <h3>{item.title}</h3>
       <p>Model: {item.model}</p>
       <p>
         Condition:{" "}
