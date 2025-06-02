@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import "../styles/ItemSliderStyle.css";
+import ItemCard from "./ItemCard";
 
 export default function ItemSlider() {
   const [items, setItems] = useState([]);
@@ -54,16 +54,9 @@ export default function ItemSlider() {
         <div className="slider-container" ref={sliderRef}>
           {isLoading && <div className="loader">Loading items...</div>}
           {!isLoading &&
-            items.slice(0, 5).map((item) => (
-              <div className="item-card" key={item._id}>
-                <Link to={`/items/${item._id}`}>
-                  <div className="item-image">Image</div>
-                  <h4>{item.title}</h4>
-                  <p>{item.condition}</p>
-                </Link>
-              </div>
-            ))}
+            items.map((item) => <ItemCard key={item._id} item={item} />)}
         </div>
+
         {/* Right arrow button to scroll right */}
         <button className="arrow right" onClick={() => scroll("right")}>
           &#8250;
