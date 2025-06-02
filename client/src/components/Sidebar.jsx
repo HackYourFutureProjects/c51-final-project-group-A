@@ -1,4 +1,4 @@
-import "../styles/SidebarStyle.css";
+import "./Sidebar.css";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";

@@ -1,6 +1,6 @@
 import { FaBars, FaBell, FaHeart, FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
-import "../styles/HeaderStyle.css";
+import "./Header.css";
 import SearchBar from "./SearchBar";
 import PropTypes from "prop-types";
 import Sidebar from "./Sidebar";
