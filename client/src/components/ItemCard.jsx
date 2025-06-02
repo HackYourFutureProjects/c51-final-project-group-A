@@ -10,7 +10,7 @@ const ItemCard = ({ item }) => {
     <div
       className="item-card"
       role="button"
-      tabindex="0"
+      tabIndex="0"
       onClick={() => navigate(`/items/${item._id}`)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
