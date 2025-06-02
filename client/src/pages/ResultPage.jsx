@@ -82,37 +82,43 @@ const ResultPage = () => {
   return (
     <div className="result-container">
       <Header searchItem={searchItem} setSearchItem={setSearchItem} />
-      <FilterSidebar filters={filters} setFilters={setFilters} />
-      <ViewToggle
-        viewMode={viewMode}
-        toggleViewMode={toggleViewMode}
-        setFilters={setFilters}
-      />
+      {/* Wrap sidebar and main content in one flex container */}
+      <div className="content-with-sidebar">
+        <FilterSidebar filters={filters} setFilters={setFilters} />
 
-      {isLoading && <div>Loading...</div>}
-      {error && <div>{error.toString()}</div>}
-      {!isLoading && !error && response.success && (
-        <>
-          <div
-            className={
-              viewMode === VIEW_MODES.GRID ? "items-grid" : "items-list"
-            }
-          >
-            {response.result.map((item) => (
-              <ItemCard key={item._id} item={item} />
-            ))}
-          </div>
-          <Pagination
-            currentPage={filters.page}
-            totalPages={response.pagination[0].totalPages}
-            setCurrentPage={setFilters}
-            pages={Array.from(
-              { length: response.pagination[0].totalPages },
-              (_, i) => i + 1,
-            )}
+        <div className="main-content">
+          <ViewToggle
+            viewMode={viewMode}
+            toggleViewMode={toggleViewMode}
+            setFilters={setFilters}
           />
-        </>
-      )}
+
+          {isLoading && <div>Loading...</div>}
+          {error && <div>{error.toString()}</div>}
+          {!isLoading && !error && response.success && (
+            <>
+              <div
+                className={
+                  viewMode === VIEW_MODES.GRID ? "items-grid" : "items-list"
+                }
+              >
+                {response.result.map((item) => (
+                  <ItemCard key={item._id} item={item} />
+                ))}
+              </div>
+              <Pagination
+                currentPage={filters.page}
+                totalPages={response.pagination[0].totalPages}
+                setCurrentPage={setFilters}
+                pages={Array.from(
+                  { length: response.pagination[0].totalPages },
+                  (_, i) => i + 1,
+                )}
+              />
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
