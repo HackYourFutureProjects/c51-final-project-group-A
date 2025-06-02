@@ -1,7 +1,7 @@
-import "./Sidebar.css";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import "./Sidebar.css";
 
 export default function Sidebar({ isOpen, onClose }) {
   const staticCategories = [
