@@ -18,14 +18,14 @@
 .item-card:hover {
   transform: scale(1.01);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  h3 {
-    background: linear-gradient(135deg, #007acc, #86ccfb);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
 }
 
+.item-card:hover h3 {
+  background: linear-gradient(135deg, #007acc, #86ccfb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .item-card img {
   width: 100%;
   height: auto;
