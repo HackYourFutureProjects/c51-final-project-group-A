@@ -7,7 +7,18 @@ const ItemCard = ({ item }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="item-card" onClick={() => navigate(`/items/${item._id}`)}>
+    <div
+      className="item-card"
+      role="button"
+      tabindex="0"
+      onClick={() => navigate(`/items/${item._id}`)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          navigate(`/items/${item._id}`);
+        }
+      }}
+    >
       <img src={item.images[0]} alt={item.title} />
       <h3>{item.title}</h3>
       <p>Model: {item.model}</p>
