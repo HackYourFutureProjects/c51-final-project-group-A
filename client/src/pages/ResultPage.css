@@ -48,6 +48,12 @@
   flex: 1;
 }
 
+.error-message {
+  color: red;
+  padding: 2rem;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .content-with-sidebar {
     flex-direction: column;
