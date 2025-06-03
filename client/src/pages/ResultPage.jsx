@@ -7,7 +7,7 @@ import useFetch from "../hooks/useFetch";
 import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
 import FilterSidebar from "../components/FilterSidebar";
-
+import Loader from "../components/Loader";
 const VIEW_MODES = { GRID: "grid", LINE: "line" };
 
 const ResultPage = () => {
@@ -79,6 +79,18 @@ const ResultPage = () => {
     return cancelFetch;
   }, [url]);
 
+  // Handle loading and error states
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (error) {
+    return (
+      <div style={{ padding: "2rem", textAlign: "center", color: "red" }}>
+        Error Fetching Data: {error.message || error.toString()}
+      </div>
+    );
+  }
+
   return (
     <div className="result-container">
       <Header searchItem={searchItem} setSearchItem={setSearchItem} />
@@ -92,9 +104,6 @@ const ResultPage = () => {
             toggleViewMode={toggleViewMode}
             setFilters={setFilters}
           />
-
-          {isLoading && <div>Loading...</div>}
-          {error && <div>{error.toString()}</div>}
           {!isLoading && !error && response.success && (
             <>
               <div

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Loader from "../components/Loader";
 import "../styles/ItemDetailsStyle.css";
 
 // Helper function to display rating stars
@@ -32,8 +33,17 @@ const ItemDetailsPage = () => {
   }, [id]);
 
   // Handle loading and error states
-  if (isLoading) return <div className="loader">Loading...</div>;
-  if (error) return <div className="error">{error.toString()}</div>;
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (error) {
+    return (
+      <div style={{ padding: "2rem", textAlign: "center", color: "red" }}>
+        Error Fetching Data: {error.message || error.toString()}
+      </div>
+    );
+  }
+
   if (!item)
     return <div className="not-found">Item not found or unavailable.</div>;
 
