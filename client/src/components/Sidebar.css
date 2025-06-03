@@ -11,7 +11,7 @@
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
   z-index: 1000;
   color: #f0f0f0;
-  font-family: Georgia, 'Times New Roman', Times, serif
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .sidebar.open {
@@ -37,7 +37,7 @@
   border: none;
   color: #ffffff;
   font-size: 16px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   text-align: left;
   padding: 10px;
   border-radius: 6px;
