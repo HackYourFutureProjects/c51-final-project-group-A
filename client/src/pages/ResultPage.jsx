@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ItemCard from "../components/ItemCard";
 import Pagination from "../components/Pagination";
 import ViewToggle from "../components/ViewToggle";
-import "../styles/ResultPageStyle.css";
+import "./ResultPage.css";
 import useFetch from "../hooks/useFetch";
 import Header from "../components/Header";
 import { useLocation } from "react-router-dom";

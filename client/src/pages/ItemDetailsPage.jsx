@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
 import Loader from "../components/Loader";
-import "../styles/ItemDetailsStyle.css";
+import "./ItemDetailsPage.css";
 
 // Helper function to display rating stars
 const renderStars = (rating) => {

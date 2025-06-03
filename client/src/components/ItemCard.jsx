@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "../styles/ItemCardStyle.css";
+import "./ItemCard.css";
 import { useNavigate } from "react-router-dom";
 
 // component to display a single item card on ResultPage and HomePage

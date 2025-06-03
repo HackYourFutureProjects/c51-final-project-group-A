@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Filter from "./Filter";
 import PropTypes from "prop-types";
-import "../styles/FilterSidebar.css";
+import "./FilterSidebar.css";
 
 const CATEGORIES = ["Electronics", "Vehicles", "Home Appliances"];
 const CONDITIONS = ["Excellent", "Good", "Fair"];
