@@ -11,7 +11,7 @@
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
   z-index: 1000;
   color: #f0f0f0;
-  font-family: Arial, sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif
 }
 
 .sidebar.open {
@@ -37,6 +37,7 @@
   border: none;
   color: #ffffff;
   font-size: 16px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: left;
   padding: 10px;
   border-radius: 6px;
@@ -51,7 +52,7 @@
 }
 
 .category-btn:focus {
-  outline: 2px solid #ffffff;
+  outline: 2px solid #047fc0;
 }
 .sidebar h4 {
   margin: 1.5rem 0;
@@ -92,4 +93,48 @@
 
 .close-btn:hover {
   color: #fff;
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 180px;
+    padding: 15px;
+  }
+
+  .sidebar-title,
+  .sidebar h4 {
+    font-size: 18px;
+  }
+
+  .category-btn,
+  .sidebar ul li {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .close-btn {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+  .sidebar {
+    width: 200px;
+    padding: 18px;
+  }
+
+  .sidebar-title,
+  .sidebar h4 {
+    font-size: 19px;
+  }
+
+  .category-btn,
+  .sidebar ul li {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .close-btn {
+    font-size: 22px;
+  }
 }
