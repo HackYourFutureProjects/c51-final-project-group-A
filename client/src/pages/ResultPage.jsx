@@ -84,11 +84,7 @@ const ResultPage = () => {
     return <Loader />;
   }
   if (error) {
-    return (
-      <div style={{ padding: "2rem", textAlign: "center", color: "red" }}>
-        Error Fetching Data: {error.message || error.toString()}
-      </div>
-    );
+    return <div className="error-message">{error.message}</div>;
   }
 
   return (
