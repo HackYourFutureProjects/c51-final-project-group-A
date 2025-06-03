@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "./Pagination.css";
 
 const Pagination = ({ currentPage, totalPages, setCurrentPage, pages }) => {
   // Handles state changes for current page

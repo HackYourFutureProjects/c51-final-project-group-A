@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/SearchBarStyle.css";
+import "./SearchBar.css";
 
 export default function SearchBar({ searchItem, setSearchItem }) {
   // Local state to store the search query
