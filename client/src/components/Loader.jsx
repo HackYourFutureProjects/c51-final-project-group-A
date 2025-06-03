@@ -1,4 +1,4 @@
-import "../styles/LoaderStyle.css";
+import "../styles/Loaderstyle.css";
 
 const Loader = () => (
   <div className="loader-overlay">
