@@ -1,9 +1,10 @@
 .details-page-wrapper {
   max-width: 1000px;
-  margin: auto;
+  margin: 1rem auto;
   padding: 2rem;
-  background-color: #f0f0f0;
+  background-color: #f0f2f4;
   min-height: 100vh;
+  border-radius: 8px;
 }
 
 .details-content-container {
@@ -22,6 +23,7 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .item-info-box img {
@@ -29,6 +31,11 @@
   max-width: 300px;
   border-radius: 8px;
   margin-bottom: 1rem;
+  object-fit: cover;
+}
+.item-text-box {
+  flex: 1;
+  min-width: 200px;
 }
 
 /* Right: Owner box */
@@ -37,6 +44,8 @@
   padding: 1.5rem;
   width: 35%;
   border-radius: 8px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
 }
 
 .owner-name {
@@ -58,9 +67,13 @@
   padding: 0.6rem 1.2rem;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Bottom: Reviews */
+.info-button:hover {
+  background-color: #0056b3;
+}
+
 .latest-reviews-section {
   background-color: white;
   padding: 1rem;
@@ -68,7 +81,7 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
 }
 .latest-reviews-section h2 {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: #333;
@@ -82,14 +95,17 @@
 }
 
 .review-card {
-  gap: 0.5rem;
   background-color: white;
   border-radius: 8px;
   padding: 1rem;
   width: 250px;
-  border: #dde7f1 1px solid;
+  border: 1px solid #dde7f1;
   box-shadow: 0 0 4px rgba(27, 27, 27, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
+
 .item-image-box img {
   width: 250px;
   height: auto;
@@ -110,4 +126,68 @@
   color: gold;
   font-size: 1.2rem;
   margin: 0.3rem 0;
+}
+
+@media (min-width: 769px) {
+  .details-page-wrapper {
+    padding: 2rem;
+  }
+  .details-content-container {
+    flex-direction: row;
+  }
+  .item-info-box {
+    flex-direction: row;
+  }
+  .item-info-box img {
+    max-width: 300px;
+  }
+  .item-text-box {
+    min-width: auto;
+  }
+  .owner-box {
+    margin-top: 0;
+  }
+  .reviews-list {
+    justify-content: flex-start;
+  }
+  .review-card {
+    width: 250px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .details-page-wrapper {
+    padding: 1.5rem;
+  }
+  .details-content-container {
+    flex-direction: column;
+  }
+  .item-info-box {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+  .item-info-box img {
+    max-width: 45%;
+    height: auto;
+    margin-bottom: 0;
+  }
+  .item-text-box {
+    min-width: 50%;
+  }
+  .owner-box {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  .latest-reviews-section {
+    padding: 1rem;
+  }
+  .reviews-list {
+    justify-content: flex-start;
+  }
+  .review-card {
+    width: 45%;
+  }
 }

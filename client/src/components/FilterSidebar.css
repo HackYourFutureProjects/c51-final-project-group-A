@@ -1,8 +1,8 @@
 .filter-sidebar {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Georgia", serif;
   font-size: 1rem;
   color: #444;
-  background-color: #f9fbfd;
+  background-color: #ffffff;
   width: 280px;
   padding: 1.5rem 1.75rem;
   border-radius: 12px;
@@ -12,9 +12,29 @@
   gap: 2rem;
   position: sticky;
   top: 1.5rem;
-  height: fit-content;
+  height: max-content;
   user-select: none;
   border: 2px solid #e0e7f1;
+  margin-top: 0.2rem;
+}
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 14px;
+  background-color: #e6e6e7;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.filter-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.filter-arrow.open {
+  transform: rotate(180deg);
 }
 
 .filter-sidebar h3 {
@@ -76,7 +96,7 @@
     border-color 0.3s ease,
     box-shadow 0.3s ease,
     background-color 0.3s ease;
-  margin-bottom: 0.75rem;
+  margin: 0.5rem 0;
 }
 
 .filter-input:focus {
@@ -87,8 +107,10 @@
 }
 
 .filter-apply-btn {
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: 700;
-  background-color: #0798e6;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #0798e6, #007acc);
   color: white;
   border: none;
   padding: 0.65rem 1.2rem;
@@ -117,16 +139,39 @@
   margin-top: 1rem;
 }
 
+@media (max-width: 1024px) {
+  .filter-sidebar {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    position: relative;
+    top: auto;
+    border-radius: 12px;
+    border: 1px solid #e0e7f1;
+    background-color: #ffffff;
+    margin-top: 0.2rem;
+  }
+
+  .filter-sidebar h3 {
+    border-bottom: 1px solid #0798e6;
+    margin-bottom: 1rem;
+  }
+
+  .filter-apply-btn {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
 @media (max-width: 768px) {
   .filter-sidebar {
     width: 100%;
-    padding: 1rem 1rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
     position: relative;
     top: auto;
     border: 1px solid #e0e7f1;
-    background-color: #f9fbfd;
+    background-color: #ffffff;
+    margin-top: 0;
   }
 
   .filter-sidebar h3 {
@@ -136,12 +181,21 @@
   }
 
   .filter-option {
-    padding: 0.4rem 0.6rem;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    gap: 0.75rem;
   }
 
-  .filter-input {
+  .filter-option span {
+    font-weight: 500;
+  }
+
+  .filter-input,
+  .filter-apply-btn {
     width: 100%;
+  }
+
+  .filter-apply-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
   }
 }
