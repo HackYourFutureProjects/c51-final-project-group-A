@@ -1,10 +1,9 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/SearchBarStyle.css";
 
-export default function SearchBar({ searchItem, setSearchItem }) {
+function SearchBar() {
   // Local state to store the search query
   const [query, setQuery] = useState("");
 
@@ -12,34 +11,28 @@ export default function SearchBar({ searchItem, setSearchItem }) {
   const navigate = useNavigate();
 
   // Handles "Enter" key press to trigger navigation to catalogue page with search query
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && query.trim()) {
-      e.preventDefault();
-      navigate(`/result`);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!query.trim()) {
+      return;
     }
+    navigate(`/result?search=${query.trim()}`);
   };
 
   return (
-    <div className="search-form">
+    <form className="search-form" onSubmit={handleSearch}>
       <input
         type="text"
         className="search-input"
         placeholder="Search your item..."
-        value={searchItem || query}
-        onChange={(e) =>
-          setQuery(e.target.value) || setSearchItem(e.target.value)
-        }
-        onKeyDown={handleKeyDown}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
       />
-
-      <Link to={`/result`} className="search-button" aria-label="Search">
+      <button type="submit" className="search-button" aria-label="Search">
         <FiSearch className="search-icon" />
-      </Link>
-    </div>
+      </button>
+    </form>
   );
 }
 
-SearchBar.propTypes = {
-  searchItem: PropTypes.string.isRequired,
-  setSearchItem: PropTypes.func.isRequired,
-};
+export default SearchBar;

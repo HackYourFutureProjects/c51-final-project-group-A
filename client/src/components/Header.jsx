@@ -2,12 +2,11 @@ import { FaBars, FaBell, FaHeart, FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
 import "../styles/HeaderStyle.css";
 import SearchBar from "./SearchBar";
-import PropTypes from "prop-types";
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-const Header = ({ searchItem, setSearchItem }) => {
+const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
   return (
@@ -28,7 +27,7 @@ const Header = ({ searchItem, setSearchItem }) => {
             <img src={logo} alt="Company Logo" className="logo" />
           </button>
           <div className="search-bar-inline">
-            <SearchBar searchItem={searchItem} setSearchItem={setSearchItem} />
+            <SearchBar />
           </div>
         </div>
         <div className="header-right">
@@ -41,15 +40,10 @@ const Header = ({ searchItem, setSearchItem }) => {
         </div>
       </div>
       <div className="search-bar-wrapper">
-        <SearchBar searchItem={searchItem} setSearchItem={setSearchItem} />
+        <SearchBar />
       </div>
     </>
   );
-};
-
-Header.propTypes = {
-  searchItem: PropTypes.string.isRequired,
-  setSearchItem: PropTypes.func.isRequired,
 };
 
 export default Header;
