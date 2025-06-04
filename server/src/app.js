@@ -2,6 +2,7 @@ import express from "express";
 
 import userRouter from "./routes/user.js";
 import itemRouter from "./routes/item.js";
+import authRouter from "./routes/auth.js";
 
 // Create an express server
 const app = express();
@@ -16,5 +17,6 @@ app.use(express.json());
  */
 app.use("/api/users", userRouter);
 app.use("/api/items", itemRouter);
+app.use("/api/auth", authRouter);
 
 export default app;
