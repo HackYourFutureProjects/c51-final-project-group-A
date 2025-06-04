@@ -9,7 +9,7 @@ export const getItems = async (req, res) => {
     const response = await Item.aggregate(filters);
 
     if (response[0].data.length <= 0) {
-      return res.status(400).json({ success: false, msg: "Invalid request." });
+      return res.status(400).json({ success: false, msg: "No items found." });
     }
 
     res.status(200).json({
@@ -60,10 +60,12 @@ export const getItemById = async (req, res) => {
     category=["Electronics", "Home Appliances", "Vehicles"],
     condition=["Excellent", "Good", "Fair"],
     availability=[true, false]
+    search=String
   ]
 */
 const filterSearch = (queries) => {
   const {
+    search,
     category,
     condition,
     maxDuration,
@@ -79,6 +81,10 @@ const filterSearch = (queries) => {
 
   // Populate match stage with given/default values for filtering
   const matchStage = {};
+  search &&
+    (matchStage.$text = {
+      $search: search,
+    });
   category && (matchStage.category = category);
   condition && (matchStage.condition = condition);
   availability === "true" && (matchStage.availability = true);
