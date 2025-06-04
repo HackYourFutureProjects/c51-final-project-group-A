@@ -48,7 +48,8 @@ const ResultPage = () => {
         ...prevFilters,
         category: categoryFromUrl,
       }));
-    } else if (searchFromUrl) {
+    }
+    if (searchFromUrl) {
       setFilters((prevFilters) => ({
         ...prevFilters,
         search: searchFromUrl,
