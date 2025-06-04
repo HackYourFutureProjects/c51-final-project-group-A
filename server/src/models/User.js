@@ -12,7 +12,7 @@ const User = mongoose.model("users", userSchema);
 
 export const validateUser = (userObject) => {
   const errorList = [];
-  const allowedKeys = ["name", "email"];
+  const allowedKeys = ["name", "email", "password"];
 
   const validatedKeysMessage = validateAllowedFields(userObject, allowedKeys);
 
@@ -20,12 +20,19 @@ export const validateUser = (userObject) => {
     errorList.push(validatedKeysMessage);
   }
 
-  if (userObject.name == null) {
+  if (!userObject.name?.trim()) {
     errorList.push("name is a required field");
   }
 
-  if (userObject.email == null) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!userObject.email?.trim()) {
     errorList.push("email is a required field");
+  } else if (!emailRegex.test(userObject.email.trim())) {
+    errorList.push("email format is invalid");
+  }
+
+  if (!userObject.password?.trim()) {
+    errorList.push("password is a required field");
   }
 
   return errorList;
