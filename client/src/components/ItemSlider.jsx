@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import "./ItemSlider.css";
 import ItemCard from "./ItemCard";
+import Loader from "./Loader";
+import Error from "./Error";
 
 export default function ItemSlider() {
   const [items, setItems] = useState([]);
@@ -15,15 +17,13 @@ export default function ItemSlider() {
   const url = `/items?${new URLSearchParams(params).toString()}`;
 
   // Custom hook to handle fetching items from the server
-  const { performFetch, cancelFetch, isLoading } = useFetch(url, (data) => {
-    console.log("Slider fetch result:", data);
-    if (data.success) {
+  const { performFetch, cancelFetch, isLoading, error } = useFetch(
+    url,
+    (response) => {
       // Store the fetched items in state
-      setItems(data?.result || []);
-    } else {
-      console.error("Slider fetch failed:", data);
-    }
-  });
+      setItems(response?.result);
+    },
+  );
 
   // Fetch items when the component mounts
   useEffect(() => {
@@ -52,8 +52,11 @@ export default function ItemSlider() {
         </button>
         {/* Slider container with items */}
         <div className="slider-container" ref={sliderRef}>
-          {isLoading && <div className="loader">Loading items...</div>}
+          {isLoading && <Loader />}
+          {error && <Error errorMessage={error} />}
           {!isLoading &&
+            !error &&
+            items &&
             items.map((item) => <ItemCard key={item._id} item={item} />)}
         </div>
 

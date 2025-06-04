@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
 import FilterSidebar from "../components/FilterSidebar";
 import Loader from "../components/Loader";
+import Error from "../components/Error";
 const VIEW_MODES = { GRID: "grid", LINE: "line" };
 
 const ResultPage = () => {
@@ -100,7 +101,7 @@ const ResultPage = () => {
             setFilters={setFilters}
           />
           {isLoading && <Loader />}
-          {error && <div className="error-message">{error}</div>}
+          {error && <Error errorMessage={error} />}
           {!isLoading && !error && response.success && (
             <>
               <div
