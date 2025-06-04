@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState } from "react";
-import "../styles/AuthPageStyle.css";
+import "./AuthPage.css";
 
 export default function AuthPage() {
   // State to toggle between login and register modes

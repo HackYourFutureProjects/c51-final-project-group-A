@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "../styles/ViewToggle.css";
+import "./ViewToggle.css";
 
 const ViewToggle = ({ viewMode, toggleViewMode, setFilters }) => {
   // Sets page size filter
