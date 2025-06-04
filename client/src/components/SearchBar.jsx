@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import "../styles/SearchBarStyle.css";
+import "./SearchBar.css";
 
 function SearchBar() {
   // Local state to store the search query

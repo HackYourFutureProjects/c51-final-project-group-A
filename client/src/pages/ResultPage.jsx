@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import ItemCard from "../components/ItemCard";
 import Pagination from "../components/Pagination";
 import ViewToggle from "../components/ViewToggle";
-import "../styles/ResultPageStyle.css";
+import "./ResultPage.css";
 import useFetch from "../hooks/useFetch";
 import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
 import FilterSidebar from "../components/FilterSidebar";
-
+import Loader from "../components/Loader";
 const VIEW_MODES = { GRID: "grid", LINE: "line" };
 
 const ResultPage = () => {
@@ -98,9 +98,8 @@ const ResultPage = () => {
             toggleViewMode={toggleViewMode}
             setFilters={setFilters}
           />
-
-          {isLoading && <div>Loading...</div>}
-          {error && <div>{error.toString()}</div>}
+          {isLoading && <Loader />}
+          {error && <div className="error-message">{error}</div>}
           {!isLoading && !error && response.success && (
             <>
               <div

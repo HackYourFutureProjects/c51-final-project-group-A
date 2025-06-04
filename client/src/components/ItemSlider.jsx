@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import useFetch from "../hooks/useFetch";
-import "../styles/ItemSliderStyle.css";
+import "./ItemSlider.css";
 import ItemCard from "./ItemCard";
 
 export default function ItemSlider() {
