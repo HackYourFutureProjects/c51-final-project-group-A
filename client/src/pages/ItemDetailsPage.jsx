@@ -38,7 +38,7 @@ const ItemDetailsPage = () => {
       <Header />
       {isLoading && <Loader />}
       {error && <Error errorMessage={error} />}
-      {!isLoading && !error && (
+      {!isLoading && !error && item && (
         <div className="details-page-wrapper">
           <div className="details-content-container">
             {/* Left: image + main details */}

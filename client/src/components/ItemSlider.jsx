@@ -56,6 +56,7 @@ export default function ItemSlider() {
           {error && <Error errorMessage={error} />}
           {!isLoading &&
             !error &&
+            items &&
             items.map((item) => <ItemCard key={item._id} item={item} />)}
         </div>
 

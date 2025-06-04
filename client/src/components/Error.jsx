@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import "./Error.css";
 
 const Error = ({ errorMessage }) => {
-  return <div className="error-message">{errorMessage}</div>;
+  return <div className="error-message">{errorMessage.toString()}</div>;
 };
 
 Error.propTypes = {
