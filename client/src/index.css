@@ -13,7 +13,21 @@ ul,
 menu {
   list-style: none;
 }
+body,
+button,
+input,
+label,
+select,
+textarea {
+  font-family: "georgia", serif;
+}
 
 body {
   padding: 20px;
+  margin: 0;
+  background-color: #f7f7fa;
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
 }

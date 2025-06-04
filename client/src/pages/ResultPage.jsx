@@ -13,7 +13,6 @@ const VIEW_MODES = { GRID: "grid", LINE: "line" };
 
 const ResultPage = () => {
   const [response, setResponse] = useState({ success: false });
-  const [searchItem, setSearchItem] = useState("");
   const [viewMode, setViewMode] = useState(VIEW_MODES.GRID);
   const [url, setUrl] = useState("/items");
   const [filters, setFilters] = useState({
@@ -39,15 +38,22 @@ const ResultPage = () => {
     );
   };
 
-  // Set category if user navigated to the result page using the sidebar
+  // Set filter when user navigates to the result page using the sidebar/searchbar
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const categoryFromUrl = searchParams.get("category");
+    const searchFromUrl = searchParams.get("search");
 
     if (categoryFromUrl) {
       setFilters((prevFilters) => ({
         ...prevFilters,
         category: categoryFromUrl,
+      }));
+    }
+    if (searchFromUrl) {
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        search: searchFromUrl,
       }));
     }
   }, [location.search]);
@@ -63,6 +69,7 @@ const ResultPage = () => {
     params.set("sortOrder", filters.sortOrder);
 
     // Set optional string queries
+    filters.search && params.set("search", filters.search);
     filters.category && params.set("category", filters.category);
     filters.condition && params.set("condition", filters.condition);
     filters.availability && params.set("availability", filters.availability);
@@ -82,7 +89,7 @@ const ResultPage = () => {
 
   return (
     <div className="result-container">
-      <Header searchItem={searchItem} setSearchItem={setSearchItem} />
+      <Header />
       {/* Wrap sidebar and main content in one flex container */}
       <div className="content-with-sidebar">
         <FilterSidebar filters={filters} setFilters={setFilters} />
