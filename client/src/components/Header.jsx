@@ -21,11 +21,11 @@ const Header = () => {
             isOpen={isSidebarOpen}
             onClose={() => setIsSidebarOpen(false)}
           />
-        </div>
-        <div className="center-section">
           <button className="logo-button" onClick={() => navigate("/")}>
             <img src={logo} alt="Company Logo" className="logo" />
           </button>
+        </div>
+        <div className="center-section">
           <div className="search-bar-inline">
             <SearchBar />
           </div>

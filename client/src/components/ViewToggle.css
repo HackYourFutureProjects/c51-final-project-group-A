@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "PT Serif", serif;
   padding: 0.6rem 1.2rem;
   background: linear-gradient(135deg, #0798e6, #007acc);
   color: white;

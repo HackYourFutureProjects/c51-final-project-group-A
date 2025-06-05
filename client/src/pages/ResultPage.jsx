@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 import FilterSidebar from "../components/FilterSidebar";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
+import Footer from "../components/Footer";
 const VIEW_MODES = { GRID: "grid", LINE: "line" };
 
 const ResultPage = () => {
@@ -126,6 +127,7 @@ const ResultPage = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
