@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { MdGridView, MdViewList } from "react-icons/md";
 import "./ViewToggle.css";
 
 const ViewToggle = ({ viewMode, toggleViewMode, setFilters }) => {
@@ -25,7 +26,9 @@ const ViewToggle = ({ viewMode, toggleViewMode, setFilters }) => {
     <div className="view-toggle-container">
       {/* ITEMS PER PAGE */}
       <div>
-        <label htmlFor="itemsPerPage">Display:</label>
+        <label htmlFor="itemsPerPage" className="toggle-label">
+          Display:
+        </label>
         <select
           defaultValue={10}
           name="itemsPerPage"
@@ -41,7 +44,9 @@ const ViewToggle = ({ viewMode, toggleViewMode, setFilters }) => {
 
       {/* SORT */}
       <div>
-        <label htmlFor="sorting">Sort:</label>
+        <label htmlFor="sorting" className="toggle-label">
+          Sort:
+        </label>
         <select
           defaultValue={JSON.stringify({
             sortBy: "createdAt",
@@ -70,7 +75,17 @@ const ViewToggle = ({ viewMode, toggleViewMode, setFilters }) => {
       {/* TOGGLE VIEW MODE */}
       <div>
         <button onClick={toggleViewMode} className="view-toggle-btn">
-          View as {viewMode === "grid" ? "Line" : "Grid"}
+          {viewMode === "grid" ? (
+            <>
+              <MdViewList style={{ marginRight: "0.5rem" }} />
+              List View
+            </>
+          ) : (
+            <>
+              <MdGridView style={{ marginRight: "0.5rem" }} />
+              Grid View
+            </>
+          )}
         </button>
       </div>
     </div>

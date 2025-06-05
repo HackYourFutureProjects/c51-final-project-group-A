@@ -18,6 +18,9 @@
 .item-card:hover {
   transform: scale(1.01);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .item-card:hover h3 {
@@ -73,37 +76,6 @@
   border: 1px solid #ccc;
   border-radius: 8px;
 }
-
-/* .items-list .item-card:hover {
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  transform: none;
-}
-
-.items-list .item-card h3 {
-  font-size: 1.4rem;
-  margin: 0;
-  flex: 1;
-  color: #222;
-  font-weight: 600;
-}
-
-.items-list .item-card img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-.items-list .item-card p {
-  margin: 0;
-  font-size: 1rem;
-  color: #555;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 40%;
-} */
 
 .item-condition-excellent {
   background-color: #d4edda;

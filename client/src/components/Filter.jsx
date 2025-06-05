@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
+import { FaChevronDown } from "react-icons/fa";
 
 const Filter = ({ title, isOpen, toggle, children }) => (
   <div className="filter">
     <div className="filter-header" onClick={toggle}>
       <h4>{title}</h4>
-      <span>{isOpen ? "▲" : "▼"}</span>
+      <FaChevronDown className={`filter-arrow ${isOpen ? "open" : ""}`} />
     </div>
     {isOpen && <div className="filter-body">{children}</div>}
   </div>

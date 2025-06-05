@@ -1,9 +1,20 @@
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
 }
-
+.items-grid > * {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+.items-grid > *:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 .items-list {
   display: flex;
   flex-direction: column;
@@ -11,32 +22,27 @@
 }
 
 .items-list > * {
-  width: 100%;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
-@media (max-width: 1024px) {
-  .items-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .items-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .items-grid {
-    grid-template-columns: 1fr;
-  }
+.items-list > *:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .content-with-sidebar {
   display: flex;
-  gap: 2rem;
+  flex-direction: row;
+  gap: 1rem;
   align-items: flex-start;
   padding: 1rem 0;
+  background-color: #f9f9f9;
+  border-radius: 10px;
 }
 
 .filter-sidebar {
@@ -46,15 +52,52 @@
 
 .main-content {
   flex: 1;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.items-grid > *:hover,
+.items-list > *:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .items-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .content-with-sidebar {
+    flex-direction: column;
+  }
+  .main-content {
+    width: 100%;
+    padding: 1rem;
+  }
+  .items-list {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    word-wrap: break-word;
+    gap: 1rem;
+  }
+  .items-list > * {
+    overflow: hidden;
+    word-wrap: break-word;
+  }
 }
 
 @media (max-width: 768px) {
+  .items-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .content-with-sidebar {
     flex-direction: column;
   }
   .filter-sidebar {
     max-width: 100%;
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 }

@@ -19,30 +19,30 @@ const ItemCard = ({ item }) => {
         }
       }}
     >
-      <img src={item.images[0]} alt={item.title} />
-      <h3>{item.title}</h3>
-      <p>Model: {item.model}</p>
-      <p>
+      <img className="item-card-image" src={item.images[0]} alt={item.title} />
+      <h3 className="item-card-title">{item.title}</h3>
+      <p className="item-card-model">Model: {item.model}</p>
+      <p className="item-card-condition">
         Condition:{" "}
         {
           <span
-            className={
+            className={`item-condition ${
               item.condition === "Excellent"
                 ? "item-condition-excellent"
                 : item.condition === "Good"
                   ? "item-condition-good"
                   : "item-condition-fair"
-            }
+            }`}
           >
             {item.condition}
           </span>
         }
       </p>
-      <p>
+      <p className="item-card-duration">
         Rental Period: {item.borrowDuration}{" "}
         {item.borrowDuration === 1 ? "day" : "days"}
       </p>
-      <p>Rental Price: {item.price}€</p>
+      <p className="item-card-price">Rental Price: {item.price}€</p>
       {item.availability ? (
         <p style={{ color: "green", fontWeight: "bold" }}>✅Available</p>
       ) : (
