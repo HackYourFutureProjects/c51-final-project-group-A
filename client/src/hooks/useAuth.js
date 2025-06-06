@@ -43,7 +43,7 @@ export const useAuth = () => {
         localStorage.setItem("token", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));
         await showSuccessAlert(isLogin);
-        navigate("/result");
+        navigate("/");
       } else {
         // Handle email already registered error
         if (!isLogin && result.error?.toLowerCase().includes("email")) {
