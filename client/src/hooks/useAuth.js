@@ -26,9 +26,7 @@ export const useAuth = () => {
     if (!isLogin) {
       formData.name = e.target.name.value;
     } // Define the API endpoint based on the mode
-    const url = isLogin
-      ? "http://localhost:3000/api/auth/login"
-      : "http://localhost:3000/api/auth/register";
+    const url = isLogin ? "/api/auth/login" : "/api/auth/register";
 
     try {
       // Send the form data to the server
