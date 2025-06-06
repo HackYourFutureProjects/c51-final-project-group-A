@@ -5,6 +5,7 @@
   background-color: #f0f2f4;
   min-height: 100vh;
   border-radius: 8px;
+  font-family: "PT Serif", serif;
 }
 
 .details-content-container {
@@ -188,5 +189,31 @@
   }
   .review-card {
     width: 45%;
+  }
+}
+@media (max-width: 480px) {
+  .details-page-wrapper {
+    padding: 0.5rem;
+  }
+  .details-content-container {
+    flex-direction: column;
+  }
+  .item-info-box {
+    width: 100%;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .item-info-box img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  .item-text-box {
+    min-width: auto;
+  }
+  .owner-box {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
   }
 }

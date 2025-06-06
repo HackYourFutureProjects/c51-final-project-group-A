@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
+  font-family: "PT Serif", serif;
 }
 .items-grid > * {
   background-color: #fff;
@@ -43,6 +44,7 @@
   padding: 1rem 0;
   background-color: #f9f9f9;
   border-radius: 10px;
+  font-family: "PT Serif", serif;
 }
 
 .filter-sidebar {
@@ -76,11 +78,14 @@
     padding: 1rem;
   }
   .items-list {
+    max-width: 80%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     word-wrap: break-word;
     gap: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   .items-list > * {
     overflow: hidden;
