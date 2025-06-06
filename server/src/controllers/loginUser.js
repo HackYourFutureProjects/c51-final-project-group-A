@@ -44,6 +44,7 @@ export const loginUser = async (req, res) => {
       user: {
         name: user.name,
         email: user.email,
+        id: user._id.toString(),
       },
     });
   } catch (err) {

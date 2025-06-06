@@ -4,11 +4,13 @@ import { registerUser } from "../controllers/registerUser.js";
 import { validateRegisterInput } from "../middleware/validateRegisterInput.js";
 import { validateLoginInput } from "../middleware/validateLoginInput.js";
 import deleteUser from "../controllers/deleteUser.js";
+import validateDeleteRequest from "../middleware/validateDeleteRequest.js";
+import authUser from "../middleware/authUser.js";
 
 const router = express.Router();
 
 router.post("/register", validateRegisterInput, registerUser);
 router.post("/login", validateLoginInput, loginUser);
-router.put("/delete", deleteUser);
+router.delete("/delete", validateDeleteRequest, authUser, deleteUser);
 
 export default router;
