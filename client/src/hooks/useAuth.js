@@ -35,7 +35,7 @@ export const useAuth = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: (formData),
+        body: formData,
       });
 
       const result = await response.json();
