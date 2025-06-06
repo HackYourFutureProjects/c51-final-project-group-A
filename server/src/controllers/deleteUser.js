@@ -1,17 +1,25 @@
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import User from "../models/User.js";
 
-// Login Controller
-export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+const deleteUser = async (req, res) => {
+  const { email, password, token } = req.body;
 
   try {
-    //  Check if user exists
+    // Verify the token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ email: email.trim() });
+
+    //  Check if user exists
     if (!user) {
       return res.status(400).json({ error: "User not found" });
     }
+
+    // Check if token and user matches
+    if (user._id !== decoded._id) {
+      return res.status(401).json({ error: "User and token mismatch" });
+    }
+
     // Ensure password is provided
     if (!password || typeof password !== "string" || password.trim() === "") {
       return res.status(400).json({ error: "Password is required" });
@@ -20,23 +28,11 @@ export const loginUser = async (req, res) => {
     // Compare passwords
     const isMatch = await bcrypt.compare(password.trim(), user.password);
     if (!isMatch) {
-      return res.status(401).json({ error: "Invalid credentials" });
+      return res.status(401).json({ error: "Invalid password" });
     }
-
-    //  Generate token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: 1,
-    });
-
-    //  Return token and user info
-    return res.json({
-      token,
-      user: {
-        name: user.name,
-        email: user.email,
-      },
-    });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
 };
+
+export default deleteUser;
