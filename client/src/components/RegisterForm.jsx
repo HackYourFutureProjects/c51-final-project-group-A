@@ -4,7 +4,7 @@ export default function RegisterForm({ handleSubmit }) {
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
       <label htmlFor="name">Name</label>
-      <input id="name" name="name" type="text" required placeholder="name" />
+      <input id="name" name="name" type="text" required placeholder="Name" />
 
       <label htmlFor="email">Email</label>
       <input
