@@ -9,6 +9,6 @@ const router = express.Router();
 
 router.post("/register", validateRegisterInput, registerUser);
 router.post("/login", validateLoginInput, loginUser);
-router.update("/delete", deleteUser);
+router.put("/delete", deleteUser);
 
 export default router;

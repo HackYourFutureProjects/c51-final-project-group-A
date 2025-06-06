@@ -12,6 +12,12 @@ export const loginUser = async (req, res) => {
     if (!user) {
       return res.status(400).json({ error: "User not found" });
     }
+
+    // Check if user account is active
+    if (!user.active) {
+      return res.status(403).json({ error: "Account is disabled" });
+    }
+
     // Ensure password is provided
     if (!password || typeof password !== "string" || password.trim() === "") {
       return res.status(400).json({ error: "Password is required" });
@@ -24,9 +30,13 @@ export const loginUser = async (req, res) => {
     }
 
     //  Generate token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: 1,
-    });
+    const token = jwt.sign(
+      { id: user._id.toString() },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "12h",
+      },
+    );
 
     //  Return token and user info
     return res.json({
