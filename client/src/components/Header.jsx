@@ -5,10 +5,16 @@ import SearchBar from "./SearchBar";
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import LogoutButton from "./LogoutButton";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Get the token from localStorage to check if the user is logged in
+  const token = localStorage.getItem("token");
+  // Convert the token to a boolean: if token exists, user is logged in; otherwise, not logged in
+  const isLoggedIn = !!token;
   return (
     <>
       <div className="header">
@@ -33,10 +39,16 @@ const Header = () => {
         <div className="header-right">
           <FaBell className="header-icon" />
           <FaHeart className="header-icon" />
-          <FaUserCircle
-            className="header-icon"
-            onClick={() => navigate("/auth")}
-          />
+          {isLoggedIn ? (
+            // If the user is logged in, show the LogoutButton
+            <LogoutButton />
+          ) : (
+            // If the user is not logged in, show the UserCircle icon that navigates to the auth page
+            <FaUserCircle
+              className="header-icon"
+              onClick={() => navigate("/auth")}
+            />
+          )}
         </div>
       </div>
       <div className="search-bar-wrapper">
