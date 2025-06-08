@@ -49,7 +49,7 @@ const ItemCard = ({ item }) => {
       ) : (
         <p style={{ fontWeight: "bold" }}>Unavailable</p>
       )}
-      {<BorrowButton itemId={item._id} />}
+      {item.availability && <BorrowButton itemId={item._id} />}
     </div>
   );
 };

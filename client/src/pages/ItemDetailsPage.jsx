@@ -78,7 +78,7 @@ const ItemDetailsPage = () => {
                   ? item.description
                   : "No description available."}
               </p>
-              {<BorrowButton itemId={item._id} />}
+              <BorrowButton itemId={item._id} />
             </div>
 
             {/* Right: Owner Info placeholder */}

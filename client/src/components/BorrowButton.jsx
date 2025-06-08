@@ -49,7 +49,11 @@ const BorrowButton = ({ itemId }) => {
       // Handle any unexpected errors
       console.error(error);
       console.error("Error borrowing item:", error);
-      Swal.fire("Something went wrong while processing your request.");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Something went wrong while processing your request.",
+      });
     }
   };
   return (
