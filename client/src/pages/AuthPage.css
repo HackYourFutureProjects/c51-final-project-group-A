@@ -36,11 +36,14 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   outline: none;
-  transition: border-color 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 
 .auth-form input:focus {
   border-color: #0798e6;
+  box-shadow: 0 0 0 3px rgba(7, 152, 230, 0.25);
 }
 
 .auth-form button {
@@ -92,5 +95,6 @@
   .auth-form input,
   .auth-form button {
     font-size: 15px;
+    padding: 10px;
   }
 }
