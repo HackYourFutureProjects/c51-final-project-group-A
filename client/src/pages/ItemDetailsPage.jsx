@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
+import BorrowButton from "../components/BorrowButton";
 import "./ItemDetailsPage.css";
 
 // Helper function to display rating stars
@@ -18,7 +19,6 @@ const ItemDetailsPage = () => {
   // Extract item ID from URL params
   const { id } = useParams();
   const [item, setItem] = useState(null);
-
   // Use custom hook to fetch item details
   const { error, isLoading, performFetch, cancelFetch } = useFetch(
     `/items/${id}`,
@@ -78,6 +78,7 @@ const ItemDetailsPage = () => {
                   ? item.description
                   : "No description available."}
               </p>
+              {<BorrowButton itemId={item._id} />}
             </div>
 
             {/* Right: Owner Info placeholder */}
