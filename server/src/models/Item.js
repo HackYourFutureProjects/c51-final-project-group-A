@@ -21,6 +21,7 @@ const itemSchema = new mongoose.Schema({
   images: { type: [String], required: true }, // implicit default value of []
   reviews: { type: [Object], required: true }, // implicit default value of []
   availability: { type: Boolean, default: true },
+  borrowedUntil: { type: Date, default: null }, // null if available
   borrowedCount: { type: Number, default: 0 },
   value: { type: Number, required: true },
   price: { type: Number, required: true, index: true },

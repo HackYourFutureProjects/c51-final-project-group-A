@@ -63,6 +63,40 @@ export const getItemById = async (req, res) => {
     search=String
   ]
 */
+export const borrowItemController = async (req, res) => {
+  const { id } = req.params;
+  const { borrowedUntil } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "Invalid item ID Format" });
+  }
+
+  try {
+    const updatedItem = await Item.findByIdAndUpdate(
+      id,
+      {
+        available: false,
+        borrowedUntil: borrowedUntil,
+      },
+      { new: true },
+    );
+
+    if (!updatedItem) {
+      return res.status(404).json({ success: false, msg: "Item not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      msg: "Item borrowed successfully",
+      result: updatedItem,
+    });
+  } catch (error) {
+    logError(error);
+    res.status(500).json({ success: false, msg: "Server error" });
+  }
+};
 const filterSearch = (queries) => {
   const {
     search,
