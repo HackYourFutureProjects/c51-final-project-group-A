@@ -77,7 +77,7 @@ export const borrowItemController = async (req, res) => {
     const updatedItem = await Item.findByIdAndUpdate(
       id,
       {
-        available: false,
+        availability: false,
         borrowedUntil: borrowedUntil,
       },
       { new: true },
