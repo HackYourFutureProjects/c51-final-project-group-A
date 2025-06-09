@@ -28,11 +28,11 @@ const aggregateSearch = (req, res, next) => {
   availability === "true" && (matchStage.availability = true);
   matchStage.borrowDuration = {
     $gte: minDuration ? parseInt(minDuration) : 0,
-    $lte: maxDuration ? parseInt(maxDuration) : Infinity,
+    $lte: maxDuration ? parseInt(maxDuration) : Number.MAX_SAFE_INTEGER,
   };
   matchStage.price = {
     $gte: minPrice ? parseFloat(minPrice) : 0,
-    $lte: maxPrice ? parseFloat(maxPrice) : Infinity,
+    $lte: maxPrice ? parseFloat(maxPrice) : Number.MAX_SAFE_INTEGER,
   };
 
   // Sort results by the given query strings
