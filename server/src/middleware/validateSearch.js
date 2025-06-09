@@ -25,6 +25,11 @@ function validateSearch(req, res, next) {
     errorList.push(validatedKeysMessage);
   }
 
+  // Check if search text is valid
+  if (queries.search && queries.search.trim() === "") {
+    errorList.push("Invalid search text");
+  }
+
   // Check if category is valid
   const allowedCategories = ["Electronics", "Home Appliances", "Vehicles"];
   if (queries.category && !allowedCategories.includes(queries.category)) {
@@ -76,7 +81,7 @@ function validateSearch(req, res, next) {
     (queries.page && isNaN(Number(queries.page))) ||
     Number(queries.page) < 1
   ) {
-    errorList.push("Invalid limit parameter");
+    errorList.push("Invalid page parameter");
   }
 
   if (errorList.length > 0) {
