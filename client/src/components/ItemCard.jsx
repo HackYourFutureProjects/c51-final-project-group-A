@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import "./ItemCard.css";
 import { useNavigate } from "react-router-dom";
+import BorrowButton from "./BorrowButton";
 
 // component to display a single item card on ResultPage and HomePage
 const ItemCard = ({ item }) => {
@@ -48,6 +49,7 @@ const ItemCard = ({ item }) => {
       ) : (
         <p style={{ fontWeight: "bold" }}>Unavailable</p>
       )}
+      {<BorrowButton itemId={item._id} disabled={!item.availability} />}
     </div>
   );
 };
