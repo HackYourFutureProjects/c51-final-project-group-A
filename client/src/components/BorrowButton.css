@@ -14,3 +14,8 @@
 .borrow-button:hover {
   background-color: #082e80;
 }
+.borrow-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  color: #666666;
+}

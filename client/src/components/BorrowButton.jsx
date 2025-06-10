@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./BorrowButton.css";
 import PropTypes from "prop-types";
 
-const BorrowButton = ({ itemId }) => {
+const BorrowButton = ({ itemId, disabled = false }) => {
   const navigate = useNavigate();
   // Check if the user is logged in by looking for a token in localStorage
   const isLoggedIn = !!localStorage.getItem("token");
@@ -57,14 +57,20 @@ const BorrowButton = ({ itemId }) => {
     }
   };
   return (
-    <button type="button" className="borrow-button" onClick={handleBorrowClick}>
-      Borrow Item
+    <button
+      type="button"
+      disabled={disabled}
+      className={`borrow-button ${disabled ? "borrow--disabled" : ""}`}
+      onClick={handleBorrowClick}
+    >
+      {disabled ? "Not Available" : "Borrow Item"}
     </button>
   );
 };
 
 BorrowButton.propTypes = {
   itemId: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default BorrowButton;
