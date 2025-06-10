@@ -25,10 +25,8 @@
 }
 
 .item-card:hover h3 {
-  background: linear-gradient(135deg, #007acc, #86ccfb);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #082e80;
+  font-weight: bold;
 }
 .item-card img {
   width: 100%;
@@ -38,14 +36,10 @@
 }
 
 .item-card h3 {
+  font-weight: bold;
   margin: 0 0 10px;
-  font-size: 1.2rem;
-  background: -webkit-linear-gradient(135deg, #0798e6, #007acc);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: #333;
-  font-weight: 700;
+  font-size: 1.3rem;
+  color: #0798e6;
 }
 
 .item-card p {
