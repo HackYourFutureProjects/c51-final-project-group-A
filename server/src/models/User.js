@@ -1,12 +1,18 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 import validateAllowedFields from "../util/validateAllowedFields.js";
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  firstName: { type: String, default: "" },
+  lastName: { type: String, default: "" },
+  phone: { type: String, default: "" },
+  city: { type: String, default: "" },
+  ownedItems: [{ type: Types.ObjectId, ref: "Item" }],
+  borrowedItems: [{ type: Types.ObjectId, ref: "Item" }],
   active: { type: Boolean, default: true },
+  createdAt: { type: Date, default: Date.now() },
 });
 
 const User = mongoose.model("users", userSchema);

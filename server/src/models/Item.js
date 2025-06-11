@@ -21,7 +21,7 @@ const reviewSchema = new mongoose.Schema(
 );
 
 const itemSchema = new mongoose.Schema({
-  ownerId: { type: Types.ObjectId, required: true, index: true },
+  ownerId: { type: Types.ObjectId, required: true, index: true, ref: "User" },
   title: { type: String, required: true, index: true },
   category: {
     type: String,
@@ -31,7 +31,7 @@ const itemSchema = new mongoose.Schema({
       "Transportation",
       "Gaming",
       "Books",
-      "Entertainment",
+      "Media",
       "Clothing",
       "Musical Instruments",
     ],
@@ -45,14 +45,15 @@ const itemSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
-  borrowDuration: { type: Number, required: true, index: true },
+  borrowDuration: { type: Number, required: true, index: true, min: 1, max: 7 },
   description: { type: String, required: true },
-  images: { type: [String], required: true },
+  images: [{ type: String, required: true }],
   reviews: {
     averageRating: { type: Number, default: 0, min: 1, max: 5 },
     allReviews: [reviewSchema],
   },
   availability: { type: Boolean, default: true },
+  visibility: { type: Boolean, default: true },
   borrowedUntil: { type: Date, default: null }, // null if available
   borrowedCount: { type: Number, default: 0 },
   value: { type: Number, required: true },
