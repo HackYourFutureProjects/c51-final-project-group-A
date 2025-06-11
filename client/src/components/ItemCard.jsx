@@ -43,7 +43,7 @@ const ItemCard = ({ item }) => {
         Rental Period: {item.borrowDuration}{" "}
         {item.borrowDuration === 1 ? "day" : "days"}
       </p>
-      <p className="item-card-price">Rental Price: {item.price}€</p>
+      <p className="item-card-price">Rental Price: €{item.price}</p>
       {item.availability ? (
         <p style={{ color: "green", fontWeight: "bold" }}>✅Available</p>
       ) : (
