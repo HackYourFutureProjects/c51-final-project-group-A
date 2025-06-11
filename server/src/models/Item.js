@@ -11,13 +11,9 @@ const reviewSchema = new mongoose.Schema(
     comment: {
       type: String,
       required: true,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-    },
+    }
   },
-  { _id: false },
+  { _id: false, timestamps: true },
 );
 
 const itemSchema = new mongoose.Schema({
@@ -38,7 +34,7 @@ const itemSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
-  model: { type: String, default: "" },
+  model: { type: String, default: "N/A" },
   condition: {
     type: String,
     enum: ["Excellent", "Good", "Fair"],
@@ -56,10 +52,9 @@ const itemSchema = new mongoose.Schema({
   visibility: { type: Boolean, default: true },
   borrowedUntil: { type: Date, default: null }, // null if available
   borrowedCount: { type: Number, default: 0 },
-  value: { type: Number, required: true },
-  price: { type: Number, required: true, index: true },
-  createdAt: { type: Date, default: Date.now() },
-});
+  value: { type: Number, required: true, min: 0 },
+  price: { type: Number, required: true, index: true, min:0 }
+}, { timestamps: true });
 
 const Item = mongoose.model("items", itemSchema);
 

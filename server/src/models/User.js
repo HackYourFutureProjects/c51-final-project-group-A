@@ -12,8 +12,7 @@ const userSchema = new mongoose.Schema({
   ownedItems: [{ type: Types.ObjectId, ref: "Item" }],
   borrowedItems: [{ type: Types.ObjectId, ref: "Item" }],
   active: { type: Boolean, default: true },
-  createdAt: { type: Date, default: Date.now() },
-});
+}, { timestamps: true });
 
 const User = mongoose.model("users", userSchema);
 
