@@ -1,4 +1,4 @@
-import { FaBars, FaBell, FaHeart, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
 import "./Header.css";
 import SearchBar from "./SearchBar";
@@ -37,8 +37,6 @@ const Header = () => {
           </div>
         </div>
         <div className="header-right">
-          <FaBell className="header-icon" />
-          <FaHeart className="header-icon" />
           {isLoggedIn ? (
             // If the user is logged in, show the LogoutButton
             <LogoutButton />
