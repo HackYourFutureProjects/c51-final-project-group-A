@@ -111,7 +111,11 @@ const ResultPage = () => {
                 }
               >
                 {response.result.map((item) => (
-                  <ItemCard key={item._id} item={item} />
+                  <ItemCard
+                    key={item._id}
+                    item={item}
+                    performFetch={performFetch}
+                  />
                 ))}
               </div>
               <Pagination
