@@ -42,7 +42,6 @@ export const loginUser = async (req, res) => {
     return res.json({
       token,
       user: {
-        name: user.name,
         email: user.email,
         id: user._id.toString(),
       },
