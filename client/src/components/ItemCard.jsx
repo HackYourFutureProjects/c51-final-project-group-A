@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import "./ItemCard.css";
 import { useNavigate } from "react-router-dom";
-import BorrowButton from "./BorrowButton";
 
 // component to display a single item card on ResultPage and HomePage
 const ItemCard = ({ item }) => {
@@ -45,11 +44,10 @@ const ItemCard = ({ item }) => {
       </p>
       <p className="item-card-price">Rental Price: €{item.price}</p>
       {item.availability ? (
-        <p style={{ color: "green", fontWeight: "bold" }}>✅Available</p>
+        <p className="available">✅Available</p>
       ) : (
-        <p style={{ fontWeight: "bold" }}>Unavailable</p>
+        <p className="unavailable">Unavailable</p>
       )}
-      {<BorrowButton itemId={item._id} disabled={!item.availability} />}
     </div>
   );
 };
