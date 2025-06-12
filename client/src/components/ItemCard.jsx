@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import "./ItemCard.css";
 import { useNavigate } from "react-router-dom";
-import BorrowButton from "./BorrowButton";
 
 // component to display a single item card on ResultPage and HomePage
-const ItemCard = ({ item, performFetch }) => {
+const ItemCard = ({ item }) => {
   const navigate = useNavigate();
 
   return (
@@ -45,17 +44,10 @@ const ItemCard = ({ item, performFetch }) => {
       </p>
       <p className="item-card-price">Rental Price: €{item.price}</p>
       {item.availability ? (
-        <p style={{ color: "green", fontWeight: "bold" }}>✅Available</p>
+        <p className="available">✅Available</p>
       ) : (
-        <p style={{ fontWeight: "bold" }}>Unavailable</p>
+        <p className="unavailable">Unavailable</p>
       )}
-      {
-        <BorrowButton
-          itemId={item._id}
-          disabled={!item.availability}
-          onSuccess={performFetch}
-        />
-      }
     </div>
   );
 };
@@ -72,7 +64,6 @@ ItemCard.propTypes = {
     condition: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
-  performFetch: PropTypes.func.isRequired,
 };
 
 export default ItemCard;

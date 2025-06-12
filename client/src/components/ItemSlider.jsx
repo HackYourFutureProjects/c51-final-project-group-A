@@ -4,6 +4,7 @@ import "./ItemSlider.css";
 import ItemCard from "./ItemCard";
 import Loader from "./Loader";
 import Error from "./Error";
+import logo from "../assets/logo-transparent-latest.png";
 
 export default function ItemSlider() {
   const [items, setItems] = useState([]);
@@ -42,7 +43,7 @@ export default function ItemSlider() {
 
   return (
     <>
-      <h2 className="slider-title">Latest Items</h2>
+      <img src={logo} alt="Logo" className="slider-logo" />
 
       <div className="slider-wrapper">
         {/* Left arrow button to scroll left */}
