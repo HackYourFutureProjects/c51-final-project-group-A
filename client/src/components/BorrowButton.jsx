@@ -3,16 +3,18 @@ import { useNavigate } from "react-router-dom";
 import "./BorrowButton.css";
 import PropTypes from "prop-types";
 
-const BorrowButton = ({ itemId, disabled = false }) => {
+// This component displays a borrow button for an item
+const BorrowButton = ({ itemId, disabled = false, onSuccess }) => {
   const navigate = useNavigate();
-  // Check if the user is logged in by looking for a token in localStorage
-  const isLoggedIn = !!localStorage.getItem("token");
+
+  // Check if the user is logged in by checking the token
+  const token = localStorage.getItem("token");
+  const isLoggedIn = Boolean(token);
 
   const handleBorrowClick = async (e) => {
-    // Prevent the click from bubbling up to the item card
-    e.stopPropagation();
+    e.stopPropagation(); // Prevent the click from bubbling up to the item card
 
-    // If the user is not logged in, show an alert
+    // If the user is not logged in, show a warning and redirect to login
     if (!isLoggedIn) {
       Swal.fire({
         title: "Not logged in",
@@ -20,42 +22,59 @@ const BorrowButton = ({ itemId, disabled = false }) => {
         icon: "warning",
         confirmButtonText: "OK",
       });
-      // Redirect to the authentication page
       navigate("/auth");
       return;
     }
 
-    // Show confirmation dialog before proceeding with the borrow action
-    try {
-      const result = await Swal.fire({
-        title: "Confirm Borrow",
-        text: "Are you sure you want to borrow this item?",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonText: "Yes, borrow it",
-      });
-      // If the user confirms, proceed with the borrow action
-      if (result.isConfirmed) {
-        // later we need to call backend API with itemId
-        console.log(`Borrow request for item ID: ${itemId}`);
+    // Show a confirmation dialog before borrowing
+    const result = await Swal.fire({
+      title: "Confirm Borrow",
+      text: "Are you sure you want to borrow this item?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, borrow it",
+    });
 
-        await Swal.fire(
-          "Requested!",
-          "Your borrow request was sent.",
+    // If user cancels, stop here
+    if (!result.isConfirmed) return;
+
+    try {
+      // Send PUT request to backend to borrow the item
+      const response = await fetch(`/api/items/${itemId}/borrow`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Include token in headers
+        },
+        body: JSON.stringify({
+          borrowedUntil: "2025-06-15", // Temporary value – replace with real logic later
+        }),
+      });
+
+      const data = await response.json();
+
+      // Show success or error message based on response
+      if (response.ok) {
+        Swal.fire(
+          "Success",
+          data.msg || "Item borrowed successfully",
           "success",
         );
+        if (onSuccess) onSuccess(); // Call success callback if provided
+      } else {
+        Swal.fire("Error", data.msg || "Failed to borrow item", "error");
       }
     } catch (error) {
-      // Handle any unexpected errors
-      console.error(error);
-      console.error("Error borrowing item:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "Something went wrong while processing your request.",
-      });
+      // Handle network or unexpected errors
+      console.error("Borrow error:", error);
+      Swal.fire(
+        "Error",
+        "Something went wrong while processing your request.",
+        "error",
+      );
     }
   };
+
   return (
     <button
       type="button"
@@ -68,9 +87,11 @@ const BorrowButton = ({ itemId, disabled = false }) => {
   );
 };
 
+// Define expected prop types
 BorrowButton.propTypes = {
   itemId: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  onSuccess: PropTypes.func,
 };
 
 export default BorrowButton;
