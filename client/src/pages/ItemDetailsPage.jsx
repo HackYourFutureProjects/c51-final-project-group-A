@@ -85,7 +85,11 @@ const ItemDetailsPage = () => {
               <h4>Owner Info</h4>
               <p>Loading owner info...</p>
               {item ? (
-                <BorrowButton itemId={item._id} disabled={!item.availability} />
+                <BorrowButton
+                  itemId={item._id}
+                  disabled={!item.availability}
+                  onSuccess={performFetch}
+                />
               ) : (
                 <p>Loading borrow button...</p>
               )}
