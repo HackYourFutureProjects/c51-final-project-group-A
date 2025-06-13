@@ -30,3 +30,29 @@ export const showEmailExistsAlert = () =>
     confirmButtonText: "OK",
     confirmButtonColor: "#d33",
   });
+
+export const showAddItemSuccessAlert = (msg) =>
+  Swal.fire({
+    icon: "success",
+    title: "Item Added",
+    text: msg || "The item has been successfully added.",
+    confirmButtonText: "OK",
+    confirmButtonColor: "#3085d6",
+  });
+export const showAddItemErrorAlert = () =>
+  Swal.fire({
+    icon: "error",
+    title: "Oops",
+    text: "There was an error adding the item. Please try again.",
+    confirmButtonText: "OK",
+    confirmButtonColor: "#d33",
+  });
+export const showAddItemErrorAlertLogin = async (message) => {
+  await Swal.fire({
+    icon: "error",
+    title: "Login Required",
+    text: message,
+    confirmButtonText: "OK",
+    confirmButtonColor: "#d33",
+  });
+};
