@@ -3,10 +3,10 @@ import {
   getItems,
   getItemById,
   borrowItemController,
+  addItem,
 } from "../controllers/item.js";
 import aggregateSearch from "../middleware/aggregateSearch.js";
 import validateSearch from "../middleware/validateSearch.js";
-import { addItem } from "../controllers/item.js";
 import verifyToken from "../middleware/verifyToken.js";
 
 const itemRouter = express.Router();

@@ -53,7 +53,10 @@
   color: #666;
   font-size: 0.9rem;
   overflow: hidden;
+  text-overflow: ellipsis;
   line-height: 1.4;
+  max-height: calc(1.4em * 3); /* Limit to 3 lines */
+  white-space: normal; /* Allow multi-line truncation */
   margin: 0 0 8px;
 }
 
