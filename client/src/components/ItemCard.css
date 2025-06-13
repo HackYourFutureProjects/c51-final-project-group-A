@@ -31,7 +31,9 @@
 }
 .item-card img {
   width: 100%;
-  height: auto;
+  height: 180px;
+  object-fit: contain;
+  background-color: #e1dfdf;
   border: 1px solid #ccc;
   border-radius: 8px;
 }
