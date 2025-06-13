@@ -5,6 +5,7 @@ import UserList from "./pages/User/UserList";
 import ResultPage from "./pages/ResultPage";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
 import AuthPage from "./pages/AuthPage";
+import AddItemForm from "./pages/AddItemForm";
 const App = () => {
   return (
     <>
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/result" element={<ResultPage />} />
         <Route path="/items/:id" element={<ItemDetailsPage />} />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/add-item" element={<AddItemForm />} />
       </Routes>
     </>
   );
