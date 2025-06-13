@@ -3,9 +3,6 @@ import PropTypes from "prop-types";
 export default function RegisterForm({ handleSubmit }) {
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input id="name" name="name" type="text" required />
-
       <label htmlFor="email">Email</label>
       <input id="email" name="email" type="email" required />
 

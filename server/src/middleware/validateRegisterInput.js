@@ -1,19 +1,15 @@
-// Middleware to validate Register input
-// This middleware checks if the name, email, and password fields are present and valid in the request body
 import validateAllowedFields from "../util/validateAllowedFields.js";
 
+// Middleware to validate Register input
+// This middleware checks if the email, and password fields are present and valid in the request body
 export function validateRegisterInput(req, res, next) {
   const userObject = req.body;
   const errorList = [];
-  const allowedKeys = ["name", "email", "password"];
+  const allowedKeys = ["email", "password"];
   const validatedKeysMessage = validateAllowedFields(userObject, allowedKeys);
 
   if (validatedKeysMessage.length > 0) {
     errorList.push(validatedKeysMessage);
-  }
-
-  if (!userObject.name?.trim()) {
-    errorList.push("Name is a required field");
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

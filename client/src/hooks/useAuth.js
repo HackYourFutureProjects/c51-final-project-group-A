@@ -22,10 +22,7 @@ export const useAuth = () => {
       password: e.target.password.value,
     };
 
-    // Add name only if it's a registration
-    if (!isLogin) {
-      formData.name = e.target.name.value;
-    } // Define the API endpoint based on the mode
+    // Define the API endpoint based on the mode
     const url = isLogin ? "/api/auth/login" : "/api/auth/register";
 
     try {
@@ -39,18 +36,25 @@ export const useAuth = () => {
       const result = await response.json();
 
       // Check if the response is successful
-      if (response.ok) {
-        localStorage.setItem("token", result.token);
-        localStorage.setItem("user", JSON.stringify(result.user));
-        await showSuccessAlert(isLogin);
-        navigate("/");
-      } else {
-        // Handle email already registered error
-        if (!isLogin && result.error?.toLowerCase().includes("email")) {
-          showEmailExistsAlert();
+      if (isLogin) {
+        if (response.ok) {
+          localStorage.setItem("token", result.token);
+          localStorage.setItem("user", JSON.stringify(result.user));
+          await showSuccessAlert(isLogin);
+          navigate("/");
         } else {
           // Handle other errors, such as incorrect password or email
           showErrorAlert("Password or email is incorrect.");
+        }
+      } else {
+        if (response.ok) {
+          await showSuccessAlert(isLogin);
+          navigate("/");
+        } else {
+          // Handle email already registered error
+          if (!isLogin && result.error?.toLowerCase().includes("email")) {
+            showEmailExistsAlert();
+          }
         }
       }
     } catch (error) {

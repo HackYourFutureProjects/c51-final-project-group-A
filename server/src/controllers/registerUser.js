@@ -3,7 +3,7 @@ import User from "../models/User.js";
 
 // Register Controller
 export const registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
     // Check if user already exists
@@ -17,7 +17,6 @@ export const registerUser = async (req, res) => {
 
     // Create new user
     const newUser = new User({
-      name: name.trim(),
       email: email.trim(),
       password: hashedPassword,
     });

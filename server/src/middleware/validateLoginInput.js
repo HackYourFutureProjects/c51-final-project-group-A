@@ -1,8 +1,16 @@
+import validateAllowedFields from "../util/validateAllowedFields.js";
+
 // Middleware to validate login input
 // This middleware checks if the email and password fields are present and valid in the request body
 export function validateLoginInput(req, res, next) {
   const { email, password } = req.body;
   const errorList = [];
+  const allowedKeys = ["email", "password"];
+  const validatedKeysMessage = validateAllowedFields(req.body, allowedKeys);
+
+  if (validatedKeysMessage.length > 0) {
+    errorList.push(validatedKeysMessage);
+  }
 
   if (!email || typeof email !== "string" || email.trim() === "") {
     errorList.push("Email is required");
