@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export default function LoginForm({ handleSubmit }) {
+export default function LoginForm({ handleSubmit, onForgotClick }) {
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
       <label htmlFor="email">Email</label>
@@ -15,6 +15,10 @@ export default function LoginForm({ handleSubmit }) {
         autoComplete="current-password"
       />
 
+      <div className="forgot-password" onClick={onForgotClick}>
+        Forgot password?
+      </div>
+
       <button type="submit">Sign in</button>
     </form>
   );
@@ -22,4 +26,5 @@ export default function LoginForm({ handleSubmit }) {
 
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  onForgotClick: PropTypes.func.isRequired,
 };
