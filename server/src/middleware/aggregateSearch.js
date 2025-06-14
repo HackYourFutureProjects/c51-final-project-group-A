@@ -19,10 +19,9 @@ const aggregateSearch = (req, res, next) => {
 
   // Populate match stage with given/default values for filters and search string
   const matchStage = {};
-  search &&
-    (matchStage.$text = {
-      $search: search,
-    });
+  if (search) {
+    matchStage.title = { $regex: search, $options: "i" }; // case-insensitive match
+  }
   category && (matchStage.category = category);
   condition && (matchStage.condition = condition);
   availability === "true" && (matchStage.availability = true);
