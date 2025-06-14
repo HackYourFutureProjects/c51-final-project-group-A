@@ -6,6 +6,7 @@ import "./Sidebar.css";
 export default function Sidebar({ isOpen, onClose }) {
   const staticCategories = [
     "Electronics",
+    "Home Appliances",
     "Tools",
     "Transportation",
     "Gaming",

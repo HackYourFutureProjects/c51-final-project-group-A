@@ -33,6 +33,7 @@ function validateSearch(req, res, next) {
   // Check if category is valid
   const allowedCategories = [
     "Electronics",
+    "Home Appliances",
     "Tools",
     "Transportation",
     "Gaming",

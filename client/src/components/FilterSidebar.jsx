@@ -5,6 +5,7 @@ import "./FilterSidebar.css";
 
 const CATEGORIES = [
   "Electronics",
+  "Home Appliances",
   "Tools",
   "Transportation",
   "Gaming",
