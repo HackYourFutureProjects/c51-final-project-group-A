@@ -31,7 +31,16 @@ function validateSearch(req, res, next) {
   }
 
   // Check if category is valid
-  const allowedCategories = ["Electronics", "Home Appliances", "Vehicles"];
+  const allowedCategories = [
+    "Electronics",
+    "Tools",
+    "Transportation",
+    "Gaming",
+    "Books",
+    "Media",
+    "Clothing",
+    "Musical Instruments",
+  ];
   if (queries.category && !allowedCategories.includes(queries.category)) {
     errorList.push("Invalid category parameter");
   }
@@ -65,7 +74,7 @@ function validateSearch(req, res, next) {
   }
 
   // Check if sortBy is valid
-  const allowedSortBy = ["createdAt", "price"];
+  const allowedSortBy = ["createdAt", "price", "duration", "averageRating"];
   if (queries.sortBy && !allowedSortBy.includes(queries.sortBy)) {
     errorList.push("Invalid sortBy parameter");
   }
