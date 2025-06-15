@@ -35,12 +35,20 @@ const aggregateSearch = (req, res, next) => {
     $lte: maxPrice ? parseFloat(maxPrice) : Number.MAX_SAFE_INTEGER,
   };
 
+  // Define sort fields
+  const sortByFields = {
+    averageRating: "reviews.averageRating",
+    createdAt: "createdAt",
+    price: "price",
+    duration: "duration",
+  };
+
   // Sort results by the given query strings
   // On default sorts by creation time
   const sortStage =
     sortBy && sortOrder
       ? {
-          [sortBy]: sortOrder === "desc" ? -1 : 1,
+          [sortByFields[sortBy]]: sortOrder === "desc" ? -1 : 1,
         }
       : {
           createdAt: -1,

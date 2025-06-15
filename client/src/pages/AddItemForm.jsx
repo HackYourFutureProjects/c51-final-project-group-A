@@ -178,6 +178,7 @@ const AddItemForm = () => {
         >
           <option value="">Select category</option>
           <option value="Electronics">Electronics</option>
+          <option value="Home Appliances">Home Appliances</option>
           <option value="Tools">Tools</option>
           <option value="Transportation">Transportation</option>
           <option value="Gaming">Gaming</option>

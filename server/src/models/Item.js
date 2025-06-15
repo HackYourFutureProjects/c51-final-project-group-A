@@ -24,6 +24,7 @@ const itemSchema = new mongoose.Schema(
       type: String,
       enum: [
         "Electronics",
+        "Home Appliances",
         "Tools",
         "Transportation",
         "Gaming",
@@ -52,7 +53,7 @@ const itemSchema = new mongoose.Schema(
     description: { type: String, required: true },
     images: [{ type: String, required: true }],
     reviews: {
-      averageRating: { type: Number, default: 1, min: 1, max: 5 },
+      averageRating: { type: Number, default: 0, min: 0, max: 5 },
       allReviews: [reviewSchema],
     },
     availability: { type: Boolean, default: true },
