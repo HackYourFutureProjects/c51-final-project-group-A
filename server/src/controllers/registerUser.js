@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import User from "../models/User.js";
 
 // Register Controller
-export const registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -29,3 +29,5 @@ export const registerUser = async (req, res) => {
     return res.status(500).json({ error: err.message });
   }
 };
+
+export default registerUser;

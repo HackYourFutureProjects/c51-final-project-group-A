@@ -1,19 +1,19 @@
 import express from "express";
-import { loginUser } from "../controllers/loginUser.js";
-import { registerUser } from "../controllers/registerUser.js";
-import { validateRegisterInput } from "../middleware/validateRegisterInput.js";
-import { validateLoginInput } from "../middleware/validateLoginInput.js";
+import loginUser from "../controllers/loginUser.js";
+import registerUser from "../controllers/registerUser.js";
+import validateRegisterInput from "../middleware/validateRegisterInput.js";
+import validateLoginInput from "../middleware/validateLoginInput.js";
 import deleteUser from "../controllers/deleteUser.js";
 import authUser from "../middleware/authUser.js";
-import { forgotPasswordController } from "../controllers/forgotPassword.js";
-import { getMyProfile } from "../controllers/user.js";
+import forgotPassword from "../controllers/forgotPassword.js";
+import getMyProfile from "../controllers/getMyProfile.js";
 
 const authRouter = express.Router();
 
 authRouter.post("/register", validateRegisterInput, registerUser);
 authRouter.post("/login", validateLoginInput, loginUser);
 authRouter.delete("/delete", authUser, deleteUser);
-router.post("/forgot-password", forgotPasswordController);
-router.get("/me", authUser, getMyProfile);
+authRouter.post("/forgot-password", forgotPassword);
+authRouter.get("/me", authUser, getMyProfile);
 
 export default authRouter;
