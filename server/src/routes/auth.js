@@ -5,11 +5,15 @@ import { validateRegisterInput } from "../middleware/validateRegisterInput.js";
 import { validateLoginInput } from "../middleware/validateLoginInput.js";
 import deleteUser from "../controllers/deleteUser.js";
 import authUser from "../middleware/authUser.js";
+import { forgotPasswordController } from "../controllers/forgotPassword.js";
+import { getMyProfile } from "../controllers/user.js";
 
 const authRouter = express.Router();
 
 authRouter.post("/register", validateRegisterInput, registerUser);
 authRouter.post("/login", validateLoginInput, loginUser);
 authRouter.delete("/delete", authUser, deleteUser);
+router.post("/forgot-password", forgotPasswordController);
+router.get("/me", authUser, getMyProfile);
 
 export default authRouter;
