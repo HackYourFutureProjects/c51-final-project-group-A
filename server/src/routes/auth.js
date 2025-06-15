@@ -17,7 +17,8 @@ router.get("/me", authUser, async (req, res) => {
   try {
     const user = await User.findById(req.user._id)
       .populate("borrowedItems")
-      .populate("ownedItems");
+      .populate("ownedItems")
+      .lean();
     if (!user) {
       return res.status(404).json({ error: "User not found." });
     }
