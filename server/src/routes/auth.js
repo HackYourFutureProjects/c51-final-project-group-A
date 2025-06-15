@@ -18,7 +18,9 @@ router.get("/me", authUser, async (req, res) => {
     const user = await User.findById(req.user._id)
       .populate("borrowedItems")
       .populate("ownedItems");
-
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
     res.json({
       email: user.email,
       firstName: user.firstName,
