@@ -4,7 +4,6 @@ import { logError } from "../util/logging.js";
 
 // Middleware to authorize and authenticate User
 const authUser = async (req, res, next) => {
-  const { id } = req.body;
   const authHeader = req.get("Authorization");
 
   try {
@@ -18,15 +17,11 @@ const authUser = async (req, res, next) => {
     if (!scheme || scheme !== "Bearer") {
       throw new Error("Malformed Authorization header");
     }
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Check if the user is authorized
-    if (id !== decoded.id) {
-      throw new Error("Token ID and request ID mismatch");
-    }
-
     // Check if user account exists and is active
-    const user = await User.findById(id);
+    const user = await User.findById(decoded.id);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -34,6 +29,7 @@ const authUser = async (req, res, next) => {
       return res.status(403).json({ error: "Account is disabled" });
     }
 
+    // Attach User to req object
     req.user = user;
     next();
   } catch (err) {

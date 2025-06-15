@@ -41,10 +41,6 @@ export const loginUser = async (req, res) => {
     //  Return token and user info
     return res.json({
       token,
-      user: {
-        email: user.email,
-        id: user._id.toString(),
-      },
     });
   } catch (err) {
     return res.status(500).json({ error: err.message });
