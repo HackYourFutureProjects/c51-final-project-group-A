@@ -87,3 +87,52 @@ export const borrowItemController = async (req, res) => {
     res.status(500).json({ success: false, msg: "Server error" });
   }
 };
+// Add a new item to the database
+export const addItem = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const {
+      title,
+      category,
+      model,
+      condition,
+      borrowDuration,
+      description,
+      images,
+      availability,
+      value,
+      price,
+      reviews = {
+        averageRating: 1,
+        allReviews: [],
+      },
+    } = req.body;
+
+    const newItem = new Item({
+      ownerId: userId,
+      title,
+      category,
+      model,
+      condition,
+      borrowDuration,
+      description,
+      images,
+      availability,
+      value,
+      price,
+      reviews: {
+        averageRating: reviews.averageRating || 1,
+        allReviews: reviews.allReviews || [],
+      },
+    });
+
+    const savedItem = await newItem.save();
+    res.status(201).json({ success: true, item: savedItem });
+  } catch (error) {
+    logError(error);
+    res.status(500).json({
+      success: false,
+      msg: error.message || "Unable to add item, try again later.",
+    });
+  }
+};
