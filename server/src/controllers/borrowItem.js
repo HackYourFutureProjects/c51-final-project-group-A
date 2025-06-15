@@ -35,15 +35,15 @@ const borrowItem = async (req, res) => {
 
     const updatedItem = await item.save();
 
+    // Add borrowed item id to borrowedItems field in User object
+    user.borrowedItems.push(updatedItem._id);
+    await user.save();
+
     res.status(200).json({
       success: true,
       msg: "Item borrowed successfully",
       result: updatedItem,
     });
-
-    // Add borrowed item id to borrowedItems field in User object
-    user.borrowedItems.push(updatedItem._id);
-    await user.save();
   } catch (error) {
     logError(error);
     res.status(500).json({ success: false, msg: "Server error" });
