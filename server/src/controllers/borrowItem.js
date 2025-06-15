@@ -30,6 +30,7 @@ const borrowItem = async (req, res) => {
 
     // Update item availability and borrowedUntil
     item.availability = false;
+    item.borrowedCount += 1;
     item.borrowedUntil = borrowedUntil;
 
     const updatedItem = await item.save();
