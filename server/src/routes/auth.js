@@ -6,7 +6,7 @@ import { validateLoginInput } from "../middleware/validateLoginInput.js";
 import deleteUser from "../controllers/deleteUser.js";
 import validateDeleteRequest from "../middleware/validateDeleteRequest.js";
 import authUser from "../middleware/authUser.js";
-import { forgotPasswordController } from "../controllers/user.js";
+import { forgotPasswordController } from "../controllers/forgotPassword.js";
 
 const router = express.Router();
 
