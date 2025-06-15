@@ -62,12 +62,38 @@ const ViewToggle = ({ viewMode, toggleViewMode, setFilters }) => {
             {"Newest"}
           </option>
           <option value={JSON.stringify({ sortBy: "price", sortOrder: "asc" })}>
-            {"Price Ascending"}
+            {"Price: Low to High"}
           </option>
           <option
             value={JSON.stringify({ sortBy: "price", sortOrder: "desc" })}
           >
-            {"Price Descending"}
+            {"Price: High to Low"}
+          </option>
+          <option
+            value={JSON.stringify({
+              sortBy: "averageRating",
+              sortOrder: "asc",
+            })}
+          >
+            {"Rating: Low to High"}
+          </option>
+          <option
+            value={JSON.stringify({
+              sortBy: "averageRating",
+              sortOrder: "desc",
+            })}
+          >
+            {"Rating: High to Low"}
+          </option>
+          <option
+            value={JSON.stringify({ sortBy: "duration", sortOrder: "asc" })}
+          >
+            {"Rental Period: Low to High"}
+          </option>
+          <option
+            value={JSON.stringify({ sortBy: "duration", sortOrder: "desc" })}
+          >
+            {"Rental Period: High to Low"}
           </option>
         </select>
       </div>
