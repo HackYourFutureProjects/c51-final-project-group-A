@@ -3,7 +3,17 @@ import Filter from "./Filter";
 import PropTypes from "prop-types";
 import "./FilterSidebar.css";
 
-const CATEGORIES = ["Electronics", "Vehicles", "Home Appliances"];
+const CATEGORIES = [
+  "Electronics",
+  "Home Appliances",
+  "Tools",
+  "Transportation",
+  "Gaming",
+  "Books",
+  "Media",
+  "Clothing",
+  "Musical Instruments",
+];
 const CONDITIONS = ["Excellent", "Good", "Fair"];
 
 const FilterSidebar = ({ filters, setFilters }) => {

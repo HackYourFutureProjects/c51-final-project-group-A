@@ -10,6 +10,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 // import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // AddItemForm component for adding new items
 const AddItemForm = () => {
@@ -29,7 +30,7 @@ const AddItemForm = () => {
     value: "",
     duration: "",
     available: true,
-    images: [], // stores selected image file object
+    images: [],
   });
   // State to store local image previews
   const [localPreviews, setLocalPreviews] = useState([]);
@@ -107,10 +108,20 @@ const AddItemForm = () => {
       const newItem = {
         ...formData,
         images: imageUrls,
+        price: Number(formData.price.replace("€", "").trim()), // Default to 0 if not provided
+        value: Number(formData.value.replace("€", "").trim()), // Default to 0 if not provided
+        borrowDuration: Number(formData.duration) || 1, // Default to 1 day if not provided
       };
 
       console.log("Final item to submit:", newItem);
       showAddItemSuccessAlert();
+
+      // Send POST request to add the new item
+      await axios.post("/api/items", newItem, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       // Clear form
       setFormData({
@@ -166,9 +177,15 @@ const AddItemForm = () => {
           required
         >
           <option value="">Select category</option>
-          <option value="Home Appliances">Home Appliances</option>
           <option value="Electronics">Electronics</option>
-          <option value="Vehicles">Vehicles</option>
+          <option value="Home Appliances">Home Appliances</option>
+          <option value="Tools">Tools</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Gaming">Gaming</option>
+          <option value="Books">Books</option>
+          <option value="Media">Media</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Musical Instruments">Musical Instruments</option>
         </select>
 
         <label>Condition:</label>
@@ -206,7 +223,10 @@ const AddItemForm = () => {
           type="number"
           name="duration"
           value={formData.duration}
+          min="1"
+          max="7"
           onChange={handleChange}
+          required
         />
 
         <div className="checkbox-container">

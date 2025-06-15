@@ -19,10 +19,11 @@ const aggregateSearch = (req, res, next) => {
 
   // Populate match stage with given/default values for filters and search string
   const matchStage = {};
-  search &&
-    (matchStage.$text = {
-      $search: search,
-    });
+  if (search) {
+    const escapeRegExp = (string) =>
+      string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // Escape special regex characters
+    matchStage.title = { $regex: escapeRegExp(search), $options: "i" }; // case-insensitive match
+  }
   category && (matchStage.category = category);
   condition && (matchStage.condition = condition);
   availability === "true" && (matchStage.availability = true);
@@ -35,12 +36,20 @@ const aggregateSearch = (req, res, next) => {
     $lte: maxPrice ? parseFloat(maxPrice) : Number.MAX_SAFE_INTEGER,
   };
 
+  // Define sort fields
+  const sortByFields = {
+    averageRating: "reviews.averageRating",
+    createdAt: "createdAt",
+    price: "price",
+    duration: "duration",
+  };
+
   // Sort results by the given query strings
   // On default sorts by creation time
   const sortStage =
     sortBy && sortOrder
       ? {
-          [sortBy]: sortOrder === "desc" ? -1 : 1,
+          [sortByFields[sortBy]]: sortOrder === "desc" ? -1 : 1,
         }
       : {
           createdAt: -1,

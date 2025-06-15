@@ -7,7 +7,13 @@ export default function Sidebar({ isOpen, onClose }) {
   const staticCategories = [
     "Electronics",
     "Home Appliances",
-    "Vehicles",
+    "Tools",
+    "Transportation",
+    "Gaming",
+    "Books",
+    "Media",
+    "Clothing",
+    "Musical Instruments",
   ].sort();
   const navigate = useNavigate();
   const sidebarRef = useRef(null);

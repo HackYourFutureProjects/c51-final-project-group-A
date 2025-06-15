@@ -31,7 +31,10 @@
 }
 .item-card img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 1 / 1;
+  display: block;
+  object-fit: contain;
+  background-color: #e1dfdf;
   border: 1px solid #ccc;
   border-radius: 8px;
 }
@@ -46,7 +49,11 @@
 .item-card p {
   color: #666;
   font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
   line-height: 1.4;
+  max-height: calc(1.4em * 3); /* Limit to 3 lines */
+  white-space: normal; /* Allow multi-line truncation */
   margin: 0 0 8px;
 }
 
