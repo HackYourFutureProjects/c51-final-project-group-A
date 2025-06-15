@@ -1,22 +1,23 @@
-import { logError } from "../util/logging.js";
-
+import User from "../models/User.js";
 export const getMyProfile = async (req, res) => {
   try {
-    const { _id, email, name } = req.user; // req.user comes from authUser middleware
+    const user = await User.findById(req.user._id)
+      .populate("borrowedItems")
+      .populate("ownedItems")
+      .lean();
 
-    res.status(200).json({
-      success: true,
-      profile: {
-        id: _id,
-        email,
-        name,
-      },
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    res.json({
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      borrowedItems: user.borrowedItems,
+      ownedItems: user.ownedItems,
     });
-  } catch (error) {
-    logError(error);
-    res.status(500).json({
-      success: false,
-      msg: "Unable to get profile, try again later",
-    });
+  } catch (err) {
+    res.status(500).json({ error: "Something went wrong." });
   }
 };
