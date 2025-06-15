@@ -15,6 +15,9 @@ const authUser = async (req, res, next) => {
     if (!scheme || scheme !== "Bearer") {
       throw new Error("Malformed Authorization header");
     }
+    if (!token) {
+      throw new Error("Missing token in Authorization header");
+    }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
