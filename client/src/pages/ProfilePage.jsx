@@ -24,7 +24,7 @@ const ProfilePage = () => {
         {user.ownedItems.length > 0 ? (
           <ul>
             {user.ownedItems.map((item) => (
-              <li key={item.name}>{item.name}</li>
+              <li key={item.id}>{item.name}</li>
             ))}
           </ul>
         ) : (
