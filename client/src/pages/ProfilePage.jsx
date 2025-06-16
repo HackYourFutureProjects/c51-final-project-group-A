@@ -23,8 +23,8 @@ const ProfilePage = () => {
         <h2 className="owned-items">Owned Items</h2>
         {user.ownedItems.length > 0 ? (
           <ul>
-            {user.ownedItems.map((item, index) => (
-              <li key={index}>{item.name}</li>
+            {user.ownedItems.map((item) => (
+              <li key={item.name}>{item.name}</li>
             ))}
           </ul>
         ) : (
@@ -36,8 +36,8 @@ const ProfilePage = () => {
         <h2 className="borrowed-items">Borrowed Items</h2>
         {user.borrowedItems.length > 0 ? (
           <ul>
-            {user.borrowedItems.map((item, index) => (
-              <li key={index}>{item.name}</li>
+            {user.borrowedItems.map((item) => (
+              <li key={item.name}>{item.name}</li>
             ))}
           </ul>
         ) : (
