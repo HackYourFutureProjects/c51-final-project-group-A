@@ -2,7 +2,7 @@ import validateAllowedFields from "../util/validateAllowedFields.js";
 
 // Middleware to validate login input
 // This middleware checks if the email and password fields are present and valid in the request body
-export function validateLoginInput(req, res, next) {
+function validateLoginInput(req, res, next) {
   const { email, password } = req.body;
   const errorList = [];
   const allowedKeys = ["email", "password"];
@@ -26,3 +26,5 @@ export function validateLoginInput(req, res, next) {
 
   return next();
 }
+
+export default validateLoginInput;

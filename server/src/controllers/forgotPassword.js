@@ -1,7 +1,7 @@
 import { logError } from "../util/logging.js";
 import User from "../models/User.js";
 
-export const forgotPasswordController = async (req, res) => {
+const forgotPassword = async (req, res) => {
   const { email } = req.body;
 
   if (!email) {
@@ -33,3 +33,5 @@ export const forgotPasswordController = async (req, res) => {
     });
   }
 };
+
+export default forgotPassword;

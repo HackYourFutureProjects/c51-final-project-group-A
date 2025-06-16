@@ -1,17 +1,9 @@
-import bcrypt from "bcrypt";
 import { logError } from "../util/logging.js";
 
 const deleteUser = async (req, res) => {
-  const { password } = req.body;
   const user = req.user;
 
   try {
-    // Check if password is correct
-    const isMatch = await bcrypt.compare(password.trim(), user.password);
-    if (!isMatch) {
-      return res.status(401).json({ error: "Invalid password" });
-    }
-
     // Soft delete user
     user.active = false;
     await user.save();

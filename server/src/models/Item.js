@@ -18,7 +18,12 @@ const reviewSchema = new mongoose.Schema(
 
 const itemSchema = new mongoose.Schema(
   {
-    ownerId: { type: Types.ObjectId, required: true, index: true, ref: "User" },
+    ownerId: {
+      type: Types.ObjectId,
+      required: true,
+      index: true,
+      ref: "users",
+    },
     title: { type: String, required: true, index: true },
     category: {
       type: String,

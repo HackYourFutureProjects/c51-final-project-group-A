@@ -1,7 +1,9 @@
 import User from "../models/User.js";
-export const getMyProfile = async (req, res) => {
+import { logError } from "../util/logging.js";
+
+const getMyProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id)
+    const user = await User.findById(req.user._id.toString())
       .populate("borrowedItems")
       .populate("ownedItems")
       .lean();
@@ -18,6 +20,9 @@ export const getMyProfile = async (req, res) => {
       ownedItems: user.ownedItems,
     });
   } catch (err) {
+    logError(err);
     res.status(500).json({ error: "Something went wrong." });
   }
 };
+
+export default getMyProfile;

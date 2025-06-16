@@ -1,6 +1,4 @@
 import express from "express";
-
-import userRouter from "./routes/user.js";
 import itemRouter from "./routes/item.js";
 import authRouter from "./routes/auth.js";
 
@@ -15,7 +13,6 @@ app.use(express.json());
  * We use /api/ at the start of every route!
  * As we also host our client code on heroku we want to separate the API endpoints.
  */
-app.use("/api/users", userRouter);
 app.use("/api/items", itemRouter);
 app.use("/api/auth", authRouter);
 
