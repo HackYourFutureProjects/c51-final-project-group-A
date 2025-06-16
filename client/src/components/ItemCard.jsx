@@ -23,9 +23,11 @@ const ItemCard = ({ item }) => {
       <img className="item-card-image" src={item.images[0]} alt={item.title} />
       <h3 className="item-card-title">{item.title}</h3>
       <Rating rating={item.reviews.averageRating} />
-      <p className="item-card-model">Model: {item.model}</p>
+      <p className="item-card-model">
+        <strong>Model:</strong> {item.model}
+      </p>
       <p className="item-card-condition">
-        Condition:{" "}
+        <strong>Condition:</strong>{" "}
         {
           <span
             className={`item-condition ${
@@ -41,10 +43,12 @@ const ItemCard = ({ item }) => {
         }
       </p>
       <p className="item-card-duration">
-        Rental Period: {item.borrowDuration}{" "}
+        <strong>Rental Period:</strong> {item.borrowDuration}{" "}
         {item.borrowDuration === 1 ? "day" : "days"}
       </p>
-      <p className="item-card-price">Rental Price: €{item.price}</p>
+      <p className="item-card-price">
+        <strong>Rental Price:</strong> €{item.price}
+      </p>
       {item.availability ? (
         <p className="available">✅Available</p>
       ) : (

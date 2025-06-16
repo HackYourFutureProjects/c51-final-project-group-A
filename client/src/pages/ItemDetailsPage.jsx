@@ -43,67 +43,81 @@ const ItemDetailsPage = () => {
       {!isLoading && !error && item && (
         <div className="details-page-wrapper">
           <div className="details-content-container">
-            {/* Item Image */}
-            <div className="item-image-box">
-              <img
-                src={
-                  item.images?.[0] ||
-                  "https://placehold.co/400/png?text=Hello\nWorld"
-                }
-                alt={item.title}
-              />
+            <div className="item-info-section">
+              {/* Item Image */}
+              <div className="item-image-box">
+                <img
+                  src={
+                    item.images?.[1] ||
+                    item.images?.[0] ||
+                    "https://placehold.co/400/png?text=Borrow\nMe"
+                  }
+                  alt={item.title}
+                />
+              </div>
+
+              {/* Item Details */}
+              <div className="item-text-box">
+                <h1>{item.title}</h1>
+                <Rating rating={item.reviews.averageRating} />
+                <p className="item-details-model">
+                  <strong>Model:</strong> {item.model}
+                </p>
+                <p className="item-details-category">
+                  <strong>Category:</strong> {item.category}
+                </p>
+                <p className="item-details-condition">
+                  <strong>Condition:</strong>{" "}
+                  {
+                    <span
+                      className={`item-condition ${
+                        item.condition === "Excellent"
+                          ? "item-condition-excellent"
+                          : item.condition === "Good"
+                            ? "item-condition-good"
+                            : "item-condition-fair"
+                      }`}
+                    >
+                      {item.condition}
+                    </span>
+                  }
+                </p>
+                <p className="item-details-price">
+                  <strong>Rental Price:</strong> €{item.price}
+                </p>
+                <p className="item-details-value">
+                  <strong>Item Value:</strong> €{item.value}
+                </p>
+                <p className="item-details-duration">
+                  <strong>Rental Period:</strong> {item.borrowDuration}{" "}
+                  {item.borrowDuration === 1 ? "day" : "days"}
+                </p>
+                <p>
+                  <strong>Last Updated:</strong>{" "}
+                  {dateFormatter.format(new Date(item.updatedAt))}
+                </p>
+                <p>
+                  <strong>Description:</strong> {item.description}
+                </p>
+              </div>
             </div>
 
-            {/* Item Details */}
-            <div className="item-text-box">
-              <h1>{item.title}</h1>
-              <Rating rating={item.reviews.averageRating} />
-              <p className="item-details-model">Model: {item.model}</p>
-              <p className="item-details-category">Category: {item.category}</p>
-              <p className="item-details-condition">
-                Condition:{" "}
-                {
-                  <span
-                    className={`item-condition ${
-                      item.condition === "Excellent"
-                        ? "item-condition-excellent"
-                        : item.condition === "Good"
-                          ? "item-condition-good"
-                          : "item-condition-fair"
-                    }`}
-                  >
-                    {item.condition}
-                  </span>
-                }
-              </p>
-              <p className="item-details-price">Rental Price: €{item.price}</p>
-              <p className="item-details-value">Item Value: €{item.value}</p>
-              <p className="item-details-duration">
-                Rental Period: {item.borrowDuration}{" "}
-                {item.borrowDuration === 1 ? "day" : "days"}
-              </p>
-              <p>
-                Last Updated: {dateFormatter.format(new Date(item.updatedAt))}
-              </p>
-              <p>Description: {item.description}</p>
+            {/* Owner Info */}
+            <div className="owner-box">
+              <h3>
+                {item.ownerId.firstName} {item.ownerId.lastName}
+              </h3>
+              <p>{item.ownerId.email}</p>
+              <p>{item.ownerId.phone}</p>
+              <p>{item.ownerId.city}</p>
+              {item && (
+                <BorrowButton
+                  itemId={item._id}
+                  disabled={!item.availability}
+                  onSuccess={performFetch}
+                />
+              )}
             </div>
-          </div>
-
-          {/* Owner Info */}
-          <div className="owner-box">
-            <h3>
-              {item.ownerId.firstName} {item.ownerId.lastName}
-            </h3>
-            <p>Email: {item.ownerId.email}</p>
-            <p>Mobile: {item.ownerId.phone}</p>
-            <p>City: {item.ownerId.city}</p>
-            {item && (
-              <BorrowButton
-                itemId={item._id}
-                disabled={!item.availability}
-                onSuccess={performFetch}
-              />
-            )}
           </div>
 
           {/* Reviews */}
