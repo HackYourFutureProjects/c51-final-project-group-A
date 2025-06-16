@@ -7,7 +7,7 @@ import deleteUser from "../controllers/deleteUser.js";
 import validateDeleteRequest from "../middleware/validateDeleteRequest.js";
 import authUser from "../middleware/authUser.js";
 import { forgotPasswordController } from "../controllers/forgotPassword.js";
-import { getMyProfile } from "../controllers/user.js";
+import { getMyProfile } from "../controllers/getMyProfile.js";
 
 const router = express.Router();
 

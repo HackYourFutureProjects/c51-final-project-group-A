@@ -6,6 +6,7 @@ import ResultPage from "./pages/ResultPage";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
 import AuthPage from "./pages/AuthPage";
 import AddItemForm from "./pages/AddItemForm";
+import ProfilePage from "./pages/ProfilePage";
 const App = () => {
   return (
     <>
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/items/:id" element={<ItemDetailsPage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/add-item" element={<AddItemForm />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </>
   );
