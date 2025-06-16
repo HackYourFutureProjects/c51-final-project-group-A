@@ -57,6 +57,10 @@
   margin: 0 0 8px;
 }
 
+.item-card-rating {
+  color: #06699e;
+}
+
 .items-list .item-card {
   max-width: 100%;
   margin: 0;

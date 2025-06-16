@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import "./ItemCard.css";
 import { useNavigate } from "react-router-dom";
+import Rating from "./Rating";
 
 // component to display a single item card on ResultPage and HomePage
 const ItemCard = ({ item }) => {
@@ -21,6 +22,7 @@ const ItemCard = ({ item }) => {
     >
       <img className="item-card-image" src={item.images[0]} alt={item.title} />
       <h3 className="item-card-title">{item.title}</h3>
+      <Rating rating={item.reviews.averageRating} />
       <p className="item-card-model">Model: {item.model}</p>
       <p className="item-card-condition">
         Condition:{" "}
@@ -63,6 +65,9 @@ ItemCard.propTypes = {
     model: PropTypes.string.isRequired,
     condition: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    reviews: PropTypes.shape({
+      averageRating: PropTypes.number.isRequired,
+    }),
   }).isRequired,
 };
 
