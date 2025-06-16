@@ -6,21 +6,21 @@ const ProfilePage = () => {
     firstName: "Hossein",
     lastName: "Kelisa",
     email: "hossein@example.com",
-    ownedItems: [{ name: "Hammer" }, { name: "Drill" }, { name: "Ladder" }],
-    borrowedItems: [{ name: "Saw" }, { name: "Screwdriver" }],
+    ownedItems: [{ name: "item1" }, { name: "item2" }],
+    borrowedItems: [{ name: "item1" }, { name: "item2" }],
   };
 
   return (
-    <div>
-      <header>
-        <h1>
+    <div className="profile-container">
+      <header className="profile-header">
+        <h1 className="profile-name">
           {user.firstName} {user.lastName}
         </h1>
-        <p>{user.email}</p>
+        <p className="profile-email">{user.email}</p>
       </header>
 
-      <section>
-        <h2>Owned Items</h2>
+      <section className="owned-items-section">
+        <h2 className="owned-items">Owned Items</h2>
         {user.ownedItems.length > 0 ? (
           <ul>
             {user.ownedItems.map((item, index) => (
@@ -32,8 +32,8 @@ const ProfilePage = () => {
         )}
       </section>
 
-      <section>
-        <h2>Borrowed Items</h2>
+      <section className="borrowed-items-section">
+        <h2 className="borrowed-items">Borrowed Items</h2>
         {user.borrowedItems.length > 0 ? (
           <ul>
             {user.borrowedItems.map((item, index) => (
