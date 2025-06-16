@@ -127,7 +127,7 @@ const ItemDetailsPage = () => {
               <div className="reviews-list">
                 {item.reviews.allReviews.map((review, index) => (
                   <div key={index} className="review-card">
-                    <Rating rating={item.reviews.averageRating} />
+                    <Rating rating={review.rating} />
                     <p>{review.comment}</p>
                     <p>{dateFormatter.format(new Date(review.updatedAt))}</p>
                   </div>

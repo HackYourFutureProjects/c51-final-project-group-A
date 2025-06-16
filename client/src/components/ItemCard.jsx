@@ -63,12 +63,11 @@ ItemCard.propTypes = {
     borrowDuration: PropTypes.number.isRequired,
     availability: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
-    model: PropTypes.string.isRequired,
     condition: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     reviews: PropTypes.shape({
       averageRating: PropTypes.number.isRequired,
-    }),
+    }).isRequired,
   }).isRequired,
 };
 

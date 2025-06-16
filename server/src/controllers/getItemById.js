@@ -12,14 +12,14 @@ const getItemById = async (req, res) => {
   }
 
   try {
-    const item = await Item.findById(id).populate("ownerId");
+    const item = await Item.findById(id).populate("ownerId").lean();
     if (!item) {
       return res.status(404).json({ success: false, msg: "Item not found" });
     }
 
     // Remove unused information
     // eslint-disable-next-line no-unused-vars
-    const { _id, __v, visibility, createdAt, ...safeItem } = item._doc;
+    const { _id, __v, visibility, createdAt, ...safeItem } = item;
 
     return res.status(200).json({
       success: true,
