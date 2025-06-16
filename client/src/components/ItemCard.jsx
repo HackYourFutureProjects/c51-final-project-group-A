@@ -23,9 +23,6 @@ const ItemCard = ({ item }) => {
       <img className="item-card-image" src={item.images[0]} alt={item.title} />
       <h3 className="item-card-title">{item.title}</h3>
       <Rating rating={item.reviews.averageRating} />
-      <p className="item-card-model">
-        <strong>Model:</strong> {item.model}
-      </p>
       <p className="item-card-condition">
         <strong>Condition:</strong>{" "}
         {

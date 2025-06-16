@@ -5,7 +5,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 // Component to display rating stars
 const Rating = ({ rating }) => {
   return (
-    <div className="item-card-rating" title={rating}>
+    <div className="rating-stars" title={rating}>
       {[1, 2, 3, 4, 5].map((_, i) => {
         const difference = rating - i;
         if (difference >= 1) return <FaStar key={i} />;
