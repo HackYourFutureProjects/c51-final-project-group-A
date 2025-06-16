@@ -35,6 +35,7 @@ const aggregateSearch = (req, res, next) => {
     $gte: minPrice ? parseFloat(minPrice) : 0,
     $lte: maxPrice ? parseFloat(maxPrice) : Number.MAX_SAFE_INTEGER,
   };
+  matchStage.visibility = true;
 
   // Define sort fields
   const sortByFields = {
@@ -75,7 +76,22 @@ const aggregateSearch = (req, res, next) => {
             },
           },
         ],
-        data: [{ $skip: skipStage }, { $limit: limitStage }],
+        data: [
+          { $skip: skipStage },
+          { $limit: limitStage },
+          {
+            $project: {
+              images: 1,
+              borrowDuration: 1,
+              availability: 1,
+              title: 1,
+              model: 1,
+              condition: 1,
+              price: 1,
+              "reviews.averageRating": 1,
+            },
+          },
+        ],
       },
     },
   ];

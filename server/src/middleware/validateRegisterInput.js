@@ -2,7 +2,7 @@ import validateAllowedFields from "../util/validateAllowedFields.js";
 
 // Middleware to validate Register input
 // This middleware checks if the email, and password fields are present and valid in the request body
-export function validateRegisterInput(req, res, next) {
+function validateRegisterInput(req, res, next) {
   const userObject = req.body;
   const errorList = [];
   const allowedKeys = ["email", "password"];
@@ -29,3 +29,5 @@ export function validateRegisterInput(req, res, next) {
 
   next();
 }
+
+export default validateRegisterInput;
