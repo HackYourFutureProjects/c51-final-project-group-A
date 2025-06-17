@@ -16,6 +16,8 @@ const getMyProfile = async (req, res) => {
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
+      phone: user.phone,
+      city: user.city,
       borrowedItems: user.borrowedItems,
       ownedItems: user.ownedItems,
     });

@@ -1,5 +1,5 @@
 import { FaBars, FaUserCircle } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Header.css";
 import SearchBar from "./SearchBar";
 import Sidebar from "./Sidebar";
@@ -8,6 +8,7 @@ import logo from "../assets/logo.png";
 import LogoutButton from "./LogoutButton";
 
 const Header = () => {
+  const [user, setUser] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -15,6 +16,35 @@ const Header = () => {
   const token = localStorage.getItem("token");
   // Convert the token to a boolean: if token exists, user is logged in; otherwise, not logged in
   const isLoggedIn = !!token;
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // If no token, user is not logged in, so redirect to auth page
+
+      return;
+    }
+    // Fetch user profile data if logged in
+    fetch("http://localhost:3000/api/auth/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: "include", // Include credentials for CORS requests
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUser(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, []);
+
   return (
     <>
       <div className="header">
@@ -38,8 +68,12 @@ const Header = () => {
         </div>
         <div className="header-right">
           {isLoggedIn ? (
-            // If the user is logged in, show the LogoutButton
-            <LogoutButton />
+            <>
+              <p onClick={() => navigate("/profile")} className="user-name">
+                {user?.firstName || "My Profile"}
+              </p>
+              <LogoutButton />
+            </>
           ) : (
             // If the user is not logged in, show the UserCircle icon that navigates to the auth page
             <FaUserCircle
