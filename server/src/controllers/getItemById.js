@@ -25,6 +25,7 @@ const getItemById = async (req, res) => {
       success: true,
       result: {
         ...safeItem,
+        _id,
         ownerId: {
           firstName: safeItem.ownerId.firstName,
           lastName: safeItem.ownerId.lastName,

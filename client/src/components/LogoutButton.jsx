@@ -1,10 +1,12 @@
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import "./LogoutButton.css";
 
 const TOKEN_KEY = "token";
 const USER_KEY = "user";
 // LogoutButton component that handles user logout with a confirmation dialog
 const LogoutButton = () => {
+  const navigate = useNavigate();
   const handleLogout = async () => {
     try {
       const result = await Swal.fire({
@@ -21,7 +23,7 @@ const LogoutButton = () => {
         localStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(USER_KEY);
         await Swal.fire("Logged out!", "You have been logged out.", "success");
-        window.location.reload();
+        navigate("/");
       }
     } catch (error) {
       console.error("Error during logout:", error);
