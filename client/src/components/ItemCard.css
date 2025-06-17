@@ -47,13 +47,12 @@
 }
 
 .item-card p {
-  color: #666;
   font-size: 0.9rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.4;
-  max-height: calc(1.4em * 3); /* Limit to 3 lines */
-  white-space: normal; /* Allow multi-line truncation */
+  line-height: 1.2;
+  max-height: calc(1.2em * 2);
+  white-space: normal;
   margin: 0 0 8px;
 }
 

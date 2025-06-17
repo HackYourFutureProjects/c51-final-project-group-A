@@ -12,12 +12,28 @@ const getItemById = async (req, res) => {
   }
 
   try {
-    const item = await Item.findById(id);
+    const item = await Item.findById(id).populate("ownerId").lean();
     if (!item) {
       return res.status(404).json({ success: false, msg: "Item not found" });
     }
 
-    return res.status(200).json({ success: true, result: item });
+    // Remove unused information
+    // eslint-disable-next-line no-unused-vars
+    const { _id, __v, visibility, createdAt, ...safeItem } = item;
+
+    return res.status(200).json({
+      success: true,
+      result: {
+        ...safeItem,
+        ownerId: {
+          firstName: safeItem.ownerId.firstName,
+          lastName: safeItem.ownerId.lastName,
+          city: safeItem.ownerId.city,
+          email: safeItem.ownerId.email,
+          phone: safeItem.ownerId.phone,
+        },
+      },
+    });
   } catch (error) {
     logError(error);
     return res.status(500).json({ success: false, msg: "Server error" }); // only shows generic message to user

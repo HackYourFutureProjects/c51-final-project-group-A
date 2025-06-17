@@ -7,18 +7,13 @@ import Loader from "../components/Loader";
 import Error from "../components/Error";
 import BorrowButton from "../components/BorrowButton";
 import "./ItemDetailsPage.css";
-
-// Helper function to display rating stars
-const renderStars = (rating) => {
-  const filled = "★".repeat(rating);
-  const empty = "☆".repeat(5 - rating);
-  return filled + empty;
-};
+import Rating from "../components/Rating";
 
 const ItemDetailsPage = () => {
   // Extract item ID from URL params
   const { id } = useParams();
   const [item, setItem] = useState(null);
+
   // Use custom hook to fetch item details
   const { error, isLoading, performFetch, cancelFetch } = useFetch(
     `/items/${id}`,
@@ -33,6 +28,13 @@ const ItemDetailsPage = () => {
     return cancelFetch;
   }, [id]);
 
+  // Date formatter to display a readable date
+  const dateFormatter = new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+
   return (
     <>
       <Header />
@@ -41,79 +43,93 @@ const ItemDetailsPage = () => {
       {!isLoading && !error && item && (
         <div className="details-page-wrapper">
           <div className="details-content-container">
-            {/* Left: image + main details */}
-            <div className="item-image-box">
-              <img
-                src={item.images?.[0] || "https://via.placeholder.com/400"}
-                alt={item.title}
-              />
+            <div className="item-info-section">
+              {/* Item Image */}
+              <div className="item-image-box">
+                <img
+                  src={
+                    item.images?.[1] ||
+                    item.images?.[0] ||
+                    "https://placehold.co/400/png?text=Borrow\nMe"
+                  }
+                  alt={item.title}
+                />
+              </div>
+
+              {/* Item Details */}
+              <div className="item-text-box">
+                <h1>{item.title}</h1>
+                <Rating rating={item.reviews.averageRating} />
+                <p className="item-details-model">
+                  <strong>Model:</strong> {item.model}
+                </p>
+                <p className="item-details-category">
+                  <strong>Category:</strong> {item.category}
+                </p>
+                <p className="item-details-condition">
+                  <strong>Condition:</strong>{" "}
+                  {
+                    <span
+                      className={`item-condition ${
+                        item.condition === "Excellent"
+                          ? "item-condition-excellent"
+                          : item.condition === "Good"
+                            ? "item-condition-good"
+                            : "item-condition-fair"
+                      }`}
+                    >
+                      {item.condition}
+                    </span>
+                  }
+                </p>
+                <p className="item-details-price">
+                  <strong>Rental Price:</strong> €{item.price}
+                </p>
+                <p className="item-details-value">
+                  <strong>Item Value:</strong> €{item.value}
+                </p>
+                <p className="item-details-duration">
+                  <strong>Rental Period:</strong> {item.borrowDuration}{" "}
+                  {item.borrowDuration === 1 ? "day" : "days"}
+                </p>
+                <p>
+                  <strong>Last Updated:</strong>{" "}
+                  {dateFormatter.format(new Date(item.updatedAt))}
+                </p>
+                <p>
+                  <strong>Description:</strong> {item.description}
+                </p>
+              </div>
             </div>
 
-            <div className="item-text-box">
-              <h1>{item.title}</h1>
-              <h3>{item.model}</h3>
-
-              <p>
-                <strong>Category:</strong> {item.category}
-              </p>
-              <p>
-                <strong>Condition:</strong> {item.condition}
-              </p>
-              <p>
-                <strong>Price:</strong> €{item.price}
-              </p>
-              <p>
-                <strong>Value:</strong> €{item.value}
-              </p>
-              <p>
-                <strong>Availability:</strong>{" "}
-                {item.availability ? "Yes" : "No"}
-              </p>
-              <p>
-                <strong>Borrow Duration:</strong> {item.borrowDuration} days
-              </p>
-              <p>
-                <strong>Description:</strong>{" "}
-                {typeof item.description === "string" && item.description.trim()
-                  ? item.description
-                  : "No description available."}
-              </p>
-            </div>
-
-            {/* Right: Owner Info placeholder */}
+            {/* Owner Info */}
             <div className="owner-box">
-              <h4>Owner Info</h4>
-              <p>Loading owner info...</p>
-              {item ? (
+              <h3>
+                {item.ownerId.firstName} {item.ownerId.lastName}
+              </h3>
+              <p>{item.ownerId.email}</p>
+              <p>{item.ownerId.phone}</p>
+              <p>{item.ownerId.city}</p>
+              {item && (
                 <BorrowButton
                   itemId={item._id}
                   disabled={!item.availability}
                   onSuccess={performFetch}
                 />
-              ) : (
-                <p>Loading borrow button...</p>
               )}
             </div>
           </div>
 
-          {/* Bottom: Reviews */}
+          {/* Reviews */}
           <div className="latest-reviews-section">
             <h2>Latest Reviews</h2>
-            {Array.isArray(item.reviews) && item.reviews.length > 0 ? (
+            {item.reviews.allReviews.length > 0 ? (
               <div className="reviews-list">
-                {item.reviews.map((review, index) => (
+                {item.reviews.allReviews.map((review, index) => (
                   <div key={index} className="review-card">
-                    <div className="stars">{renderStars(review.rating)}</div>
-                    <p>
-                      <strong>Review #{index + 1}</strong>
-                    </p>
-                    <p>
-                      <strong>Author:</strong> {review.author || "Anonymous"}
-                    </p>
-                    <p>
-                      <strong>Comment:</strong>{" "}
-                      {review.body || "No comment provided."}
-                    </p>
+                    <Rating rating={review.rating} />
+                    <p>{review.comment}</p>
+                    <p>{dateFormatter.format(new Date(review.updatedAt))}</p>
                   </div>
                 ))}
               </div>

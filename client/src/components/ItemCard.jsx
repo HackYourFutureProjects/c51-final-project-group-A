@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import "./ItemCard.css";
 import { useNavigate } from "react-router-dom";
+import Rating from "./Rating";
 
 // component to display a single item card on ResultPage and HomePage
 const ItemCard = ({ item }) => {
@@ -21,9 +22,9 @@ const ItemCard = ({ item }) => {
     >
       <img className="item-card-image" src={item.images[0]} alt={item.title} />
       <h3 className="item-card-title">{item.title}</h3>
-      <p className="item-card-model">Model: {item.model}</p>
+      <Rating rating={item.reviews.averageRating} />
       <p className="item-card-condition">
-        Condition:{" "}
+        <strong>Condition:</strong>{" "}
         {
           <span
             className={`item-condition ${
@@ -39,10 +40,12 @@ const ItemCard = ({ item }) => {
         }
       </p>
       <p className="item-card-duration">
-        Rental Period: {item.borrowDuration}{" "}
+        <strong>Rental Period:</strong> {item.borrowDuration}{" "}
         {item.borrowDuration === 1 ? "day" : "days"}
       </p>
-      <p className="item-card-price">Rental Price: €{item.price}</p>
+      <p className="item-card-price">
+        <strong>Rental Price:</strong> €{item.price}
+      </p>
       {item.availability ? (
         <p className="available">✅Available</p>
       ) : (
@@ -60,9 +63,11 @@ ItemCard.propTypes = {
     borrowDuration: PropTypes.number.isRequired,
     availability: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
-    model: PropTypes.string.isRequired,
     condition: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    reviews: PropTypes.shape({
+      averageRating: PropTypes.number.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
