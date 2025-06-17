@@ -17,7 +17,6 @@ const ProfilePage = () => {
         const res = await axios.get("/api/auth/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("Profile data:", res.data);
         setUser(res.data);
       } catch (error) {
         console.error("Failed to fetch profile:", error);

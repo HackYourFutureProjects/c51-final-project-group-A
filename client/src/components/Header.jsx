@@ -25,7 +25,7 @@ const Header = () => {
       return;
     }
     // Fetch user profile data if logged in
-    fetch("http://localhost:3000/api/auth/me", {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
