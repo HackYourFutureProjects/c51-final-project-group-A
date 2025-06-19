@@ -71,7 +71,7 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <p onClick={() => navigate("/profile")} className="user-name">
-             {user?.firstName || "My Profile"}
+                {user?.firstName || "My Profile"}
               </p>
               <LogoutButton />
             </>
