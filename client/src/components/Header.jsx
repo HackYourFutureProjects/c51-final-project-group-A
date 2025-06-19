@@ -25,7 +25,7 @@ const Header = () => {
       return;
     }
     // Fetch user profile data if logged in
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/me`, {
+    fetch("http://localhost:3000/api/auth/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -42,6 +42,7 @@ const Header = () => {
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
+        // Optionally redirect to auth page if fetching fails
       });
   }, []);
 
@@ -75,7 +76,6 @@ const Header = () => {
               <LogoutButton />
             </>
           ) : (
-            // If the user is not logged in, show the UserCircle icon that navigates to the auth page
             <FaUserCircle
               className="header-icon"
               onClick={() => navigate("/auth")}
