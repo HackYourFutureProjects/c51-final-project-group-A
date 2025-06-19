@@ -1,23 +1,36 @@
 import { useEffect, useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
+// import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "./ProfilePage.css";
+import ItemCard from "../components/ItemCard";
+import EditProfileForm from "../components/EditProfileForm";
 
 const ProfilePage = () => {
-  const [user, setUser] = useState(null);
+  const [borrowedItems, setBorrowedItems] = useState([]);
+  const [ownedItems, setOwnedItems] = useState([]);
+  const [showBorrowed, setShowBorrowed] = useState(false);
+  const [showOwned, setShowOwned] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+  const [editing, setEditing] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
       try {
-        const token = localStorage.getItem("token");
         const res = await axios.get("/api/auth/me", {
           headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
         });
-        setUser(res.data);
+
+        setUserInfo(res.data);
+        setBorrowedItems(res.data.borrowedItems || []);
+        setOwnedItems(res.data.ownedItems || []);
       } catch (error) {
         console.error("Failed to fetch profile:", error);
       }
@@ -25,72 +38,115 @@ const ProfilePage = () => {
 
     fetchProfile();
   }, []);
-  if (!user) {
+
+  if (!userInfo) {
     return <div>Loading...</div>;
   }
 
   const handleItemClick = (id) => {
     navigate(`/items/${id}`);
   };
+
   return (
     <>
       <Header />
       <div className="profile-container">
-        <div className="profile-layout">
-          <div className="profile-info">
-            <FaUserCircle className="profile-icon" />
-            <p className="profile-email">Email: {user.email}</p>
-            <p className="profile-name">
-              Name: {user.firstName} {user.lastName}
-            </p>
-            <p className="profile-phone">Phone: {user.phone}</p>
-            <p className="profile-city">City: {user.city}</p>
+        <div className="profile-info">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            alt="avatar"
+            className="avatar"
+          />
+          <p>
+            <strong>Email</strong>: {userInfo.email}
+          </p>
+          <strong> Name:</strong> {userInfo.firstName} {userInfo.lastName}
+          <p>
+            <strong>Phone</strong>: {userInfo.phone}
+          </p>
+          <p>
+            <strong>City</strong>: {userInfo.city}
+          </p>
+          {!editing && (
+            <button
+              onClick={() => setEditing(true)}
+              className="edit-profile-button"
+            >
+              Edit Profile
+            </button>
+          )}
+          {editing && (
+            <EditProfileForm
+              user={userInfo}
+              onSuccess={(updatedUser) => {
+                setUserInfo(updatedUser);
+                setEditing(false);
+              }}
+            />
+          )}
+        </div>
+
+        <div className="items-section">
+          {/* Borrowed Items */}
+          <div className="items-box">
+            <div
+              className="items-header"
+              onClick={() => setShowBorrowed((prev) => !prev)}
+            >
+              <h3>Borrowed Items</h3>
+              <span className={`arrow ${showBorrowed ? "rotate" : ""}`}>
+                {showBorrowed ? "▼" : "▶"}
+              </span>
+            </div>
+            {showBorrowed && (
+              <div className="items-grid">
+                {borrowedItems.length > 0 ? (
+                  borrowedItems.map((item) => (
+                    <ItemCard
+                      key={item._id}
+                      item={item}
+                      onClick={() => handleItemClick(item._id)}
+                    />
+                  ))
+                ) : (
+                  <p>No borrowed items.</p>
+                )}
+              </div>
+            )}
           </div>
 
-          <div className="profile-items">
-            <section className="item-section">
-              <h3>Owned Items:</h3>
-              {user.ownedItems && user.ownedItems.length > 0 ? (
-                <ul className="item-list">
-                  {user.ownedItems.map((item) => (
-                    <li
+          {/* Owned Items */}
+          <div className="items-box">
+            <div
+              className="items-header"
+              onClick={() => setShowOwned((prev) => !prev)}
+            >
+              <h3>Owned Items</h3>
+              <span className={`arrow ${showOwned ? "rotate" : ""}`}>
+                {showOwned ? "▼" : "▶"}
+              </span>
+            </div>
+            {showOwned && (
+              <div className="items-grid">
+                {ownedItems.length > 0 ? (
+                  ownedItems.map((item) => (
+                    <ItemCard
                       key={item._id}
+                      item={item}
                       onClick={() => handleItemClick(item._id)}
-                      className="item-card"
-                    >
-                      {item.title}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No owned items.</p>
-              )}
-            </section>
-
-            <section className="item-section">
-              <h3>Borrowed Items:</h3>
-              {user.borrowedItems && user.borrowedItems.length > 0 ? (
-                <ul className="item-list">
-                  {user.borrowedItems.map((item) => (
-                    <li
-                      key={item._id}
-                      onClick={() => handleItemClick(item._id)}
-                      className="item-card"
-                    >
-                      {item.title}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No borrowed items.</p>
-              )}
-            </section>
+                    />
+                  ))
+                ) : (
+                  <p>No owned items.</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );
 };
+
 export default ProfilePage;
