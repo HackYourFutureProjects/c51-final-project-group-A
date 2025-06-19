@@ -22,15 +22,13 @@
 }
 
 .center-section {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-grow: 1;
+  flex: 1;
   justify-content: center;
-  width: 340px;
+  width: 100%;
+  max-width: 340px;
 }
 .header-right {
   gap: 1rem;
