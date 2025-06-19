@@ -3,6 +3,8 @@ import "./EditProfileForm.css";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 
+// EditProfileForm component allows users to edit their profile information
+// It takes user data and a callback function onSuccess as props
 const EditProfileForm = ({ user, onSuccess }) => {
   const [formData, setFormData] = useState({
     // Initialize form data with user info or empty strings

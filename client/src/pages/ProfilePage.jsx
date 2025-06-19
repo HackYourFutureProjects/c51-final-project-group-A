@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";

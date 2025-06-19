@@ -71,12 +71,11 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <p onClick={() => navigate("/profile")} className="user-name">
-                Hello, {user?.firstName || "My Profile"}
+                Hello, {user?.firstName || "User"}
               </p>
               <LogoutButton />
             </>
           ) : (
-            // If the user is not logged in, show the UserCircle icon that navigates to the auth page
             <FaUserCircle
               className="header-icon"
               onClick={() => navigate("/auth")}
