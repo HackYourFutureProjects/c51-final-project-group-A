@@ -107,8 +107,8 @@
   }
 }
 @media (max-width: 480px) {
-  .items-grid {
-    grid-template-columns: 1fr !important;
+  .content-container .items-grid {
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 

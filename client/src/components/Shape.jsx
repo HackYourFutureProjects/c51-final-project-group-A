@@ -1,5 +1,5 @@
 import shape from "../assets/shape.svg";
-import "./shape.css";
+import "./Shape.css";
 
 function Shape() {
   return <img src={shape} alt="Shape" className="shape" />;

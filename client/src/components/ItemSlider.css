@@ -62,7 +62,7 @@
   justify-content: center;
 }
 .slider-logo:hover {
-  animation: bounce 1s ease-in-out infinite;
+  animation: bounce 0.7s 2;
 }
 @keyframes bounce {
   0%,
