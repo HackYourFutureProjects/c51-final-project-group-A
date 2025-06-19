@@ -78,7 +78,6 @@
 .edit-profile-button:hover {
   background-color: #024c71;
 }
-/* Small tablets and large phones */
 @media (max-width: 600px) {
   .profile-container {
     padding: 1rem;
@@ -102,7 +101,6 @@
   }
 }
 
-/* Small phones */
 @media (max-width: 480px) {
   .avatar {
     width: 80px;
@@ -114,7 +112,7 @@
   }
 
   .items-grid {
-    grid-template-columns: 1fr !important; /* force single column */
+    grid-template-columns: 1fr !important;
     gap: 1rem;
   }
 
