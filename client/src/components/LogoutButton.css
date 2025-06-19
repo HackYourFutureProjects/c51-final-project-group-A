@@ -10,3 +10,13 @@
 .logout-button:hover {
   color: #ef0c0c;
 }
+@media (max-width: 720px) {
+  .logout-button {
+    font-size: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .logout-button {
+    font-size: 9px;
+  }
+}

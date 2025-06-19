@@ -122,3 +122,59 @@
     width: 100%;
   }
 }
+@media (max-width: 480px) {
+  .details-page-wrapper {
+    padding: 1rem;
+  }
+
+  .details-content-container {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item-image-box img {
+    max-width: 60%;
+    height: auto;
+  }
+
+  .item-text-box h1 {
+    font-size: 1rem;
+  }
+
+  .item-text-box p {
+    font-size: 1rem;
+  }
+
+  .owner-box {
+    width: 100%;
+    min-width: 0;
+    max-width: 300px;
+    padding: 1rem;
+    margin: 1rem auto;
+    align-self: center;
+  }
+  .owner-box p,
+  .owner-box h3 {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .latest-reviews-section {
+    padding: 1rem;
+  }
+
+  .review-card {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+  .item-text-box {
+    flex: 1;
+    width: 70%;
+    padding: 0.2rem;
+  }
+  .review-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+}
