@@ -78,13 +78,58 @@
 .edit-profile-button:hover {
   background-color: #024c71;
 }
-@media (max-width: 768px) {
-  .items-section {
-    flex-direction: column;
-    align-items: center;
+@media (max-width: 600px) {
+  .profile-container {
+    padding: 1rem;
+  }
+
+  .profile-info p {
+    font-size: 16px;
+  }
+
+  .items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-profile-button {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
   }
 
   .items-box {
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-info p {
+    font-size: 15px;
+  }
+
+  .items-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  .items-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .arrow {
+    font-size: 18px;
+  }
+
+  .edit-profile-button {
     width: 100%;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  .items-section {
+    flex-direction: column;
   }
 }

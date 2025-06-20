@@ -13,7 +13,7 @@ export default function ItemSlider() {
   const params = {
     sortBy: "createdAt",
     sortOrder: "desc",
-    limit: 5,
+    limit: 10,
   };
   const url = `/items?${new URLSearchParams(params).toString()}`;
 

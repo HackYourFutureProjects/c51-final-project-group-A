@@ -1,6 +1,12 @@
 .shape {
   display: block;
-  margin: 2rem auto;
+  margin: 1rem auto 1rem;
   max-width: 100%;
   height: auto;
+}
+@media (max-width: 480px) {
+  .shape {
+    margin: 6rem auto 4rem;
+    width: 90%;
+  }
 }
