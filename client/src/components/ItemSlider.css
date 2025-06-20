@@ -10,7 +10,7 @@
   padding: 0.5rem 0;
   font-family: "PT Serif", serif;
   margin: 1rem auto;
-  margin-top: -0.5rem;
+  margin-top: -1rem;
 }
 
 .slider-container {
@@ -53,8 +53,9 @@
 }
 
 .slider-logo {
-  width: clamp(220px, 10vw, 150px);
-  height: auto;
+  width: 400px;
+  height: 200px;
+  object-fit: contain;
   margin: 0 auto;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
   transition: transform 0.3s ease;
@@ -89,6 +90,10 @@
   .slider-title {
     font-size: 0.6rem;
     padding-left: 1rem;
+  }
+  .slider-logo {
+    width: 120px;
+    height: 100px;
   }
 }
 @media (max-width: 768px) and (min-width: 481px) {
