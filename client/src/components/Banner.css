@@ -2,8 +2,8 @@
   background-image: url("../assets/banner.jpg");
   background-size: cover;
   background-position: center;
-  height: auto;
-  width: 95%;
+  height: 600px;
+  width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 16px;
   display: flex;

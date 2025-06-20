@@ -22,10 +22,12 @@
 }
 
 .center-section {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex: 1;
   justify-content: center;
   width: 100%;
   max-width: 340px;
