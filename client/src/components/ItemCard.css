@@ -51,6 +51,8 @@
   max-height: calc(1.2em * 2);
   width: 200px;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .item-card p {
