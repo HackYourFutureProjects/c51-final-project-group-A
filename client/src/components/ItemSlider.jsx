@@ -14,6 +14,7 @@ export default function ItemSlider() {
     sortBy: "createdAt",
     sortOrder: "desc",
     limit: 10,
+    availability: "true",
   };
   const url = `/items?${new URLSearchParams(params).toString()}`;
 
@@ -48,7 +49,7 @@ export default function ItemSlider() {
       <div className="slider-wrapper">
         {/* Left arrow button to scroll left */}
 
-        <button className="arrow left" onClick={() => scroll("left")}>
+        <button className="arrow-left" onClick={() => scroll("left")}>
           &#8249;
         </button>
         {/* Slider container with items */}
@@ -62,7 +63,7 @@ export default function ItemSlider() {
         </div>
 
         {/* Right arrow button to scroll right */}
-        <button className="arrow right" onClick={() => scroll("right")}>
+        <button className="arrow-right" onClick={() => scroll("right")}>
           &#8250;
         </button>
       </div>

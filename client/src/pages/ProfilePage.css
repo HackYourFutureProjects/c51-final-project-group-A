@@ -6,6 +6,11 @@
 }
 
 .profile-info {
+  padding: 1.5rem;
+  background-color: #f4f4f4;
+  border-radius: 1rem;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   text-align: center;
   margin-bottom: 1rem;
 }
@@ -57,7 +62,7 @@
 .rotate {
   transform: rotate(180deg);
 }
-.items-grid {
+.items-section .items-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
@@ -65,6 +70,7 @@
   margin-top: 1rem;
 }
 .edit-profile-button {
+  display: none;
   background-color: #0798e6;
   color: white;
   border: none;

@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import "./ProfilePage.css";
 import ItemCard from "../components/ItemCard";
 import EditProfileForm from "../components/EditProfileForm";
+import Loader from "../components/Loader";
 
 const ProfilePage = () => {
   const [borrowedItems, setBorrowedItems] = useState([]);
@@ -39,7 +40,7 @@ const ProfilePage = () => {
   }, []);
 
   if (!userInfo) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const handleItemClick = (id) => {
@@ -59,7 +60,9 @@ const ProfilePage = () => {
           <p>
             <strong>Email</strong>: {userInfo.email}
           </p>
-          <strong> Name:</strong> {userInfo.firstName} {userInfo.lastName}
+          <p>
+            <strong> Name:</strong> {userInfo.firstName} {userInfo.lastName}
+          </p>
           <p>
             <strong>Phone</strong>: {userInfo.phone}
           </p>
