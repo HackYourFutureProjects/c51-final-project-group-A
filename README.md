@@ -1,5 +1,5 @@
-![ShareWithUs](<Screenshot 2025-07-02 150025.png>)
-![ShareWhitUs](<Screenshot 2025-07-04 090032.png>)
+![ShareWithUs](<Screenshot-2025-07-02-150025.png>)
+![ShareWithUs](<Screenshot-2025-07-04-090032.png>)
 
 # Cohort 51 final project - ShareWithUs
 
@@ -28,6 +28,7 @@ Main features:
 - **Image Upload:** Cloudinary
 - **Authentication:** Token-based (JWT)
 
+[Click here for the Demo version](https://hyf-c51-grou-feature-re-4kuggz.herokuapp.com/)
 
 ## 1. Setup
 
