@@ -1,12 +1,34 @@
-`TODO: Add a nice screenshot of the app!`
+![ShareWithUs](<Screenshot-2025-07-02-150025.png>)
+![ShareWithUs](<Screenshot-2025-07-04-090032.png>)
 
-# Cohort XX final project
+# Cohort 51 final project - ShareWithUs
 
 This is the final project for the HackYourFuture curriculum we did as a cohort using the [MERN stack](https://www.mongodb.com/resources/languages/mern-stack) by following the agile methodology with our team and a group of mentors. A quick guide to what we built:
 
-> TODO: Add short description of the app
 
-`[Click here for the Demo version](TODO: add link)`
+### 📝 Description
+
+ShareWhitUs is a full-stack web application that helps users to borrow and lend items within their community. Users can register, log in, add items, search, filter by category, and borrow items.
+
+Main features:
+- Login & Registration
+- Browse and filter items
+- Add and edit your own items
+- Borrow and return items
+- Leave reviews with rating
+- Contact item owners
+- Cloud image uploads using Cloudinary
+
+
+### 📦 Tech Stack
+
+- **Frontend:** React, React Router, CSS
+- **Backend:** Node.js, Express
+- **Database:** MongoDB + Mongoose
+- **Image Upload:** Cloudinary
+- **Authentication:** Token-based (JWT)
+
+[Click here for the Demo version](https://hyf-c51-grou-feature-re-4kuggz.herokuapp.com/)
 
 ## 1. Setup
 
