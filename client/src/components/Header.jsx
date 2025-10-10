@@ -49,7 +49,7 @@ const Header = () => {
   return (
     <>
       <div className="header">
-        <div className="left-section">
+        <div className="header-left">
           <FaBars
             className="menu-icon"
             onClick={() => setIsSidebarOpen(true)}
@@ -62,7 +62,7 @@ const Header = () => {
             <img src={logo} alt="Company Logo" className="logo" />
           </button>
         </div>
-        <div className="center-section">
+        <div className="header-center">
           <div className="search-bar-inline">
             <SearchBar />
           </div>
