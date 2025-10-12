@@ -7,6 +7,7 @@ import "./ProfilePage.css";
 import ItemCard from "../components/ItemCard";
 import EditProfileForm from "../components/EditProfileForm";
 import Loader from "../components/Loader";
+import LogoutButton from "../components/LogoutButton";
 
 const ProfilePage = () => {
   const [borrowedItems, setBorrowedItems] = useState([]);
@@ -69,6 +70,8 @@ const ProfilePage = () => {
           <p>
             <strong>City</strong>: {userInfo.city}
           </p>
+          <LogoutButton />
+          <br />
           {!editing && (
             <button
               onClick={() => setEditing(true)}
