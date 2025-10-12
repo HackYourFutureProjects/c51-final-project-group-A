@@ -83,9 +83,6 @@ const Header = () => {
           )}
         </div>
       </div>
-      <div className="search-bar-wrapper">
-        <SearchBar />
-      </div>
     </>
   );
 };
