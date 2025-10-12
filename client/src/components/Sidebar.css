@@ -1,64 +1,90 @@
 .sidebar {
   position: fixed;
   top: 0;
-  left: -220px;
-  width: 220px;
+  left: -240px;
+  width: 240px;
   height: 100%;
-  background: linear-gradient(135deg, #e9e8e8 50%, #0789e6 100%);
-  padding: 20px;
-  transition: left 0.5s ease-in-out;
-  border-radius: 0 10px 10px 0;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
+  background: linear-gradient(145deg, #e9e8e8 40%, #0789e6 100%);
+  padding: 24px 20px;
+  transition: left 0.4s ease-in-out;
+  border-radius: 0 14px 14px 0;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
   font-family: "PT Serif", serif;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  isolation: isolate; /* Prevents blur conflicts */
 }
 
 .sidebar.open {
   left: 0;
 }
-.sidebar-title {
-  margin: 1.5rem 0;
-  color: #0789e6;
-  font-size: 23px;
-  font-weight: 600;
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #010202;
+  text-shadow: 0 0 5px rgba(23, 113, 182, 0.57);
+  transition: all 0.3s ease;
 }
+
+.close-btn:hover {
+  transform: scale(1.15);
+}
+
+/* Title */
+.sidebar-title {
+  margin: 2.5rem 0 1rem;
+  color: #0789e6;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Category list */
 .category-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .category-list li {
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
+
+/* Buttons */
 .category-btn {
   width: 100%;
   background-color: transparent;
   border: none;
-  color: #443b3b;
-  font-size: 16px;
-  font-family: "PT Serif", serif;
+  color: #333;
+  font-size: 17px;
   text-align: left;
-  padding: 10px;
-  border-radius: 6px;
+  padding: 12px;
+  border-radius: 8px;
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+  transition: all 0.3s ease;
 }
+
 .category-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.25);
   color: #000000;
-  transform: scale(1.1);
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
+  transform: translateX(5px);
 }
 
 .category-btn:focus {
-  outline: 2px solid #047fc0;
+  outline: 2px solid #0789e6;
 }
 
+/* Divider items (optional) */
 .sidebar ul {
   list-style: none;
   padding: 0;
@@ -66,32 +92,68 @@
 }
 
 .sidebar ul li {
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   cursor: pointer;
   transition: color 0.3s ease;
   font-size: 16px;
 }
 
 .sidebar ul li:hover {
-  color: #b3d4fc;
-}
-
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  font-size: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
   color: #0789e6;
-  transition: color 0.3s ease;
 }
 
-.close-btn:hover {
-  color: #000000;
-  transform: scale(1.1);
+/* Overlay when sidebar opens */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+  z-index: 1500;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Scrollbar styling (optional) */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #0789e6;
+  border-radius: 4px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 210px;
+    padding: 20px;
+  }
+
+  .sidebar-title {
+    font-size: 20px;
+  }
+
+  .category-btn {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .close-btn {
+    font-size: 24px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -100,37 +162,16 @@
     padding: 15px;
   }
 
-  .sidebar-title,
-  .sidebar h4 {
+  .sidebar-title {
     font-size: 18px;
   }
-
-  .category-btn,
   .sidebar ul li {
-    font-size: 14px;
+    padding: 7px 0;
+  }
+
+  .category-btn {
+    font-size: 10px;
     padding: 8px;
-  }
-
-  .close-btn {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 768px) and (min-width: 481px) {
-  .sidebar {
-    width: 200px;
-    padding: 18px;
-  }
-
-  .sidebar-title,
-  .sidebar h4 {
-    font-size: 19px;
-  }
-
-  .category-btn,
-  .sidebar ul li {
-    font-size: 15px;
-    padding: 10px;
   }
 
   .close-btn {
