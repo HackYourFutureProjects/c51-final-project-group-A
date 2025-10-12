@@ -59,7 +59,7 @@ const Header = () => {
             onClose={() => setIsSidebarOpen(false)}
           />
           <button className="logo-button" onClick={() => navigate("/")}>
-            <img src={logo} alt="Company Logo" className="logo" />
+            <img src={logo} alt="Company Logo" className="header-logo" />
           </button>
         </div>
         <div className="header-center">
