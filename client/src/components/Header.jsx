@@ -5,46 +5,37 @@ import SearchBar from "./SearchBar";
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import LogoutButton from "./LogoutButton";
 
 const Header = () => {
   const [user, setUser] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Get the token from localStorage to check if the user is logged in
   const token = localStorage.getItem("token");
-  // Convert the token to a boolean: if token exists, user is logged in; otherwise, not logged in
   const isLoggedIn = !!token;
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      // If no token, user is not logged in, so redirect to auth page
+    if (!isLoggedIn) return; // no need to fetch if not logged in
 
-      return;
-    }
-    // Fetch user profile data if logged in
     fetch("http://localhost:3000/api/auth/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      credentials: "include", // Include credentials for CORS requests
+      headers: { Authorization: `Bearer ${token}` },
+      credentials: "include",
     })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data");
-        }
+        if (!response.ok) throw new Error("Failed to fetch user data");
         return response.json();
       })
-      .then((data) => {
-        setUser(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-        // Optionally redirect to auth page if fetching fails
-      });
-  }, []);
+      .then((data) => setUser(data))
+      .catch((error) => console.error("Error fetching user data:", error));
+  }, [isLoggedIn, token]);
+
+  const handleUserClick = () => {
+    if (isLoggedIn) {
+      navigate("/profile");
+    } else {
+      navigate("/auth");
+    }
+  };
 
   return (
     <>
@@ -62,25 +53,17 @@ const Header = () => {
             <img src={logo} alt="Company Logo" className="header-logo" />
           </button>
         </div>
+
         <div className="header-center">
-          <div className="search-bar-inline">
-            <SearchBar />
-          </div>
+          <SearchBar />
         </div>
+
         <div className="header-right">
-          {isLoggedIn ? (
-            <>
-              <p onClick={() => navigate("/profile")} className="user-name">
-                {user?.firstName || "My Profile"}
-              </p>
-              <LogoutButton />
-            </>
-          ) : (
-            <FaUserCircle
-              className="header-icon"
-              onClick={() => navigate("/auth")}
-            />
-          )}
+          <FaUserCircle
+            className="header-icon"
+            onClick={handleUserClick}
+            title={isLoggedIn ? user?.firstName || "Profile" : "Login"}
+          />
         </div>
       </div>
     </>
