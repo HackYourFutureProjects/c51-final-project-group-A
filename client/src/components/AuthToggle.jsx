@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 
-// Component to toggle between login and registration modes
 export default function AuthToggle({ isLogin, toggleMode }) {
   return (
     <div className="switch-text">

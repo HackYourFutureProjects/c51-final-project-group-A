@@ -15,6 +15,7 @@ export default function Sidebar({ isOpen, onClose }) {
     "Clothing",
     "Musical Instruments",
   ].sort();
+
   const navigate = useNavigate();
   const sidebarRef = useRef(null);
 
@@ -22,6 +23,8 @@ export default function Sidebar({ isOpen, onClose }) {
     navigate(`/result?category=${encodeURIComponent(category)}`);
     onClose();
   };
+
+  // Close sidebar when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -39,24 +42,33 @@ export default function Sidebar({ isOpen, onClose }) {
   }, [isOpen, onClose]);
 
   return (
-    <div ref={sidebarRef} className={`sidebar ${isOpen ? "open" : ""}`}>
-      <button className="close-btn" onClick={onClose}>
-        &times;
-      </button>
-      <h4 className="sidebar-title">Categories</h4>
-      <ul className="category-list">
-        {staticCategories.map((cat) => (
-          <li key={cat}>
-            <button
-              className="category-btn"
-              onClick={() => handleCategoryClick(cat)}
-            >
-              {cat}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      {/* 🔹 Overlay (dark background) */}
+      <div
+        className={`sidebar-overlay ${isOpen ? "active" : ""}`}
+        onClick={onClose}
+      ></div>
+
+      {/* 🔹 Sidebar */}
+      <div ref={sidebarRef} className={`sidebar ${isOpen ? "open" : ""}`}>
+        <button className="close-btn" onClick={onClose}>
+          &times;
+        </button>
+        <h4 className="sidebar-title">Categories</h4>
+        <ul className="category-list">
+          {staticCategories.map((cat) => (
+            <li key={cat}>
+              <button
+                className="category-btn"
+                onClick={() => handleCategoryClick(cat)}
+              >
+                {cat}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
 
