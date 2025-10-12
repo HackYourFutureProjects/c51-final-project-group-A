@@ -39,15 +39,13 @@ const Header = () => {
 
   return (
     <>
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+
       <div className="header">
         <div className="header-left">
           <FaBars
             className="menu-icon"
             onClick={() => setIsSidebarOpen(true)}
-          />
-          <Sidebar
-            isOpen={isSidebarOpen}
-            onClose={() => setIsSidebarOpen(false)}
           />
           <button className="logo-button" onClick={() => navigate("/")}>
             <img src={logo} alt="Company Logo" className="header-logo" />
