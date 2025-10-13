@@ -91,3 +91,26 @@
     margin-bottom: 6px;
   }
 }
+@media (max-width: 480px) {
+  .item-card-container {
+    min-width: 100px;
+    max-width: 130px;
+    padding: 5px;
+  }
+
+  .item-card-title {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+  }
+
+  .item-card-condition,
+  .item-card-duration,
+  .item-card-price {
+    font-size: 0.7rem;
+    margin-bottom: 4px;
+  }
+  .available,
+  .unavailable {
+    font-size: 0.7rem;
+  }
+}
