@@ -1,63 +1,75 @@
 .share-prompt-section {
-  background-color: #fff;
-  padding: 2rem;
+  background-color: transparent;
   text-align: center;
-  border-radius: 100px;
-  margin: 7rem auto;
-  width: 80%;
-  height: 100%;
-  max-width: 1000px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-.share-prompt-section:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  margin: 15rem 0;
 }
 .share-prompt-section h2 {
-  font-size: 1.7rem;
+  font-size: 4rem;
+  text-align: center;
   color: #f0983b;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.1em;
+  text-shadow: 1px 1px 10px rgba(21, 139, 203, 0.459);
 }
 
 .share-prompt-section p {
-  margin: 0.5rem 0 1.5rem;
-  font-size: 1.1rem;
+  margin: 3rem 0;
+  font-size: 1.4rem;
   color: #444;
+  text-shadow: 1px 1px 25px rgba(6, 144, 208, 0.929);
 }
 
-.btn {
+.add-item-button {
   display: inline-block;
-  margin-top: 1rem;
-  background-color: #0798e6;
+  background-color: #0789e6;
   color: white;
   border: none;
-  padding: 0.7rem 1.5rem;
-  font-size: 1rem;
+  padding: 0.7rem 2.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: 15px 4px 15px 4px;
   cursor: pointer;
   transition:
     background-color 0.35s ease,
     transform 0.2s ease;
-  box-shadow: 0 4px 12px rgba(7, 152, 230, 0.4);
+  box-shadow: 0 0px 20px rgba(230, 148, 7, 0.401);
 }
-.btn:hover,
-.btn:focus {
-  background-color: #28a2f3;
+.add-item-button:hover,
+.add-item-button:focus {
+  background-color: transparent;
+  color: #0789e6;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(5, 112, 185, 0.6);
   outline: none;
 }
+@media (max-width: 768px) {
+  .share-prompt-section {
+    margin: 12rem 0;
+  }
+  .share-prompt-section h2 {
+    font-size: 3rem;
+  }
+  .share-prompt-section p {
+    font-size: 1.2rem;
+  }
+  .add-item-button {
+    padding: 0.6rem 2rem;
+    font-size: 1rem;
+  }
+}
 @media (max-width: 480px) {
   .share-prompt-section {
-    padding: 2rem 1rem;
-    max-width: 95%;
+    margin: 8rem 0;
   }
-  .btn {
-    width: 100%;
-    padding: 0.85rem 0;
-    font-size: 1.2rem;
+  .share-prompt-section h2 {
+    font-size: 1.5rem;
+  }
+  .share-prompt-section p {
+    font-size: 1rem;
+    margin: 2rem 0;
+  }
+  .add-item-button {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
