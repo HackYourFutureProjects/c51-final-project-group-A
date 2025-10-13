@@ -16,7 +16,7 @@
 .explain-text h2 {
   font-size: clamp(2.2rem, 2.5vw, 2.5rem);
   color: #0798e6;
-  /* margin-bottom: 1rem; */
+  margin-bottom: 1rem;
   /* overflow: hidden; */
   /* animation: fadeIn 2s ease forwards; */
   /* text-shadow: 0 0 10px rgba(255, 255, 255, 0.998); */
