@@ -32,7 +32,7 @@
   padding: 1rem 1rem;
   scrollbar-width: none; /* Firefox */
   background-color: transparent;
-  flex: 10 0 0 auto;
+  flex: 10 0 auto;
   min-width: 350px;
   max-width: 1000px;
 }
