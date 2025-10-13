@@ -1,30 +1,31 @@
 .explain-text {
-  background-color: #fff;
+  background: -webkit-linear-gradient(145deg, #e9e8e8e1 40%, #0789e6 100%);
   padding: 2rem;
   text-align: center;
-  border-radius: 100px;
-  margin: 10rem auto;
-  width: 80%;
-  height: 100%;
+  border-radius: 90px 20px 90px 20px / 20px 90px 20px 90px;
+  margin: 15rem auto 10rem auto;
   max-width: 1000px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 .explain-text:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.672);
+  transform: translateY(-2px);
+  cursor: text;
+  transition: all 0.3s ease;
 }
 .explain-text h2 {
   font-size: clamp(2.2rem, 2.5vw, 2.5rem);
-  color: #0798e6;
+  color: #000000;
   margin-bottom: 1rem;
   overflow: hidden;
   animation: fadeIn 2s ease forwards;
+  text-shadow: 0 0 1px #0798e6;
 }
 
 .explain-text p {
   margin-top: 1rem;
   font-size: clamp(1.4rem, 1.5vw, 1.15rem);
-  color: #333;
+  color: #333333db;
   line-height: 1.6;
 }
 @keyframes fadeIn {
@@ -41,7 +42,7 @@
 @media (max-width: 600px) {
   .explain-text {
     padding: 1.5rem 1rem;
-    margin: 4rem 1rem;
+    margin: 6rem 1rem 3rem 1rem;
   }
   .explain-text h2 {
     font-size: 1rem;

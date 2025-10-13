@@ -9,7 +9,7 @@ const ItemCard = ({ item }) => {
 
   return (
     <div
-      className="item-card"
+      className="item-card-container"
       role="button"
       tabIndex="0"
       onClick={() => navigate(`/items/${item._id}`)}
