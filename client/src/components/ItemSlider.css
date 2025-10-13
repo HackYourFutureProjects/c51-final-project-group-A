@@ -90,11 +90,11 @@
 
   .slider-container {
     min-width: 200px;
-    max-width: 200px;
+    max-width: 600px;
   }
 
   .slider-logo {
-    max-width: 140px;
+    max-width: 200px;
   }
 }
 
