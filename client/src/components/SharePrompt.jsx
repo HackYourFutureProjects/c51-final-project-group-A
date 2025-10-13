@@ -29,7 +29,7 @@ function SharePrompt() {
         resources.
       </p>
       <button
-        className="btn"
+        className="add-item-button"
         onClick={() => handleClick()}
         aria-label="Add Item"
       >
