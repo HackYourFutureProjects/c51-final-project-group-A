@@ -29,8 +29,12 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   gap: 1rem;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
   scrollbar-width: none; /* Firefox */
+  background-color: none;
+  flex: 10 0 0 auto;
+  min-width: 350px;
+  max-width: 1000px;
 }
 
 .slider-container::-webkit-scrollbar {
@@ -69,23 +73,6 @@
 
 .arrow-right {
   right: 20px;
-}
-
-/* === Slider container === */
-.slider-container {
-  background-color: black;
-  flex: 0 0 auto;
-  min-width: 350px;
-  max-width: 1000px;
-  border-radius: 15px;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.slider-container :hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(7, 137, 230, 0.2);
 }
 
 /* === Responsive === */
