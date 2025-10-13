@@ -23,7 +23,7 @@ function SharePrompt() {
 
   return (
     <div className="share-prompt-section">
-      <h2>Have something to share?</h2>
+      <h2>Have Something to Share?</h2>
       <p>
         Let others borrow your tools or items — help your neighbors and save
         resources.
