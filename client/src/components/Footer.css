@@ -1,6 +1,10 @@
+:root {
+  --footer-bg-color: #2d3c6054;
+  --footer-text-color: rgba(46, 59, 132, 0.859);
+}
 footer {
-  background-color: #2d3c6054;
-  color: rgba(46, 59, 132, 0.859);
+  background-color: var(--footer-bg-color);
+  color: var(--footer-text-color);
   padding: 2rem 1rem;
   text-align: center;
 }
