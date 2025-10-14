@@ -7,12 +7,7 @@
   max-width: 1000px;
   transition: all 0.3s ease;
 }
-.explain-text:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.672);
-  transform: translateY(-2px);
-  cursor: text;
-  transition: all 0.3s ease;
-}
+
 .explain-text h2 {
   font-size: clamp(2.2rem, 2.5vw, 2.5rem);
   color: #000000;
