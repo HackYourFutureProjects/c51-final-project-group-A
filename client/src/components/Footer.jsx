@@ -6,12 +6,12 @@ function Footer() {
       <p>
         &copy; 2025 ShareWithUs - Made with ♥ by{" "}
         <a
-          href="https://HosseinKelisa.com"
+          href="https://hosseinkelisa.com"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="HosseinKelisa.com (opens in a new tab)"
+          aria-label="hosseinkelisa.com (opens in a new tab)"
         >
-          HosseinKelisa.com
+          hosseinkelisa.com
         </a>{" "}
         | All rights reserved
       </p>
