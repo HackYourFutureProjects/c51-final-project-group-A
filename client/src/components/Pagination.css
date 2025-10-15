@@ -41,3 +41,10 @@
   color: white;
   box-shadow: 0 0 8px rgba(7, 152, 230, 0.7);
 }
+@media (max-width: 600px) {
+  .pagination-btn {
+    padding: 0.4rem 0.8rem;
+    margin: 2px 4px;
+    font-size: 0.9rem;
+  }
+}
