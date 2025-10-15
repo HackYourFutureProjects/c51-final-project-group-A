@@ -67,7 +67,7 @@ const FilterSidebar = ({ filters, setFilters }) => {
   };
 
   return (
-    <div className="filter-sidebar">
+    <div className="main-filter-sidebar">
       {/* CATEGORIES */}
       <Filter
         title="Category"
