@@ -1,21 +1,13 @@
-.filter-sidebar {
-  font-family: "PT Serif", serif;
-  font-size: 1rem;
-  color: #444;
-  background-color: #ffffff;
+.main-filter-sidebar {
+  background-color: transparent;
   width: 280px;
-  padding: 1.5rem 1.75rem;
+  padding: 1.5rem 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  position: sticky;
-  top: 1.5rem;
   height: max-content;
   user-select: none;
-  border: 2px solid #e0e7f1;
-  margin-top: 0.2rem;
 }
 .filter-header {
   display: flex;
@@ -23,43 +15,28 @@
   align-items: center;
   cursor: pointer;
   padding: 10px 14px;
-  background-color: #e6e6e7;
-  font-weight: bold;
-  border-radius: 8px;
+  background-color: #b6c7d4;
+  border-radius: 6px 6px 60px 6px / 6px 6px 60px 6px;
 }
 
 .filter-arrow {
   display: inline-block;
   transition: transform 0.3s ease;
+  font-size: 0.8rem;
 }
 
 .filter-arrow.open {
   transform: rotate(180deg);
 }
 
-.filter-sidebar h3 {
-  margin: 0 0 1rem 0;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #0798e6;
-  border-bottom: 2px solid #0798e6;
-  padding-bottom: 0.3rem;
-  letter-spacing: 0.03em;
-}
-
 .filter-option {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 0.6rem;
-  padding: 0.4rem 0.6rem;
-  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
   transition: background-color 0.3s ease;
   cursor: pointer;
-}
-
-.filter-option:hover {
-  background-color: #e6f0fc;
 }
 
 .filter-option input[type="radio"] {
@@ -82,16 +59,16 @@
   user-select: none;
   cursor: pointer;
   font-weight: 500;
+  color: #0c2a48;
 }
 
 .filter-input {
-  font-size: 1.05rem;
-  border: 1.5px solid #e1d9cb;
-  border-radius: 8px;
+  font-size: 1rem;
+  border: 1px solid #e1cfcb;
+  border-radius: 5px;
   padding: 0.5rem 1rem;
   width: 100%;
   background-color: #fff;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease,
@@ -103,18 +80,16 @@
   border-color: #0798e6;
   outline: none;
   box-shadow: 0 0 8px #a0cdfb;
-  background-color: #fff;
 }
 
 .filter-apply-btn {
-  font-family: "PT Serif", serif;
   font-weight: 700;
   font-size: 1rem;
   background: linear-gradient(135deg, #0798e6, #007acc);
   color: white;
   border: none;
-  padding: 0.65rem 1.2rem;
-  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  border-radius: 5px;
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(7, 152, 230, 0.5);
   width: 100%;
@@ -122,12 +97,10 @@
     background-color 0.3s ease,
     transform 0.15s ease,
     box-shadow 0.3s ease;
-  user-select: none;
 }
 
 .filter-apply-btn:hover {
-  background-color: #027ac9;
-  box-shadow: 0 7px 20px rgba(2, 122, 201, 0.6);
+  box-shadow: 0 7px 20px rgba(6, 61, 98, 0.779);
 }
 
 .filter-apply-btn:active {
@@ -140,20 +113,13 @@
 }
 
 @media (max-width: 1024px) {
-  .filter-sidebar {
+  .main-filter-sidebar {
     width: 100%;
     padding: 1rem 1.25rem;
     position: relative;
     top: auto;
-    border-radius: 12px;
-    border: 1px solid #e0e7f1;
-    background-color: #ffffff;
+    background-color: transparent;
     margin-top: 0.2rem;
-  }
-
-  .filter-sidebar h3 {
-    border-bottom: 1px solid #0798e6;
-    margin-bottom: 1rem;
   }
 
   .filter-apply-btn {
@@ -163,26 +129,22 @@
 }
 
 @media (max-width: 768px) {
-  .filter-sidebar {
+  .main-filter-sidebar {
     width: 100%;
     padding: 1rem;
-    border-radius: 10px;
     position: relative;
     top: auto;
-    border: 1px solid #e0e7f1;
-    background-color: #ffffff;
+    background-color: transparent;
     margin-top: 0;
   }
-
-  .filter-sidebar h3 {
-    border-bottom: none;
-    color: #0798e6;
-    margin-bottom: 0.8rem;
+  .filter-header {
+    font-size: 1rem;
+    padding: 8px 12px;
   }
-
   .filter-option {
     flex-direction: row;
     gap: 0.75rem;
+    font-size: 0.9rem;
   }
 
   .filter-option span {
@@ -196,6 +158,6 @@
 
   .filter-apply-btn {
     padding: 0.6rem 1rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 }

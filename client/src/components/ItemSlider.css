@@ -1,4 +1,3 @@
-/* === ITEM SLIDER STYLING === */
 .slider-wrapper {
   position: relative;
   width: 100%;
@@ -10,7 +9,6 @@
   justify-content: center;
 }
 
-/* === Logo on top === */
 .slider-logo {
   display: block;
   margin: 8rem auto 0.5rem auto;
@@ -23,7 +21,6 @@
     opacity 0.3s ease;
 }
 
-/* === Scrollable container === */
 .slider-container {
   display: flex;
   overflow-x: auto;
@@ -41,7 +38,6 @@
   display: none; /* Chrome, Safari */
 }
 
-/* === Arrow buttons === */
 .arrow-left,
 .arrow-right {
   position: absolute;

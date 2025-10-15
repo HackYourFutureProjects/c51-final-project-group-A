@@ -89,18 +89,19 @@ const ResultPage = () => {
   }, [url]);
 
   return (
-    <div className="result-container">
+    <div className="result-page">
       <Header />
-      {/* Wrap sidebar and main content in one flex container */}
-      <div className="content-with-sidebar">
-        <FilterSidebar filters={filters} setFilters={setFilters} />
-
-        <div className="main-content">
+      <div className="main-result-container">
+        {/* Wrap sidebar and main content in one flex container */}
+        <div className="sidebar-with-viewtoggle">
           <ViewToggle
             viewMode={viewMode}
             toggleViewMode={toggleViewMode}
             setFilters={setFilters}
           />
+          <FilterSidebar filters={filters} setFilters={setFilters} />
+        </div>
+        <div className="main-content">
           {isLoading && <Loader />}
           {error && <Error errorMessage={error} />}
           {!isLoading && !error && response.success && (
