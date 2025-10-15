@@ -24,9 +24,25 @@ const ViewToggle = ({ viewMode, toggleViewMode, setFilters }) => {
 
   return (
     <div className="view-toggle-container">
-      {/* ITEMS PER PAGE */}
+      {/* TOGGLE VIEW MODE */}
       <div>
-        <label htmlFor="itemsPerPage" className="toggle-label">
+        <button onClick={toggleViewMode} className="view-toggle-btn">
+          {viewMode === "grid" ? (
+            <>
+              <MdViewList style={{ marginRight: "0.5rem" }} />
+              List View
+            </>
+          ) : (
+            <>
+              <MdGridView style={{ marginRight: "0.5rem" }} />
+              Grid View
+            </>
+          )}
+        </button>
+      </div>
+      {/* ITEMS PER PAGE */}
+      <div className="view-toggle-size">
+        <label htmlFor="itemsPerPage" className="toggle-label-size">
           Display:
         </label>
         <select
@@ -43,8 +59,8 @@ const ViewToggle = ({ viewMode, toggleViewMode, setFilters }) => {
       </div>
 
       {/* SORT */}
-      <div>
-        <label htmlFor="sorting" className="toggle-label">
+      <div className="view-toggle-sort">
+        <label htmlFor="sorting" className="toggle-label-sort">
           Sort:
         </label>
         <select
@@ -96,23 +112,6 @@ const ViewToggle = ({ viewMode, toggleViewMode, setFilters }) => {
             {"Rental Period: High to Low"}
           </option>
         </select>
-      </div>
-
-      {/* TOGGLE VIEW MODE */}
-      <div>
-        <button onClick={toggleViewMode} className="view-toggle-btn">
-          {viewMode === "grid" ? (
-            <>
-              <MdViewList style={{ marginRight: "0.5rem" }} />
-              List View
-            </>
-          ) : (
-            <>
-              <MdGridView style={{ marginRight: "0.5rem" }} />
-              Grid View
-            </>
-          )}
-        </button>
       </div>
     </div>
   );
