@@ -102,13 +102,13 @@
   color: #2c8be6;
 }
 
-.items-grid {
+.profile-items-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
 
-.items-grid p {
+.profile-items-grid p {
   grid-column: 1 / -1;
   color: #555;
 }

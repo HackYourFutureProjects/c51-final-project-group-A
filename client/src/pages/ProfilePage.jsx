@@ -54,18 +54,21 @@ const ProfilePage = () => {
           <button
             className={`tab ${activeTab === "profile" ? "active" : ""}`}
             onClick={() => setActiveTab("profile")}
+            aria-label="Profile Tab"
           >
             Profile
           </button>
           <button
             className={`tab ${activeTab === "borrowed" ? "active" : ""}`}
             onClick={() => setActiveTab("borrowed")}
+            aria-label="Borrowed Items Tab"
           >
             Borrowed
           </button>
           <button
             className={`tab ${activeTab === "owned" ? "active" : ""}`}
             onClick={() => setActiveTab("owned")}
+            aria-label="Owned Items Tab"
           >
             Owned
           </button>
@@ -78,7 +81,7 @@ const ProfilePage = () => {
             <div className="profile-info">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                alt="avatar"
+                alt={`${userInfo.firstName} ${userInfo.lastName} avatar`}
                 className="avatar"
               />
               <div className="profile-details">
@@ -121,7 +124,7 @@ const ProfilePage = () => {
           {activeTab === "borrowed" && (
             <div className="items-tab">
               <h3>Borrowed Items</h3>
-              <div className="items-grid">
+              <div className="profile-items-grid">
                 {borrowedItems.length > 0 ? (
                   borrowedItems.map((item) => (
                     <ItemCard
@@ -141,7 +144,7 @@ const ProfilePage = () => {
           {activeTab === "owned" && (
             <div className="items-tab">
               <h3>Owned Items</h3>
-              <div className="items-grid">
+              <div className="profile-items-grid">
                 {ownedItems.length > 0 ? (
                   ownedItems.map((item) => (
                     <ItemCard
