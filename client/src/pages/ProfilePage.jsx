@@ -3,19 +3,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "./ProfilePage.css";
 import ItemCard from "../components/ItemCard";
 import EditProfileForm from "../components/EditProfileForm";
 import Loader from "../components/Loader";
 import LogoutButton from "../components/LogoutButton";
+import "./ProfilePage.css";
 
 const ProfilePage = () => {
   const [borrowedItems, setBorrowedItems] = useState([]);
   const [ownedItems, setOwnedItems] = useState([]);
-  const [showBorrowed, setShowBorrowed] = useState(false);
-  const [showOwned, setShowOwned] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [editing, setEditing] = useState(false);
+  const [activeTab, setActiveTab] = useState("profile");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,70 +39,88 @@ const ProfilePage = () => {
     fetchProfile();
   }, []);
 
-  if (!userInfo) {
-    return <Loader />;
-  }
-
   const handleItemClick = (id) => {
     navigate(`/items/${id}`);
   };
 
+  if (!userInfo) return <Loader />;
+
   return (
     <>
       <Header />
-      <div className="profile-container">
-        <div className="profile-info">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-            alt="avatar"
-            className="avatar"
-          />
-          <p>
-            <strong>Email</strong>: {userInfo.email}
-          </p>
-          <p>
-            <strong> Name:</strong> {userInfo.firstName} {userInfo.lastName}
-          </p>
-          <p>
-            <strong>Phone</strong>: {userInfo.phone}
-          </p>
-          <p>
-            <strong>City</strong>: {userInfo.city}
-          </p>
-          <LogoutButton />
-          <br />
-          {!editing && (
-            <button
-              onClick={() => setEditing(true)}
-              className="edit-profile-button"
-            >
-              Edit Profile
-            </button>
-          )}
-          {editing && (
-            <EditProfileForm
-              user={userInfo}
-              onSuccess={(updatedUser) => {
-                setUserInfo(updatedUser);
-                setEditing(false);
-              }}
-            />
-          )}
+      <div className="profile-page-container">
+        {/* Tabs Navigation */}
+        <div className="tabs">
+          <button
+            className={`tab ${activeTab === "profile" ? "active" : ""}`}
+            onClick={() => setActiveTab("profile")}
+          >
+            Profile
+          </button>
+          <button
+            className={`tab ${activeTab === "borrowed" ? "active" : ""}`}
+            onClick={() => setActiveTab("borrowed")}
+          >
+            Borrowed
+          </button>
+          <button
+            className={`tab ${activeTab === "owned" ? "active" : ""}`}
+            onClick={() => setActiveTab("owned")}
+          >
+            Owned
+          </button>
         </div>
 
-        <div className="items-section">
-          {/* Borrowed Items */}
-          <div className="items-box">
-            <div
-              className="items-header"
-              onClick={() => setShowBorrowed((prev) => !prev)}
-            >
-              <h3>Borrowed Items</h3>
-              <span className={`arrow ${showBorrowed ? "rotate" : ""}`}>
-                {showBorrowed ? "▼" : "▶"}
-              </span>
+        {/* Tab Content */}
+        <div className="tab-content">
+          {/* Profile Tab */}
+          {activeTab === "profile" && (
+            <div className="profile-info">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                alt="avatar"
+                className="avatar"
+              />
+              <div className="profile-details">
+                <p>
+                  <strong>Email:</strong> {userInfo.email}
+                </p>
+                <p>
+                  <strong>Name:</strong> {userInfo.firstName}{" "}
+                  {userInfo.lastName}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {userInfo.phone}
+                </p>
+                <p>
+                  <strong>City:</strong> {userInfo.city}
+                </p>
+              </div>
+              <LogoutButton />
+              {!editing && (
+                <button
+                  onClick={() => setEditing(true)}
+                  className="edit-profile-button"
+                >
+                  Edit Profile
+                </button>
+              )}
+              {editing && (
+                <EditProfileForm
+                  user={userInfo}
+                  onSuccess={(updatedUser) => {
+                    setUserInfo(updatedUser);
+                    setEditing(false);
+                  }}
+                />
+              )}
             </div>
-            {showBorrowed && (
+          )}
+
+          {/* Borrowed Items Tab */}
+          {activeTab === "borrowed" && (
+            <div className="items-tab">
+              <h3>Borrowed Items</h3>
               <div className="items-grid">
                 {borrowedItems.length > 0 ? (
                   borrowedItems.map((item) => (
@@ -114,24 +131,16 @@ const ProfilePage = () => {
                     />
                   ))
                 ) : (
-                  <p>No borrowed items.</p>
+                  <p>No borrowed items yet.</p>
                 )}
               </div>
-            )}
-          </div>
-
-          {/* Owned Items */}
-          <div className="items-box">
-            <div
-              className="items-header"
-              onClick={() => setShowOwned((prev) => !prev)}
-            >
-              <h3>Owned Items</h3>
-              <span className={`arrow ${showOwned ? "rotate" : ""}`}>
-                {showOwned ? "▼" : "▶"}
-              </span>
             </div>
-            {showOwned && (
+          )}
+
+          {/* Owned Items Tab */}
+          {activeTab === "owned" && (
+            <div className="items-tab">
+              <h3>Owned Items</h3>
               <div className="items-grid">
                 {ownedItems.length > 0 ? (
                   ownedItems.map((item) => (
@@ -142,11 +151,11 @@ const ProfilePage = () => {
                     />
                   ))
                 ) : (
-                  <p>No owned items.</p>
+                  <p>No owned items yet.</p>
                 )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
       <Footer />
