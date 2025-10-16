@@ -1,0 +1,28 @@
+.explain-text2 {
+  background: -webkit-linear-gradient(145deg, #0789e6 10%, #e9e8e8e1 100%);
+  padding: 4rem;
+  text-align: center;
+  border-radius: 90px 20px 90px 20px / 20px 90px 20px 90px;
+  margin: 5rem auto 10rem auto;
+  max-width: 1000px;
+  transition: all 0.3s ease;
+  transform: rotate(-4deg);
+}
+
+.explain-text2 p {
+  margin-top: 1rem;
+  font-size: clamp(1.4rem, 1.5vw, 1.15rem);
+  color: #000000;
+  text-shadow: 0 0 20px #b2e607c9;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .explain-text2 {
+    padding: 1.5rem 1rem;
+    margin: 3rem 1rem 6rem 1rem;
+  }
+  .explain-text2 p {
+    font-size: 0.8rem;
+  }
+}
