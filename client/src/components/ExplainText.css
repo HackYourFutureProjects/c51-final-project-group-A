@@ -14,7 +14,7 @@
   color: #000000;
   margin-bottom: 1rem;
   overflow: hidden;
-  animation: fadeIn 2s ease forwards;
+  animation: fadeIn 2s infinite;
   text-shadow: 0 0 1px #0798e6;
 }
 
