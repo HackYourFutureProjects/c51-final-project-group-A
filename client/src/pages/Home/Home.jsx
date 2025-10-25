@@ -19,6 +19,7 @@ const Home = () => {
       <Shape />
       <ItemSlider />
       <Banner />
+      <Shape />
       <SharePrompt />
       <Footer />
     </div>
