@@ -1,10 +1,10 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import RegisterForm from "../components/RegisterForm";
-import LoginForm from "../components/LoginForm";
-import AuthToggle from "../components/AuthToggle";
+import RegisterForm from "../components/AuthComponents/RegisterForm";
+import LoginForm from "../components/AuthComponents/LoginForm";
+import AuthToggle from "../components/AuthComponents/AuthToggle";
 import { useAuth } from "../hooks/useAuth";
-import ForgotPass from "../components/ForgotPass";
+import ForgotPass from "../components/AuthComponents/ForgotPass";
 import { useState } from "react";
 import "./AuthPage.css";
 
