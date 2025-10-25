@@ -13,8 +13,10 @@
 
 .scroll-content span {
   display: inline-block;
-  padding-right: 70px; /* space between repeats */
-  font-size: 40px;
+  padding-right: 70px;
+  font-size: 30px;
+  color: #cc750c;
+  text-shadow: 1px 1px 30px rgb(177, 228, 59);
 }
 
 @keyframes scroll {
