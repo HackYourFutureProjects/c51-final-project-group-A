@@ -16,9 +16,7 @@
   height: auto;
   object-fit: contain;
   opacity: 1;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+  animation: wave 2s infinite;
 }
 
 .slider-container {
@@ -53,9 +51,7 @@
   cursor: pointer;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
   z-index: 10;
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .arrow-left:hover,
@@ -71,7 +67,6 @@
   right: 20px;
 }
 
-/* === Responsive === */
 @media (max-width: 768px) {
   .slider-wrapper {
     padding: 1.5rem 1rem;
@@ -109,5 +104,31 @@
   .slider-logo {
     max-width: 150px;
     margin: 4rem auto 0.1rem auto;
+  }
+}
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(14deg);
+  }
+  30% {
+    transform: rotate(-8deg);
+  }
+  40% {
+    transform: rotate(14deg);
+  }
+  50% {
+    transform: rotate(-4deg);
+  }
+  60% {
+    transform: rotate(10deg);
+  }
+  70% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

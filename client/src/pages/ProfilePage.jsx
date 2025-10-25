@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import ItemCard from "../components/ItemCard";
 import EditProfileForm from "../components/EditProfileForm";
 import Loader from "../components/Loader";
-import LogoutButton from "../components/LogoutButton";
+import LogoutButton from "../components/AuthComponents/LogoutButton";
 import "./ProfilePage.css";
 
 const ProfilePage = () => {

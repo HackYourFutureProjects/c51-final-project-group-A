@@ -1,0 +1,41 @@
+.scroll-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.scroll-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 50s linear infinite;
+}
+
+.scroll-content span {
+  display: inline-block;
+  padding-right: 70px;
+  font-size: 30px;
+  color: #cc750c;
+  text-shadow: 1px 1px 30px rgb(177, 228, 59);
+}
+@media (max-width: 768px) {
+  .scroll-content span {
+    font-size: 20px;
+    padding-right: 50px;
+  }
+}
+@media (max-width: 480px) {
+  .scroll-content span {
+    font-size: 12px;
+    padding-right: 30px;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

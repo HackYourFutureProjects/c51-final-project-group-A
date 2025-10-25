@@ -1,4 +1,4 @@
-import shape from "../assets/shape.svg";
+import shape from "../../assets/shape.svg";
 import "./Shape.css";
 
 function Shape() {
