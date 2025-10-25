@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import useFetch from "../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import "./ItemSlider.css";
-import ItemCard from "./ItemCard";
-import Loader from "./Loader";
-import Error from "./Error";
+import ItemCard from "../ItemCard";
+import Loader from "../Loader";
+import Error from "../Error";
 import logo from "../assets/logo-transparent-latest.png";
 
 export default function ItemSlider() {

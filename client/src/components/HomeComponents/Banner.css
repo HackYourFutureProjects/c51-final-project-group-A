@@ -1,0 +1,16 @@
+.wallpaper-container {
+  background-image: url("../assets/banner.jpg");
+  background-size: cover;
+  aspect-ratio: 16 / 9;
+  margin: 12rem 0;
+}
+@media (max-width: 768px) {
+  .wallpaper-container {
+    margin: 8rem 0;
+  }
+}
+@media (max-width: 480px) {
+  .wallpaper-container {
+    margin: 8rem 0;
+  }
+}
