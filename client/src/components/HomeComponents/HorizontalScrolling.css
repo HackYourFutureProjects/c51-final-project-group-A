@@ -18,6 +18,18 @@
   color: #cc750c;
   text-shadow: 1px 1px 30px rgb(177, 228, 59);
 }
+@media (max-width: 768px) {
+  .scroll-content span {
+    font-size: 20px;
+    padding-right: 50px;
+  }
+}
+@media (max-width: 480px) {
+  .scroll-content span {
+    font-size: 12px;
+    padding-right: 30px;
+  }
+}
 
 @keyframes scroll {
   0% {

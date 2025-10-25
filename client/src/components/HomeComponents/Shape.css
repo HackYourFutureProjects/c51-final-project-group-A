@@ -6,7 +6,6 @@
 }
 @media (max-width: 480px) {
   .shape {
-    margin: 4rem auto;
     width: 90%;
   }
 }
