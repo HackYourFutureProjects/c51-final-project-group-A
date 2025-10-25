@@ -1,15 +1,15 @@
 import "./HorizontalScrolling.css";
 
 function HorizontalScrolling() {
-  const text =
-    "Share with us your items, borrow from your neighbors, and help reduce waste.";
+  const text1 =
+    "Join our community today and make a positive impact on the environment!";
 
   return (
     <div className="scroll-wrapper">
       <div className="scroll-content">
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
+        <span>{text1}</span>
+        <span>{text1}</span>
+        <span>{text1}</span>
       </div>
     </div>
   );
