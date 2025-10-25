@@ -1,12 +1,12 @@
 import TEST_ID from "./Home.testid";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ItemSlider from "../../components/ItemSlider";
-import ExplainText from "../../components/ExplainText";
-import ExplainText2 from "../../components/ExplainText2";
-import SharePrompt from "../../components/SharePrompt";
-import Banner from "../../components/Banner";
-import Shape from "../../components/Shape";
+import ItemSlider from "../../components/HomeComponents/ItemSlider";
+import ExplainText from "../../components/HomeComponents/ExplainText";
+import ExplainText2 from "../../components/HomeComponents/ExplainText2";
+import SharePrompt from "../../components/HomeComponents/SharePrompt";
+import Banner from "../../components/HomeComponents/Banner";
+import Shape from "../../components/HomeComponents/Shape";
 
 const Home = () => {
   return (
