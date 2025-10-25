@@ -7,6 +7,7 @@ import ExplainText2 from "../../components/HomeComponents/ExplainText2";
 import SharePrompt from "../../components/HomeComponents/SharePrompt";
 import Banner from "../../components/HomeComponents/Banner";
 import Shape from "../../components/HomeComponents/Shape";
+import HorizontalScrolling from "../../components/HomeComponents/HorizontalScrolling";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <ItemSlider />
       <Banner />
       <SharePrompt />
+      <HorizontalScrolling />
       <Footer />
     </div>
   );
