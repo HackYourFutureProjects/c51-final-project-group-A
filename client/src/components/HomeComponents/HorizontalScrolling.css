@@ -1,0 +1,27 @@
+.scroll-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.scroll-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 50s linear infinite;
+}
+
+.scroll-content span {
+  display: inline-block;
+  padding-right: 70px; /* space between repeats */
+  font-size: 40px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
