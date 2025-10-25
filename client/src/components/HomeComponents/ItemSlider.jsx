@@ -4,7 +4,7 @@ import "./ItemSlider.css";
 import ItemCard from "../ItemCard";
 import Loader from "../Loader";
 import Error from "../Error";
-import logo from "../assets/logo-transparent-latest.png";
+import logo from "../../assets/logo-transparent-latest.png";
 
 export default function ItemSlider() {
   const [items, setItems] = useState([]);
