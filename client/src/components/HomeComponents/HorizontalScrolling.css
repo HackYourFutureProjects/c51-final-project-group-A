@@ -15,8 +15,8 @@
   display: inline-block;
   padding-right: 70px;
   font-size: 30px;
-  color: #cc750c;
-  text-shadow: 1px 1px 30px rgb(177, 228, 59);
+  color: #575555;
+  text-shadow: 1px 1px 30px rgba(221, 154, 9, 0.616);
 }
 @media (max-width: 768px) {
   .scroll-content span {
