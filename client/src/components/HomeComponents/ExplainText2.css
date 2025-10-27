@@ -1,5 +1,5 @@
 .explain-text2 {
-  background: -webkit-linear-gradient(145deg, #0789e6 10%, #e9e8e8e1 100%);
+  background: -webkit-linear-gradient(60deg, #0789e6, #f6f6f6, #e68907c0);
   padding: 4rem;
   text-align: center;
   border-radius: 90px 20px 90px 20px / 20px 90px 20px 90px;
@@ -7,13 +7,14 @@
   max-width: 1000px;
   transition: all 0.3s ease;
   transform: rotate(-4deg);
+  width: 90%;
 }
 
 .explain-text2 p {
   margin-top: 1rem;
   font-size: clamp(1.4rem, 1.5vw, 1.15rem);
   color: #000000;
-  text-shadow: 0 0 20px #b2e607c9;
+  text-shadow: 0 0 2px #edf39eae;
   line-height: 1.6;
 }
 

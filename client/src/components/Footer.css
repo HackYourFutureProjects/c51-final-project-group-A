@@ -9,12 +9,22 @@ footer {
   text-align: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   footer {
     padding: 1.5rem 0.5rem;
   }
 
   footer p {
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding: 1rem 0.5rem;
+  }
+
+  footer p {
+    font-size: 0.8rem;
   }
 }

@@ -1,5 +1,12 @@
 .explain-text {
-  background: -webkit-linear-gradient(145deg, #e9e8e8e1 40%, #0789e6 100%);
+  background: -webkit-linear-gradient(
+    145deg,
+    #0789e6,
+    #f6f6f6,
+    #0789e646,
+    #f6f6f6,
+    #e68907ba
+  );
   padding: 4rem;
   text-align: center;
   border-radius: 90px 20px 90px 20px / 20px 90px 20px 90px;
@@ -15,14 +22,14 @@
   margin-bottom: 1rem;
   overflow: hidden;
   animation: fadeIn 2s forwards;
-  text-shadow: 0 0 1px #0798e6;
+  text-shadow: 0 0 8px #b2e607a9;
 }
 
 .explain-text p {
   margin-top: 1rem;
   font-size: clamp(1.4rem, 1.5vw, 1.15rem);
   color: #000000;
-  text-shadow: 0 0 20px #b2e607c9;
+  text-shadow: 0 0 2px #edf39eae;
   line-height: 1.6;
 }
 @keyframes fadeIn {
