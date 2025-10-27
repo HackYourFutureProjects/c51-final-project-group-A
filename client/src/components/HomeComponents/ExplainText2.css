@@ -1,5 +1,5 @@
 .explain-text2 {
-  background: -webkit-linear-gradient(60deg, #0789e6, #f6f6f6, #e68907);
+  background: -webkit-linear-gradient(60deg, #0789e6, #f6f6f6, #e68907c0);
   padding: 4rem;
   text-align: center;
   border-radius: 90px 20px 90px 20px / 20px 90px 20px 90px;
@@ -7,6 +7,7 @@
   max-width: 1000px;
   transition: all 0.3s ease;
   transform: rotate(-4deg);
+  width: 90%;
 }
 
 .explain-text2 p {
