@@ -11,8 +11,9 @@
   display: flex;
   flex-wrap: wrap;
   background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid #90909055;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   margin-top: 6rem;
 }
@@ -31,7 +32,7 @@
 .item-image-box img {
   width: 100%;
   max-width: 400px;
-  border-radius: 1rem;
+  border-radius: 10px;
   object-fit: cover;
 }
 
@@ -59,9 +60,11 @@
   flex: 1;
   min-width: 250px;
   max-width: 300px;
+  min-height: 150px;
+  margin-left: 1rem;
   background-color: #f4f4f4;
-  padding: 1.5rem;
-  border-radius: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
   border: 1px solid #ddd;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   height: fit-content;
