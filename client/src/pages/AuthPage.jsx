@@ -19,7 +19,7 @@ export default function AuthPage() {
       <div
         className="auth-page"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${bgImage})`,
+          backgroundImage: `linear-gradient(rgba(44, 109, 150, 0.74), rgba(0, 0, 0, 0.89)), url(${bgImage})`,
         }}
       >
         <div className="auth-container">
