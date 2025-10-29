@@ -6,7 +6,7 @@ import AuthToggle from "../components/AuthComponents/AuthToggle";
 import { useAuth } from "../hooks/useAuth";
 import ForgotPass from "../components/AuthComponents/ForgotPass";
 import { useState } from "react";
-import bgImage from "../assets/1.jpg";
+import bgImage from "../assets/Auth.jpg";
 import "./AuthPage.css";
 
 export default function AuthPage() {
