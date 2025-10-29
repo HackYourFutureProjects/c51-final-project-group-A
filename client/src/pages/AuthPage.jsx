@@ -6,33 +6,38 @@ import AuthToggle from "../components/AuthComponents/AuthToggle";
 import { useAuth } from "../hooks/useAuth";
 import ForgotPass from "../components/AuthComponents/ForgotPass";
 import { useState } from "react";
+import bgImage from "../assets/1.jpg";
 import "./AuthPage.css";
 
 export default function AuthPage() {
-  // Destructure the necessary functions and state from the useAuth hook
   const { isLogin, toggleMode, handleSubmit } = useAuth();
   const [showForgotForm, setShowForgotForm] = useState(false);
 
   return (
     <>
       <Header />
-      <div className="auth-container">
-        {/*Dynamic title based on login or register mode*/}
-        <h2>{isLogin ? "Login" : "Register"}</h2>
-        {/* Render the appropriate form based on the isLogin state */}
-        {showForgotForm ? (
-          <ForgotPass handleBack={() => setShowForgotForm(false)} />
-        ) : isLogin ? (
-          <LoginForm
-            handleSubmit={handleSubmit}
-            onForgotClick={() => setShowForgotForm(true)}
-          />
-        ) : (
-          <RegisterForm handleSubmit={handleSubmit} />
-        )}
+      <div
+        className="auth-page"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${bgImage})`,
+        }}
+      >
+        <div className="auth-container">
+          <h2>{isLogin ? "Login" : "Register"}</h2>
 
-        {/* Toggle between login and registration modes */}
-        <AuthToggle isLogin={isLogin} toggleMode={toggleMode} />
+          {showForgotForm ? (
+            <ForgotPass handleBack={() => setShowForgotForm(false)} />
+          ) : isLogin ? (
+            <LoginForm
+              handleSubmit={handleSubmit}
+              onForgotClick={() => setShowForgotForm(true)}
+            />
+          ) : (
+            <RegisterForm handleSubmit={handleSubmit} />
+          )}
+
+          <AuthToggle isLogin={isLogin} toggleMode={toggleMode} />
+        </div>
       </div>
       <Footer />
     </>
